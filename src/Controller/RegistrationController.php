@@ -22,6 +22,12 @@ class RegistrationController extends AbstractController
     {
     }
 
+    #[Route('/', name: 'home')]
+    public function index(): Response{
+        return $this->render('base.html.twig', [
+            'controller_name' => 'RegistrationController',
+        ]);
+    }
     #[Route('/register', name: 'app_register')]
     public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
     {
@@ -50,7 +56,7 @@ class RegistrationController extends AbstractController
 
             // do anything else you need here, like send an email
 
-            return $this->redirectToRoute('_profiler_home');
+            return $this->redirectToRoute('home');
         }
 
         return $this->render('registration/register.html.twig', [
