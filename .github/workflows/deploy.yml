@@ -30,3 +30,25 @@ jobs:
             git pull origin master && \
             composer install --no-dev --optimize-autoloader && \
             bin/console d:s:u --dump-sql -f"
+
+      # ── Notify Slack on Success ──
+      - name: Slack → Success
+        if:   ${{ success() }}
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        run: |
+          payload='{ "text": "✅ Deployment to *master* SF site succeeded!" }'
+          curl -X POST -H 'Content-type: application/json' \
+            --data "$payload" \
+            "$SLACK_WEBHOOK_URL"
+
+      # ── Notify Slack on Failure ───
+      - name: Slack → Failure
+        if:   ${{ failure() }}
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        run: |
+          payload='{ "text": "❌ Deployment to *master* SF site failed. Check the Actions log." }'
+          curl -X POST -H 'Content-type: application/json' \
+            --data "$payload" \
+            "$SLACK_WEBHOOK_URL"
