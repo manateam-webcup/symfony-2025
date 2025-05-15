@@ -31,24 +31,41 @@ jobs:
             composer install --no-dev --optimize-autoloader && \
             bin/console d:s:u --dump-sql -f"
 
-      # ── Notify Slack on Success ──
-      - name: Slack → Success
-        if:   ${{ success() }}
-        env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+      # ── ❶ Capture last commit title ─────────────────────────────
+      - name: Get last commit title
+        id: last-commit
         run: |
-          payload='{ "text": "✅ Deployment to *master* SF site succeeded!" }'
-          curl -X POST -H 'Content-type: application/json' \
-            --data "$payload" \
-            "$SLACK_WEBHOOK_URL"
+          # %s is subject (first line) of the commit
+          echo "message=$(git log -1 --pretty=format:%s)" >> $GITHUB_OUTPUT
 
-      # ── Notify Slack on Failure ───
-      - name: Slack → Failure
-        if:   ${{ failure() }}
+      # ── ❷ Notify Slack on Success (with commit) ─────────────────
+      - name: Slack → Success
+        if: success()
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
         run: |
-          payload='{ "text": "❌ Deployment to *master* SF site failed. Check the Actions log." }'
+          payload=$(
+            jq -n \
+              --arg text    "✅ Deployment to *Symfony* succeeded!" \
+              --arg commit  "${{ steps.last-commit.outputs.message }}" \
+              '{ text: ($text + "\n> *" + $commit + "*") }'
+          )
           curl -X POST -H 'Content-type: application/json' \
-            --data "$payload" \
-            "$SLACK_WEBHOOK_URL"
+               --data "$payload" \
+               "$SLACK_WEBHOOK_URL"
+
+      # ── ❸ Notify Slack on Failure (with commit) ─────────────────
+      - name: Slack → Failure
+        if: failure()
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        run: |
+          payload=$(
+            jq -n \
+              --arg text   "❌ Deployment to *Symfony* FAILED!" \
+              --arg commit "${{ steps.last-commit.outputs.message }}" \
+              '{ text: ($text + "\n> *" + $commit + "*\nCheck Actions logs for details.") }'
+          )
+          curl -X POST -H 'Content-type: application/json' \
+               --data "$payload" \
+               "$SLACK_WEBHOOK_URL"
