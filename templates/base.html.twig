@@ -12,9 +12,16 @@
         {% endblock %}
     </head>
     <body>
+    {% for label, messages in app.flashes(['success', 'error']) %}
+        {% for message in messages %}
+            <div class="flash-{{ label }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endfor %}
         {% block body %}
             <h1>Hello!</h1>
-            <p>Registration successful ;)</p>
+            <p>Welcome to manaTeam</p>
         {% endblock %}
     </body>
 </html>
