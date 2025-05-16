@@ -5,4 +5,4 @@ controllers:
     type: attribute
 app_logout:
     path: /logout
-    methods: GET
+    methods: [GET, POST]

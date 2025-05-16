@@ -24,9 +24,10 @@
     <p>You remembered your login creds, welcome!</p>
     {% if app.user %}
         <div>
-            <button>
-                <a href="{{ path('app_logout') }}">Logout</a>
-            </button>
+            <form action="{{ path('app_logout') }}" method="post">
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token('logout') }}">
+                <button type="submit" class="btn btn-primary">Logout</button>
+            </form>
         </div>
     {% endif %}
 {% endblock %}

@@ -38,6 +38,14 @@ class RegistrationController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             /** @var string $plainPassword */
             $plainPassword = $form->get('plainPassword')->getData();
+            /** @var string $confirmPassword */
+            $confirmPassword = $form->get('confirmPassword')->getData();
+
+            // Check if passwords match
+            if ($plainPassword !== $confirmPassword) {
+                $this->addFlash('error', 'Passwords do not match.');
+                return $this->redirectToRoute('app_register');
+            }
 
             // encode the plain password
             $user->setPassword($userPasswordHasher->hashPassword($user, $plainPassword));
@@ -48,7 +56,7 @@ class RegistrationController extends AbstractController
             // generate a signed url and email it to the user
             $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
                 (new TemplatedEmail())
-                    ->from(new Address('arivalen.md@gmail.com', 'Mail'))
+                    ->from(new Address($this->getParameter('app.mailer_from_email'), $this->getParameter('app.mailer_from_name')))
                     ->to((string) $user->getEmail())
                     ->subject('Please Confirm your Email')
                     ->htmlTemplate('registration/confirmation_email.html.twig')
@@ -80,9 +88,8 @@ class RegistrationController extends AbstractController
             return $this->redirectToRoute('app_register');
         }
 
-        // @TODO Change the redirect on success and handle or remove the flash message in your templates
-        $this->addFlash('success', 'Your email address has been verified.');
+        $this->addFlash('success', 'Your email address has been verified. You can now log in.');
 
-        return $this->redirectToRoute('app_register');
+        return $this->redirectToRoute('app_login');
     }
 }
