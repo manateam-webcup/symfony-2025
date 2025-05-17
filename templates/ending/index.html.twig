@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}All Endings{% endblock %}
+
+{% block body %}
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>All Endings</h1>
+        <div>
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                <a href="{{ path('app_ending_new') }}" class="btn btn-primary">Create New Ending</a>
+                <a href="{{ path('app_ending_my_endings') }}" class="btn btn-outline-secondary ms-2">My Endings</a>
+            {% else %}
+                <a href="{{ path('app_login') }}" class="btn btn-outline-primary">Login to Share Your Ending</a>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="mb-4">
+        <h5>Filter by Emotion:</h5>
+        <div class="d-flex gap-2">
+            <a href="{{ path('app_ending_index') }}" class="btn btn-sm btn-outline-secondary">All</a>
+            <a href="{{ path('app_ending_by_emotion', {'emotion': 'sad'}) }}" class="btn btn-sm btn-outline-info">Sad</a>
+            <a href="{{ path('app_ending_by_emotion', {'emotion': 'shocking'}) }}" class="btn btn-sm btn-outline-warning">Shocking</a>
+            <a href="{{ path('app_ending_by_emotion', {'emotion': 'happy'}) }}" class="btn btn-sm btn-outline-success">Happy</a>
+            <a href="{{ path('app_ending_by_emotion', {'emotion': 'angry'}) }}" class="btn btn-sm btn-outline-danger">Angry</a>
+        </div>
+    </div>
+
+    {% for flash_success in app.flashes('success') %}
+        <div class="alert alert-success" role="alert">{{ flash_success }}</div>
+    {% endfor %}
+
+    {% if endings|length > 0 %}
+        <div class="row">
+            {% for ending in endings %}
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h5 class="card-title mb-0">{{ ending.title }}</h5>
+                            <span class="badge {% if ending.emotion == 'sad' %}bg-info{% elseif ending.emotion == 'shocking' %}bg-warning{% elseif ending.emotion == 'happy' %}bg-success{% elseif ending.emotion == 'angry' %}bg-danger{% endif %}">
+                                {{ ending.emotion|capitalize }}
+                            </span>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">{{ ending.description|striptags|slice(0, 150) }}{% if ending.description|length > 150 %}...{% endif %}</p>
+                            
+                            {% if ending.image1Path %}
+                                <img src="{{ asset('uploads/' ~ ending.image1Path) }}" class="img-fluid rounded mb-2" alt="Image">
+                            {% endif %}
+                            
+                            <div class="d-flex justify-content-between align-items-center mt-3">
+                                <small class="text-muted">
+                                    By {{ ending.user.firstName ?? ending.user.email }}
+                                </small>
+                                <small class="text-muted">{{ ending.createdAt|date('M d, Y') }}</small>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-transparent">
+                            <a href="{{ path('app_ending_show', {'id': ending.id}) }}" class="btn btn-sm btn-primary w-100">Read More</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="alert alert-info">
+            <p class="mb-0">No endings found. Be the first to share your story!</p>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
