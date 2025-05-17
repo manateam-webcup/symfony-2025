@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\User;
 
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
@@ -12,6 +12,7 @@ use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
+#[Route('/user')]
 class TwoFactorController extends AbstractController
 {
     public function __construct(
@@ -46,7 +47,7 @@ class TwoFactorController extends AbstractController
             // Create a new TOTP object with Google Authenticator compatible settings
             $totp = TOTP::create();
             $totp->setLabel($user->getEmail()); // Set the label for the authenticator app
-            $totp->setIssuer('Symfony 2FA Demo'); // Set the issuer name
+            $totp->setIssuer('ManaTeam\'s - TheEndPage'); // Set the issuer name
 
             // Ensure we're using settings compatible with Google Authenticator
             // Google Authenticator uses SHA1, 6 digits, and 30-second period
@@ -94,7 +95,7 @@ class TwoFactorController extends AbstractController
             error_log("2FA Error from session: " . $error);
         }
 
-        return $this->render('two_factor/index.html.twig', [
+        return $this->render('user/two_factor/index.html.twig', [
             'error' => $error,
             'qrCodeUri' => $qrCodeUri,
             'secret' => $totp->getSecret(),
