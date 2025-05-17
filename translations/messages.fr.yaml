@@ -1,0 +1,53 @@
+site:
+  title: TheEndPage
+
+landing:
+  info_text: "Pour écrire la fin de ton histoire, il te suffit de t'enregistrer. C'est rapide et indispensable pour publier. En t'inscrivant, tu acceptes nos conditions d'utilisation ainsi que notre politique de confidentialité."
+
+login:
+  welcome: Bienvenue sur
+  page_title: Connexion
+  tab: Connexion
+  decorative_image: Image décorative de fusée
+  account_login: Connexion au compte
+  email: Email
+  password: Mot de passe
+  remember_me: Se souvenir de moi
+  forgot_password: Mot de passe oublié ?
+  submit: Connectez-vous à votre compte !
+  social_login: Connectez-vous avec votre compte social
+  facebook: Connexion avec Facebook
+  twitter: Connexion avec Twitter
+  twitch: Connexion avec Twitch
+  youtube: Connexion avec YouTube
+
+register:
+  welcome: Bienvenue sur
+  page_title: Inscription
+  tab: Inscription
+  decorative_image: Image décorative de fusée
+  create_account: Créez votre compte !
+  first_name: Prénom
+  last_name: Nom
+  email: Votre email
+  password: Mot de passe
+  repeat_password: Répétez le mot de passe
+  agree_terms: J'accepte les conditions générales
+  submit: Inscrivez-vous maintenant !
+  confirmation_email: Vous recevrez un email de confirmation dans votre boîte de réception avec un lien pour activer votre compte. Si vous rencontrez des problèmes, <a href="#" aria-label="Contactez-nous pour obtenir de l'aide avec l'inscription">contactez-nous</a> !
+
+two_factor:
+  page_title: Authentification à deux facteurs
+  title: Authentification à deux facteurs
+  step1: Installez Google Authenticator ou une autre application TOTP sur votre appareil mobile
+  step2: Scannez le code QR avec l'application ou entrez la clé secrète manuellement
+  step3: Entrez le code à 6 chiffres affiché dans votre application
+  scan_qr: Scannez ce code QR
+  qr_code_alt: Code QR pour Google Authenticator
+  manual_entry: Ou entrez cette clé secrète manuellement
+  decorative_image: Image décorative de fusée
+  verification: Vérification
+  enter_code: Veuillez entrer le code de vérification à 6 chiffres de votre application d'authentification.
+  verification_code: Code de vérification
+  verify: Vérifier
+  cancel_logout: Annuler et se déconnecter

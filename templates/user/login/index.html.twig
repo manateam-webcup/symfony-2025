@@ -1,6 +1,6 @@
 {% extends 'layout.html.twig' %}
 
-{% block title %}Login{% endblock %}
+{% block title %}{{ 'login.page_title'|trans }}{% endblock %}
 
 {% block body %}
     <div class="landing">
@@ -12,28 +12,25 @@
                 </svg>
             </div>
 
-            <h2 class="landing-info-pretitle">Bienvenue sur</h2>
+            <h2 class="landing-info-pretitle">{{ 'login.welcome'|trans }}</h2>
 
-            <h1 class="landing-info-title">TheEndPage</h1>
+            <h1 class="landing-info-title">{{ 'site.title'|trans }}</h1>
 
-            <p class="landing-info-text">Pour écrire la fin de ton histoire, il te suffit de t'enregistrer. C’est rapide et indispensable pour publier.
-
-                En t'inscrivant, tu acceptes nos conditions d’utilisation ainsi que notre politique de confidentialité.
-            </p>
+            <p class="landing-info-text">{{ 'landing.info_text'|trans }}</p>
 
             <div class="tab-switch" role="tablist">
-                <p id="login-tab" class="tab-switch-button login-register-form-trigger" role="tab" aria-selected="true" aria-controls="login-form">Login</p>
+                <p id="login-tab" class="tab-switch-button login-register-form-trigger" role="tab" aria-selected="true" aria-controls="login-form">{{ 'login.tab'|trans }}</p>
 
-                <a id="register-tab" class="tab-switch-button login-register-form-trigger" role="tab" aria-selected="false" aria-controls="register-form" href="{{ path('app_register') }}">Register</a>
+                <a id="register-tab" class="tab-switch-button login-register-form-trigger" role="tab" aria-selected="false" aria-controls="register-form" href="{{ path('app_register') }}">{{ 'register.tab'|trans }}</a>
             </div>
         </div>
 
         <div class="landing-form">
 
             <div id="login-form" class="form-box login-register-form-element" role="tabpanel" aria-labelledby="login-tab">
-                <img class="form-box-decoration overflowing" src="/img/landing/rocket.png" alt="Decorative rocket image">
+                <img class="form-box-decoration overflowing" src="/img/landing/rocket.png" alt="{{ 'login.decorative_image'|trans }}">
 
-                <h2 class="form-box-title">Account Login</h2>
+                <h2 class="form-box-title">{{ 'login.account_login'|trans }}</h2>
 
                 {% if error %}
                     <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
@@ -57,7 +54,7 @@
                     <div class="form-row">
                         <div class="form-item">
                             <div class="form-input">
-                                <label for="username">Email</label>
+                                <label for="username">{{ 'login.email'|trans }}</label>
                                 <input type="text" id="username" name="_username" value="{{ last_username }}" class="form-control" required autofocus aria-required="true">
                             </div>
                         </div>
@@ -66,7 +63,7 @@
                     <div class="form-row">
                         <div class="form-item">
                             <div class="form-input">
-                                <label for="password">Password</label>
+                                <label for="password">{{ 'login.password'|trans }}</label>
                                 <input type="password" id="password" name="_password" class="form-control" required aria-required="true">
                             </div>
                         </div>
@@ -81,46 +78,43 @@
                                         <use xlink:href="#svg-cross"></use>
                                     </svg>
                                 </div>
-                                <label for="remember_me">Remember Me</label>
+                                <label for="remember_me">{{ 'login.remember_me'|trans }}</label>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="form-row">
                         <div class="form-item">
-                            <a class="form-link" href="{{ path('app_forgot_password_request') }}">Forgot Password?</a>
+                            <a class="form-link" href="{{ path('app_forgot_password_request') }}">{{ 'login.forgot_password'|trans }}</a>
                         </div>
                     </div>
 
                     <div class="form-row">
                         <div class="form-item">
-                            <button type="submit" class="button medium secondary">Login to your Account!</button>
+                            <button type="submit" class="button medium secondary">{{ 'login.submit'|trans }}</button>
                         </div>
                     </div>
                 </form>
 
-                {#<p class="lined-text">Login with your Social Account</p>
+                {#<p class="lined-text">{{ 'login.social_login'|trans }}</p>
 
                 <div class="social-links">
-                    <a class="social-link facebook" href="#" aria-label="Login with Facebook">
+                    <a class="social-link facebook" href="#" aria-label="{{ 'login.facebook'|trans }}">
                         <svg class="icon-facebook" aria-hidden="true" focusable="false">
                             <use xlink:href="#svg-facebook"></use>
                         </svg>
                     </a>
 
-                    <a class="social-link twitter" href="#" aria-label="Login with Twitter">
+                    <a class="social-link twitter" href="#" aria-label="{{ 'login.twitter'|trans }}">
                         <svg class="icon-twitter" aria-hidden="true" focusable="false">
                             <use xlink:href="#svg-twitter"></use>
                         </svg>
                     </a>
 
-                    <a class="social-link twitch" href="#" aria-label="Login with Twitch">
+                    <a class="social-link twitch" href="#" aria-label="{{ 'login.twitch'|trans }}">
                         <svg class="icon-twitch" aria-hidden="true" focusable="false">
                             <use xlink:href="#svg-twitch"></use>
                         </svg>
                     </a>
 
-                    <a class="social-link youtube" href="#" aria-label="Login with YouTube">
+                    <a class="social-link youtube" href="#" aria-label="{{ 'login.youtube'|trans }}">
                         <svg class="icon-youtube" aria-hidden="true" focusable="false">
                             <use xlink:href="#svg-youtube"></use>
                         </svg>

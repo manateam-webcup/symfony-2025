@@ -1,6 +1,6 @@
 {% extends 'layout.html.twig' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}{{ 'register.page_title'|trans }}{% endblock %}
 
 {% block body %}
     <div class="landing">
@@ -12,18 +12,15 @@
                 </svg>
             </div>
 
-            <h2 class="landing-info-pretitle">Bienvenue sur</h2>
+            <h2 class="landing-info-pretitle">{{ 'register.welcome'|trans }}</h2>
 
-            <h1 class="landing-info-title">TheEndPage</h1>
+            <h1 class="landing-info-title">{{ 'site.title'|trans }}</h1>
 
-            <p class="landing-info-text">Pour écrire la fin de ton histoire, il te suffit de t'enregistrer. C’est rapide et indispensable pour publier.
-
-                En t'inscrivant, tu acceptes nos conditions d’utilisation ainsi que notre politique de confidentialité.
-            </p>
+            <p class="landing-info-text">{{ 'landing.info_text'|trans }}</p>
 
             <div class="tab-switch" role="tablist">
-                <a id="login-tab" class="tab-switch-button login-register-form-trigger" href="{{ path('app_login') }}" role="tab" aria-selected="true" aria-controls="login-form">Login</a>
-                <p id="register-tab" class="tab-switch-button login-register-form-trigger" role="tab" aria-selected="false" aria-controls="register-form">Register</p>
+                <a id="login-tab" class="tab-switch-button login-register-form-trigger" href="{{ path('app_login') }}" role="tab" aria-selected="true" aria-controls="login-form">{{ 'login.tab'|trans }}</a>
+                <p id="register-tab" class="tab-switch-button login-register-form-trigger" role="tab" aria-selected="false" aria-controls="register-form">{{ 'register.tab'|trans }}</p>
             </div>
         </div>
 
@@ -32,9 +29,9 @@
             <div id="login-form" class="form-box login-register-form-element" role="tabpanel" aria-labelledby="login-tab"></div>
 
             <div id="register-form" class="form-box login-register-form-element">
-                <img class="form-box-decoration" src="/img/landing/rocket.png" alt="Decorative rocket image">
+                <img class="form-box-decoration" src="/img/landing/rocket.png" alt="{{ 'register.decorative_image'|trans }}">
 
-                <h2 class="form-box-title">Create your Account!</h2>
+                <h2 class="form-box-title">{{ 'register.create_account'|trans }}</h2>
 
                 {{ form_errors(registrationForm) }}
 
@@ -43,13 +40,13 @@
                 <div class="form-row">
                     <div class="form-item col-md-6">
                         <div class="form-input">
-                            <label for="register-first-name">First Name</label>
+                            <label for="register-first-name">{{ 'register.first_name'|trans }}</label>
                             {{ form_widget(registrationForm.firstName) }}
                         </div>
                     </div>
                     <div class="form-item col-md-6">
                         <div class="form-input">
-                            <label for="register-last-name">Last Name</label>
+                            <label for="register-last-name">{{ 'register.last_name'|trans }}</label>
                             {{ form_widget(registrationForm.lastName) }}
                         </div>
                     </div>
@@ -58,7 +55,7 @@
                 <div class="form-row">
                     <div class="form-item">
                         <div class="form-input">
-                            <label for="register-email">Your Email</label>
+                            <label for="register-email">{{ 'register.email'|trans }}</label>
                             {{ form_widget(registrationForm.email) }}
                         </div>
                     </div>
@@ -67,7 +64,7 @@
                 <div class="form-row">
                     <div class="form-item">
                         <div class="form-input">
-                            <label for="register-password">Password</label>
+                            <label for="register-password">{{ 'register.password'|trans }}</label>
                             {{ form_widget(registrationForm.plainPassword) }}
                         </div>
                     </div>
@@ -76,7 +73,7 @@
                 <div class="form-row">
                     <div class="form-item">
                         <div class="form-input">
-                            <label for="register-password-repeat">Repeat Password</label>
+                            <label for="register-password-repeat">{{ 'register.repeat_password'|trans }}</label>
                             {{ form_widget(registrationForm.confirmPassword) }}
                         </div>
                     </div>
@@ -91,20 +88,20 @@
                                     <use xlink:href="#svg-cross"></use>
                                 </svg>
                             </div>
-                            <label for="registration_form_agreeTerms">I agree to the terms and conditions</label>
+                            <label for="registration_form_agreeTerms">{{ 'register.agree_terms'|trans }}</label>
                         </div>
                     </div>
                 </div>
 
                 <div class="form-row">
                     <div class="form-item">
-                        <button type="submit" class="button medium primary">Register Now!</button>
+                        <button type="submit" class="button medium primary">{{ 'register.submit'|trans }}</button>
                     </div>
                 </div>
 
                 {{ form_end(registrationForm) }}
 
-                <p class="form-text">You'll receive a confirmation email in your inbox with a link to activate your account. If you have any problems, <a href="#" aria-label="Contact us for help with registration">contact us</a>!</p>
+                <p class="form-text">{{ 'register.confirmation_email'|trans|raw }}</p>
             </div>
         </div>
     </div>

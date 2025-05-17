@@ -1,0 +1,53 @@
+site:
+  title: TheEndPage
+
+landing:
+  info_text: "To write the end of your story, you just need to register. It's quick and essential for publishing. By registering, you accept our terms of use and privacy policy."
+
+login:
+  welcome: Welcome to
+  page_title: Login
+  tab: Login
+  decorative_image: Decorative rocket image
+  account_login: Account Login
+  email: Email
+  password: Password
+  remember_me: Remember Me
+  forgot_password: Forgot Password?
+  submit: Login to your Account!
+  social_login: Login with your Social Account
+  facebook: Login with Facebook
+  twitter: Login with Twitter
+  twitch: Login with Twitch
+  youtube: Login with YouTube
+
+register:
+  welcome: Welcome to
+  page_title: Register
+  tab: Register
+  decorative_image: Decorative rocket image
+  create_account: Create your Account!
+  first_name: First Name
+  last_name: Last Name
+  email: Your Email
+  password: Password
+  repeat_password: Repeat Password
+  agree_terms: I agree to the terms and conditions
+  submit: Register Now!
+  confirmation_email: You'll receive a confirmation email in your inbox with a link to activate your account. If you have any problems, <a href="#" aria-label="Contact us for help with registration">contact us</a>!
+
+two_factor:
+  page_title: Two-Factor Authentication
+  title: Two-Factor Authentication
+  step1: Install Google Authenticator or another TOTP app on your mobile device
+  step2: Scan the QR code with the app or enter the secret key manually
+  step3: Enter the 6-digit code shown in your app
+  scan_qr: Scan this QR Code
+  qr_code_alt: QR Code for Google Authenticator
+  manual_entry: Or enter this secret key manually
+  decorative_image: Decorative rocket image
+  verification: Verification
+  enter_code: Please enter the 6-digit verification code from your authenticator app.
+  verification_code: Verification Code
+  verify: Verify
+  cancel_logout: Cancel and logout
