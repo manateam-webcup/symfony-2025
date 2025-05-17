@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="A platform that lets anyone who’s leaving something behind — a job, a project, a team, a partner, a Discord channel, whatever — create their own personalized “goodbye” page on TheEnd.page">
+    <meta name="author" content="ManaTeam">
+    <meta name="keywords" content="the end page, goodbye page, ending event">
+
+    <link rel="shortcut icon" href="{{ asset('assets/img/icons/icon-48x48.png') }}"/>
+
+    <link rel="canonical" href="https://manateam.maurice.webcup.hodi.host/"/>
+
+    <title>TheEndPage | {% block title %}Home{% endblock %}</title>
+
+    {% block stylesheets %}
+        <link href="{{ asset('css/vendor/bootstrap.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/styles.min.css') }}" rel="stylesheet">
+    {% endblock %}
+</head>
+
+<body>
+
+    {% block body %}{% endblock %}
+
+    {% block javascripts %}
+        <script src="/js/utils/app.js"></script>
+        <script src="/js/vendor/xm_plugins.min.js"></script>
+        <script src="/js/form/form.utils.js"></script>
+        <script src="/js/landing/landing.tabs.js"></script>
+        <script src="/js/utils/svg-loader.js"></script>
+    {% endblock %}
+
+</body>
+
+</html>

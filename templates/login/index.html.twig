@@ -1,57 +1,178 @@
-{% extends 'base.html.twig' %}
+{% extends 'layout.html.twig' %}
 
-{% block title %}Welcome to the ugliest login form ever!!{% endblock %}
+{% block title %}Login{% endblock %}
 
 {% block body %}
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-6">
-                <div class="card mt-5">
-                    <div class="card-header">
-                        <h1 class="text-center">Login</h1>
-                    </div>
-                    <div class="card-body">
-                        {% if error %}
-                            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-                        {% endif %}
+    <div class="landing">
+        <div class="landing-decoration"></div>
+        <div class="landing-info">
+            <div class="logo">
+                <svg class="icon-logo-vikinger">
+                    <use xlink:href="#svg-logo-vikinger"></use>
+                </svg>
+            </div>
 
-                        {% for label, messages in app.flashes(['success', 'error']) %}
-                            {% for message in messages %}
-                                <div class="alert alert-{{ label == 'error' ? 'danger' : label }}">
-                                    {{ message }}
-                                </div>
-                            {% endfor %}
-                        {% endfor %}
+            <h2 class="landing-info-pretitle">Bienvenue sur</h2>
 
-                        <form action="{{ path('app_login') }}" method="post">
-                            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+            <h1 class="landing-info-title">TheEndPage</h1>
 
-                            <div class="mb-3">
-                                <label for="username" class="form-label">Email:</label>
-                                <input type="email" id="username" name="_username" value="{{ last_username }}" class="form-control" required autofocus>
+            <p class="landing-info-text">Pour écrire la fin de ton histoire, il te suffit de t'enregistrer. C’est rapide et indispensable pour publier.
+
+                En t'inscrivant, tu acceptes nos conditions d’utilisation ainsi que notre politique de confidentialité.
+            </p>
+
+            <div class="tab-switch">
+                <p class="tab-switch-button login-register-form-trigger">Login</p>
+
+                <p class="tab-switch-button login-register-form-trigger">Register</p>
+            </div>
+        </div>
+
+        <div class="landing-form">
+            <div class="form-box login-register-form-element">
+                <img class="form-box-decoration overflowing" src="img/landing/rocket.png" alt="rocket">
+
+                <h2 class="form-box-title">Account Login</h2>
+
+                <form class="form" action="{{ path('app_login') }}" method="post">
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+                    <div class="form-row">
+                        <div class="form-item">
+                            <div class="form-input">
+                                <label for="login-username">Email</label>
+                                <input type="text" id="username" name="_username" value="{{ last_username }}" class="form-control" required autofocus>
                             </div>
+                        </div>
+                    </div>
 
-                            <div class="mb-3">
-                                <label for="password" class="form-label">Password:</label>
+                    <div class="form-row">
+                        <div class="form-item">
+                            <div class="form-input">
+                                <label for="login-password">Password</label>
                                 <input type="password" id="password" name="_password" class="form-control" required>
                             </div>
-
-                            <div class="mb-3 form-check">
-                                <input type="checkbox" id="remember_me" name="_remember_me" class="form-check-input">
-                                <label for="remember_me" class="form-check-label">Remember me</label>
-                            </div>
-
-                            <div class="d-grid">
-                                <button type="submit" class="btn btn-primary">Login</button>
-                            </div>
-
-                            <div class="mt-3 text-center">
-                                <p><a href="{{ path('app_forgot_password_request') }}">Forgot your password?</a></p>
-                                <p>Don't have an account? <a href="{{ path('app_register') }}">Register here</a></p>
-                            </div>
-                        </form>
+                        </div>
                     </div>
+
+                    <div class="form-row space-between">
+                        <div class="form-item">
+                            <div class="checkbox-wrap">
+                                <input type="checkbox" id="remember_me" name="_remember_me" class="form-check-input">
+                                <div class="checkbox-box">
+                                    <svg class="icon-cross">
+                                        <use xlink:href="#svg-cross"></use>
+                                    </svg>
+                                </div>
+                                <label for="login-remember">Remember Me</label>
+                            </div>
+                        </div>
+
+                        <div class="form-item">
+                            <a class="form-link" href="{{ path('app_forgot_password_request') }}">Forgot Password?</a>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-item">
+                            <button type="submit" class="button medium secondary">Login to your Account!</button>
+                        </div>
+                    </div>
+                </form>
+
+                <p class="lined-text">Login with your Social Account</p>
+
+                <div class="social-links">
+                    <a class="social-link facebook" href="#">
+                        <svg class="icon-facebook">
+                            <use xlink:href="#svg-facebook"></use>
+                        </svg>
+                    </a>
+
+                    <a class="social-link twitter" href="#">
+                        <svg class="icon-twitter">
+                            <use xlink:href="#svg-twitter"></use>
+                        </svg>
+                    </a>
+
+                    <a class="social-link twitch" href="#">
+                        <svg class="icon-twitch">
+                            <use xlink:href="#svg-twitch"></use>
+                        </svg>
+                    </a>
+
+                    <a class="social-link youtube" href="#">
+                        <svg class="icon-youtube">
+                            <use xlink:href="#svg-youtube"></use>
+                        </svg>
+                    </a>
                 </div>
+            </div>
+
+            <div class="form-box login-register-form-element">
+                <img class="form-box-decoration" src="img/landing/rocket.png" alt="rocket">
+
+                <h2 class="form-box-title">Create your Account!</h2>
+
+                <form class="form">
+                    <div class="form-row">
+                        <div class="form-item">
+                            <div class="form-input">
+                                <label for="register-email">Your Email</label>
+                                <input type="text" id="register-email" name="register_email">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-item">
+                            <div class="form-input">
+                                <label for="register-username">Username</label>
+                                <input type="text" id="register-username" name="register_username">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-item">
+                            <div class="form-input">
+                                <label for="register-password">Password</label>
+                                <input type="password" id="register-password" name="register_password">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-item">
+                            <div class="form-input">
+                                <label for="register-password-repeat">Repeat Password</label>
+                                <input type="password" id="register-password-repeat" name="register_password_repeat">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-item">
+                            <div class="checkbox-wrap">
+                                <input type="checkbox" id="register-newsletter" name="register_newsletter" checked>
+                                <div class="checkbox-box">
+                                    <svg class="icon-cross">
+                                        <use xlink:href="#svg-cross"></use>
+                                    </svg>
+                                </div>
+                                <label for="register-newsletter">Send me news and updates via email</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-item">
+                            <button class="button medium primary">Register Now!</button>
+                        </div>
+                    </div>
+                </form>
+
+                <p class="form-text">You'll receive a confirmation email in your inbox with a link to activate your account. If you have any problems, <a href="#">contact us</a>!</p>
             </div>
         </div>
     </div>
