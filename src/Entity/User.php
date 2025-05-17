@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -44,6 +46,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $totpSecret = null;
+
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Ending::class, orphanRemoval: true)]
+    private Collection $endings;
+
+    public function __construct()
+    {
+        $this->endings = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -169,5 +179,35 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function hasTotpSecret(): bool
     {
         return $this->totpSecret !== null;
+    }
+
+    /**
+     * @return Collection<int, Ending>
+     */
+    public function getEndings(): Collection
+    {
+        return $this->endings;
+    }
+
+    public function addEnding(Ending $ending): static
+    {
+        if (!$this->endings->contains($ending)) {
+            $this->endings->add($ending);
+            $ending->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEnding(Ending $ending): static
+    {
+        if ($this->endings->removeElement($ending)) {
+            // set the owning side to null (unless already changed)
+            if ($ending->getUser() === $this) {
+                $ending->setUser(null);
+            }
+        }
+
+        return $this;
     }
 }

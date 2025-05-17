@@ -51,11 +51,24 @@
 
         <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
             <div class="container-fluid">
-                <a class="navbar-brand" href="{{ path('home') }}">Enhanced Auth System</a>
+                <a class="navbar-brand" href="{{ path('home') }}">Life Endings</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('app_ending_index') }}">All Endings</a>
+                        </li>
+                        {% if app.user %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('app_ending_my_endings') }}">My Endings</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('app_ending_new') }}">Create New Ending</a>
+                            </li>
+                        {% endif %}
+                    </ul>
                     <ul class="navbar-nav ms-auto">
                         {% if app.user %}
                             <li class="nav-item">
