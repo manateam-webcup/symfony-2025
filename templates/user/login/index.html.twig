@@ -24,14 +24,14 @@
             <div class="tab-switch" role="tablist">
                 <p id="login-tab" class="tab-switch-button login-register-form-trigger" role="tab" aria-selected="true" aria-controls="login-form">Login</p>
 
-                <p id="register-tab" class="tab-switch-button login-register-form-trigger" role="tab" aria-selected="false" aria-controls="register-form">Register</p>
+                <a id="register-tab" class="tab-switch-button login-register-form-trigger" role="tab" aria-selected="false" aria-controls="register-form" href="{{ path('app_register') }}">Register</a>
             </div>
         </div>
 
         <div class="landing-form">
 
             <div id="login-form" class="form-box login-register-form-element" role="tabpanel" aria-labelledby="login-tab">
-                <img class="form-box-decoration overflowing" src="img/landing/rocket.png" alt="Decorative rocket image">
+                <img class="form-box-decoration overflowing" src="/img/landing/rocket.png" alt="Decorative rocket image">
 
                 <h2 class="form-box-title">Account Login</h2>
 
@@ -51,7 +51,7 @@
                     {% endfor %}
                 {% endfor %}
 
-                <form class="form" action="{{ path('app_login') }}" method="post">
+                <form name="login_form" class="form" action="{{ path('app_login') }}" method="post">
                     <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
                     <div class="form-row">
@@ -129,76 +129,7 @@
             </div>
 
             <div id="register-form" class="form-box login-register-form-element" role="tabpanel" aria-labelledby="register-tab">
-                <img class="form-box-decoration" src="img/landing/rocket.png" alt="Decorative rocket image">
 
-                <h2 class="form-box-title">Create your Account!</h2>
-
-                <form class="form" action="{{ path('app_register') }}" method="post">
-
-                    <div class="form-row">
-                        <div class="form-item col-md-6">
-                            <div class="form-input">
-                                <label for="register-first-name">First Name</label>
-                                <input type="text" id="register-first-name" name="registration_form[firstName]" required aria-required="true">
-                            </div>
-                        </div>
-                        <div class="form-item col-md-6">
-                            <div class="form-input">
-                                <label for="register-last-name">Last Name</label>
-                                <input type="text" id="register-last-name" name="registration_form[lastName]" required aria-required="true">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-item">
-                            <div class="form-input">
-                                <label for="register-email">Your Email</label>
-                                <input type="text" id="register-email" name="registration_form[email]" required aria-required="true">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-item">
-                            <div class="form-input">
-                                <label for="register-password">Password</label>
-                                <input type="password" id="register-password" name="registration_form[plainPassword]" required aria-required="true">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-item">
-                            <div class="form-input">
-                                <label for="register-password-repeat">Repeat Password</label>
-                                <input type="password" id="register-password-repeat" name="registration_form[confirmPassword]" required aria-required="true">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-item">
-                            <div class="checkbox-wrap">
-                                <input type="checkbox" id="agree" name="registration_form[agreeTerms]" class="form-check-input">
-                                <div class="checkbox-box">
-                                    <svg class="icon-cross" aria-hidden="true">
-                                        <use xlink:href="#svg-cross"></use>
-                                    </svg>
-                                </div>
-                                <label for="agree">I agree to the terms and conditions</label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-item">
-                            <button type="submit" class="button medium primary">Register Now!</button>
-                        </div>
-                    </div>
-                </form>
-
-                <p class="form-text">You'll receive a confirmation email in your inbox with a link to activate your account. If you have any problems, <a href="#" aria-label="Contact us for help with registration">contact us</a>!</p>
             </div>
         </div>
     </div>

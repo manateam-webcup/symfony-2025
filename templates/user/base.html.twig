@@ -15,12 +15,12 @@
 
     <title>TheEndPage | {% block title %}Home{% endblock %}</title>
 
-    <link href="{{ asset('css/vendor/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/styles.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/vendor/simplebar.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/vendor/tiny-slider.css') }}" rel="stylesheet">
-
-    {% block stylesheets %}{% endblock %}
+    {% block stylesheets %}
+        <link href="{{ asset('css/vendor/bootstrap.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/styles.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/vendor/simplebar.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/vendor/tiny-slider.css') }}" rel="stylesheet">
+    {% endblock %}
 </head>
 
 <body>
@@ -54,22 +54,23 @@
 
     {% block body %}{% endblock %}
 
-    <script src="/js/utils/app.js"></script>
-    <script src="/js/utils/page-loader.js"></script>
-    <script src="/js/vendor/simplebar.min.js"></script>
-    <script src="/js/utils/liquidify.js"></script>
-    <script src="/js/vendor/xm_plugins.min.js"></script>
-    <script src="/js/vendor/tiny-slider.min.js"></script>
-    <script src="/js/vendor/Chart.bundle.min.js"></script>
-    <script src="/js/global/global.hexagons.js"></script>
-    <script src="/js/global/global.tooltips.js"></script>
-    <script src="/js/global/global.charts.js"></script>
-    <script src="/js/header/header.js"></script>
-    <script src="/js/sidebar/sidebar.js"></script>
-    <script src="/js/content/content.js"></script>
-    <script src="/js/form/form.utils.js"></script>
-    <script src="/js/utils/svg-loader.js"></script>
-    {% block javascripts %}{% endblock %}
+    {% block javascripts %}
+        <script src="/js/utils/app.js"></script>
+        <script src="/js/utils/page-loader.js"></script>
+        <script src="/js/vendor/simplebar.min.js"></script>
+        <script src="/js/utils/liquidify.js"></script>
+        <script src="/js/vendor/xm_plugins.min.js"></script>
+        <script src="/js/vendor/tiny-slider.min.js"></script>
+        <script src="/js/vendor/Chart.bundle.min.js"></script>
+        <script src="/js/global/global.hexagons.js"></script>
+        <script src="/js/global/global.tooltips.js"></script>
+        <script src="/js/global/global.charts.js"></script>
+        <script src="/js/header/header.js"></script>
+        <script src="/js/sidebar/sidebar.js"></script>
+        <script src="/js/content/content.js"></script>
+        <script src="/js/form/form.utils.js"></script>
+        <script src="/js/utils/svg-loader.js"></script>
+    {% endblock %}
 
 </body>
 

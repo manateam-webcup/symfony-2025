@@ -1,0 +1,111 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+    <div class="landing">
+        <div class="landing-decoration"></div>
+        <div class="landing-info">
+            <div class="logo">
+                <svg class="icon-logo-vikinger" aria-hidden="true" focusable="false">
+                    <use xlink:href="#svg-logo-vikinger"></use>
+                </svg>
+            </div>
+
+            <h2 class="landing-info-pretitle">Bienvenue sur</h2>
+
+            <h1 class="landing-info-title">TheEndPage</h1>
+
+            <p class="landing-info-text">Pour écrire la fin de ton histoire, il te suffit de t'enregistrer. C’est rapide et indispensable pour publier.
+
+                En t'inscrivant, tu acceptes nos conditions d’utilisation ainsi que notre politique de confidentialité.
+            </p>
+
+            <div class="tab-switch" role="tablist">
+                <a id="login-tab" class="tab-switch-button login-register-form-trigger" href="{{ path('app_login') }}" role="tab" aria-selected="true" aria-controls="login-form">Login</a>
+                <p id="register-tab" class="tab-switch-button login-register-form-trigger" role="tab" aria-selected="false" aria-controls="register-form">Register</p>
+            </div>
+        </div>
+
+        <div class="landing-form">
+
+            <div id="login-form" class="form-box login-register-form-element" role="tabpanel" aria-labelledby="login-tab"></div>
+
+            <div id="register-form" class="form-box login-register-form-element">
+                <img class="form-box-decoration" src="/img/landing/rocket.png" alt="Decorative rocket image">
+
+                <h2 class="form-box-title">Create your Account!</h2>
+
+                {{ form_errors(registrationForm) }}
+
+                {{ form_start(registrationForm, {attr: {'class': 'form'}}) }}
+
+                <div class="form-row">
+                    <div class="form-item col-md-6">
+                        <div class="form-input">
+                            <label for="register-first-name">First Name</label>
+                            {{ form_widget(registrationForm.firstName) }}
+                        </div>
+                    </div>
+                    <div class="form-item col-md-6">
+                        <div class="form-input">
+                            <label for="register-last-name">Last Name</label>
+                            {{ form_widget(registrationForm.lastName) }}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-item">
+                        <div class="form-input">
+                            <label for="register-email">Your Email</label>
+                            {{ form_widget(registrationForm.email) }}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-item">
+                        <div class="form-input">
+                            <label for="register-password">Password</label>
+                            {{ form_widget(registrationForm.plainPassword) }}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-item">
+                        <div class="form-input">
+                            <label for="register-password-repeat">Repeat Password</label>
+                            {{ form_widget(registrationForm.confirmPassword) }}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-item">
+                        <div class="checkbox-wrap">
+                            {{ form_widget(registrationForm.agreeTerms) }}
+                            <div class="checkbox-box">
+                                <svg class="icon-cross" aria-hidden="true">
+                                    <use xlink:href="#svg-cross"></use>
+                                </svg>
+                            </div>
+                            <label for="registration_form_agreeTerms">I agree to the terms and conditions</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-item">
+                        <button type="submit" class="button medium primary">Register Now!</button>
+                    </div>
+                </div>
+
+                {{ form_end(registrationForm) }}
+
+                <p class="form-text">You'll receive a confirmation email in your inbox with a link to activate your account. If you have any problems, <a href="#" aria-label="Contact us for help with registration">contact us</a>!</p>
+            </div>
+        </div>
+    </div>
+{% endblock %}
