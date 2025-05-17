@@ -66,7 +66,7 @@ class TwoFactorController extends AbstractController
             // Create a TOTP object with the existing secret
             $totp = TOTP::create($user->getTotpSecret());
             $totp->setLabel($user->getEmail());
-            $totp->setIssuer('Symfony 2FA Demo');
+            $totp->setIssuer('ManaTeam\'s - TheEndPage');
 
             // Ensure we're using settings compatible with Google Authenticator
             // Google Authenticator uses SHA1, 6 digits, and 30-second period
