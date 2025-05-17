@@ -4,7 +4,9 @@ namespace App\Controller;
 
 use App\Entity\Ending;
 use App\Form\EndingType;
+use App\Repository\CommentRepository;
 use App\Repository\EndingRepository;
+use App\Repository\UserEndingInteractionRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
@@ -84,11 +86,20 @@ class EndingController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_ending_show', methods: ['GET'])]
-    public function show(Ending $ending): Response
+    public function show(Ending $ending, UserEndingInteractionRepository $interactionRepository, CommentRepository $commentRepository): Response
     {
+        $userInteraction = null;
+        if ($this->getUser()) {
+            $userInteraction = $interactionRepository->findUserInteraction($this->getUser()->getId(), $ending->getId());
+        }
+
+        $comments = $commentRepository->findByEndingOrderedByNewest($ending->getId());
+
         return $this->render('ending/show.html.twig', [
             'ending' => $ending,
             'is_admin' => $this->isGranted('ROLE_ADMIN'),
+            'user_interaction' => $userInteraction,
+            'comments' => $comments,
         ]);
     }
 

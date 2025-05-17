@@ -58,6 +58,42 @@
                             Your browser does not support the video element.
                         </video>
                     {% endif %}
+
+                    <!-- Like/Dislike Section -->
+                    <div class="mt-4 d-flex align-items-center">
+                        <div class="me-4">
+                            <div class="d-flex align-items-center">
+                                {% if app.user %}
+                                    <form action="{{ path('app_like', {'id': ending.id}) }}" method="post" class="like-form">
+                                        <button type="submit" class="btn btn-sm {% if user_interaction and user_interaction.type == 'like' %}btn-primary{% else %}btn-outline-primary{% endif %} me-1">
+                                            <i class="fas fa-thumbs-up"></i> Like
+                                        </button>
+                                    </form>
+                                {% else %}
+                                    <button type="button" class="btn btn-sm btn-outline-primary me-1" disabled>
+                                        <i class="fas fa-thumbs-up"></i> Like
+                                    </button>
+                                {% endif %}
+                                <span class="likes-count">{{ ending.likes }}</span>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="d-flex align-items-center">
+                                {% if app.user %}
+                                    <form action="{{ path('app_dislike', {'id': ending.id}) }}" method="post" class="dislike-form">
+                                        <button type="submit" class="btn btn-sm {% if user_interaction and user_interaction.type == 'dislike' %}btn-danger{% else %}btn-outline-danger{% endif %} me-1">
+                                            <i class="fas fa-thumbs-down"></i> Dislike
+                                        </button>
+                                    </form>
+                                {% else %}
+                                    <button type="button" class="btn btn-sm btn-outline-danger me-1" disabled>
+                                        <i class="fas fa-thumbs-down"></i> Dislike
+                                    </button>
+                                {% endif %}
+                                <span class="dislikes-count">{{ ending.dislikes }}</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="card-footer">
                     <div class="d-flex justify-content-between">
@@ -81,7 +117,144 @@
                     {% endif %}
                 </div>
             </div>
+
+            <!-- Comments Section -->
+            <div class="card mt-4">
+                <div class="card-header">
+                    <h4>Comments ({{ comments|length }})</h4>
+                </div>
+                <div class="card-body">
+                    {% if app.user %}
+                        <form action="{{ path('app_comment_add', {'id': ending.id}) }}" method="post" class="mb-4">
+                            <div class="form-group">
+                                <label for="content">Add a comment</label>
+                                <textarea name="content" id="content" class="form-control" rows="3" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary mt-2">Submit</button>
+                        </form>
+                    {% else %}
+                        <div class="alert alert-info">
+                            <a href="{{ path('app_login') }}">Login</a> to add a comment.
+                        </div>
+                    {% endif %}
+
+                    {% if comments|length > 0 %}
+                        <div class="comments-list">
+                            {% for comment in comments %}
+                                <div class="comment card mb-3">
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-between">
+                                            <h5 class="card-title">{{ comment.user.firstName }} {{ comment.user.lastName }}</h5>
+                                            <small class="text-muted">{{ comment.createdAt|date('M d, Y H:i') }}</small>
+                                        </div>
+                                        <p class="card-text">{{ comment.content|nl2br }}</p>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <p class="text-muted">No comments yet. Be the first to comment!</p>
+                    {% endif %}
+                </div>
+            </div>
         </div>
     </div>
 </div>
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Add Font Awesome for the thumbs up/down icons if not already included
+        if (!document.querySelector('link[href*="fontawesome"]')) {
+            const fontAwesome = document.createElement('link');
+            fontAwesome.rel = 'stylesheet';
+            fontAwesome.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css';
+            document.head.appendChild(fontAwesome);
+        }
+
+        // Handle like form submission
+        const likeForm = document.querySelector('.like-form');
+        if (likeForm) {
+            likeForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                fetch(this.action, {
+                    method: 'POST',
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    // Update like/dislike counts
+                    document.querySelector('.likes-count').textContent = data.likes;
+                    document.querySelector('.dislikes-count').textContent = data.dislikes;
+
+                    // Update button styles
+                    const likeButton = likeForm.querySelector('button');
+                    const dislikeButton = document.querySelector('.dislike-form button');
+
+                    if (data.message === 'Liked') {
+                        likeButton.classList.remove('btn-outline-primary');
+                        likeButton.classList.add('btn-primary');
+                        dislikeButton.classList.remove('btn-danger');
+                        dislikeButton.classList.add('btn-outline-danger');
+                    } else if (data.message === 'Like removed') {
+                        likeButton.classList.remove('btn-primary');
+                        likeButton.classList.add('btn-outline-primary');
+                    } else if (data.message === 'Changed from dislike to like') {
+                        likeButton.classList.remove('btn-outline-primary');
+                        likeButton.classList.add('btn-primary');
+                        dislikeButton.classList.remove('btn-danger');
+                        dislikeButton.classList.add('btn-outline-danger');
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+            });
+        }
+
+        // Handle dislike form submission
+        const dislikeForm = document.querySelector('.dislike-form');
+        if (dislikeForm) {
+            dislikeForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                fetch(this.action, {
+                    method: 'POST',
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    // Update like/dislike counts
+                    document.querySelector('.likes-count').textContent = data.likes;
+                    document.querySelector('.dislikes-count').textContent = data.dislikes;
+
+                    // Update button styles
+                    const likeButton = document.querySelector('.like-form button');
+                    const dislikeButton = dislikeForm.querySelector('button');
+
+                    if (data.message === 'Disliked') {
+                        dislikeButton.classList.remove('btn-outline-danger');
+                        dislikeButton.classList.add('btn-danger');
+                        likeButton.classList.remove('btn-primary');
+                        likeButton.classList.add('btn-outline-primary');
+                    } else if (data.message === 'Dislike removed') {
+                        dislikeButton.classList.remove('btn-danger');
+                        dislikeButton.classList.add('btn-outline-danger');
+                    } else if (data.message === 'Changed from like to dislike') {
+                        dislikeButton.classList.remove('btn-outline-danger');
+                        dislikeButton.classList.add('btn-danger');
+                        likeButton.classList.remove('btn-primary');
+                        likeButton.classList.add('btn-outline-primary');
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+            });
+        }
+    });
+</script>
 {% endblock %}
