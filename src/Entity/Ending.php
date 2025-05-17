@@ -50,9 +50,13 @@ class Ending
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $status = 'pending';
+
     public function __construct()
     {
         $this->createdAt = new \DateTimeImmutable();
+        $this->status = 'pending';
     }
 
     public function getId(): ?int
@@ -176,6 +180,18 @@ class Ending
     public function setCreatedAt(\DateTimeImmutable $createdAt): static
     {
         $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getStatus(): ?string
+    {
+        return $this->status;
+    }
+
+    public function setStatus(string $status): static
+    {
+        $this->status = $status;
 
         return $this;
     }
