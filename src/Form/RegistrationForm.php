@@ -18,7 +18,6 @@ class RegistrationForm extends AbstractType
     {
         $builder
             ->add('firstName', null, [
-                'attr' => ['placeholder' => 'First Name'],
                 'constraints' => [
                     new Length([
                         'min' => 2,
@@ -28,7 +27,6 @@ class RegistrationForm extends AbstractType
                 ],
             ])
             ->add('lastName', null, [
-                'attr' => ['placeholder' => 'Last Name'],
                 'constraints' => [
                     new Length([
                         'min' => 2,
@@ -38,7 +36,6 @@ class RegistrationForm extends AbstractType
                 ],
             ])
             ->add('email', null, [
-                'attr' => ['placeholder' => 'Email Address'],
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Please enter an email address',
@@ -57,7 +54,7 @@ class RegistrationForm extends AbstractType
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
                 'mapped' => false,
-                'attr' => ['autocomplete' => 'new-password', 'placeholder' => 'Password'],
+                'attr' => ['autocomplete' => 'new-password'],
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Please enter a password',
@@ -72,7 +69,7 @@ class RegistrationForm extends AbstractType
             ])
             ->add('confirmPassword', PasswordType::class, [
                 'mapped' => false,
-                'attr' => ['autocomplete' => 'new-password', 'placeholder' => 'Confirm Password'],
+                'attr' => ['autocomplete' => 'new-password'],
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Please confirm your password',
