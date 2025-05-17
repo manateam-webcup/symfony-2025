@@ -35,11 +35,10 @@ class LoginController extends AbstractController
                 return $this->redirectToRoute('admin_pending_endings');
             }
 
-            return $this->render('login/success.html.twig');
+            return $this->redirectToRoute('app_ending_index');
         } else {
             $this->addFlash('error', 'You are not logged in.');
             return $this->render('base.html.twig');
         }
-//        return $this->render('login/success.html.twig');
     }
 }
