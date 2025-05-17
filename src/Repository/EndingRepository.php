@@ -22,20 +22,22 @@ class EndingRepository extends ServiceEntityRepository
     }
 
     /**
-     * Find all endings ordered by creation date (newest first)
+     * Find all approved endings ordered by creation date (newest first)
      *
      * @return Ending[]
      */
     public function findAllOrderedByNewest(): array
     {
         return $this->createQueryBuilder('e')
+            ->andWhere('e.status = :status')
+            ->setParameter('status', 'approved')
             ->orderBy('e.createdAt', 'DESC')
             ->getQuery()
             ->getResult();
     }
 
     /**
-     * Find endings by a specific emotion
+     * Find approved endings by a specific emotion
      *
      * @param string $emotion
      * @return Ending[]
@@ -44,14 +46,16 @@ class EndingRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('e')
             ->andWhere('e.emotion = :emotion')
+            ->andWhere('e.status = :status')
             ->setParameter('emotion', $emotion)
+            ->setParameter('status', 'approved')
             ->orderBy('e.createdAt', 'DESC')
             ->getQuery()
             ->getResult();
     }
 
     /**
-     * Find endings for a specific user
+     * Find approved endings for a specific user
      *
      * @param int $userId
      * @return Ending[]
@@ -60,7 +64,9 @@ class EndingRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('e')
             ->andWhere('e.user = :userId')
+            ->andWhere('e.status = :status')
             ->setParameter('userId', $userId)
+            ->setParameter('status', 'approved')
             ->orderBy('e.createdAt', 'DESC')
             ->getQuery()
             ->getResult();

@@ -28,6 +28,13 @@ class LoginController extends AbstractController
         $lastUsername = $authenticationUtils->getLastUsername();
         if ($lastUsername) {
             $this->addFlash('success', 'Welcome back, ' . $lastUsername . '!');
+
+            // Check if user has admin role
+            $user = $this->getUser();
+            if ($user && in_array('ROLE_ADMIN', $user->getRoles())) {
+                return $this->redirectToRoute('admin_pending_endings');
+            }
+
             return $this->render('login/success.html.twig');
         } else {
             $this->addFlash('error', 'You are not logged in.');
