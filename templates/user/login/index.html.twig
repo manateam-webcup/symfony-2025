@@ -134,11 +134,18 @@
                 <h2 class="form-box-title">Create your Account!</h2>
 
                 <form class="form" action="{{ path('app_register') }}" method="post">
+
                     <div class="form-row">
-                        <div class="form-item">
+                        <div class="form-item col-md-6">
                             <div class="form-input">
-                                <label for="register-email">Your Email</label>
-                                <input type="text" id="register-email" name="register_email" required aria-required="true">
+                                <label for="register-first-name">First Name</label>
+                                <input type="text" id="register-first-name" name="registration_form[firstName]" required aria-required="true">
+                            </div>
+                        </div>
+                        <div class="form-item col-md-6">
+                            <div class="form-input">
+                                <label for="register-last-name">Last Name</label>
+                                <input type="text" id="register-last-name" name="registration_form[lastName]" required aria-required="true">
                             </div>
                         </div>
                     </div>
@@ -146,8 +153,8 @@
                     <div class="form-row">
                         <div class="form-item">
                             <div class="form-input">
-                                <label for="register-username">Username</label>
-                                <input type="text" id="register-username" name="register_username" required aria-required="true">
+                                <label for="register-email">Your Email</label>
+                                <input type="text" id="register-email" name="registration_form[email]" required aria-required="true">
                             </div>
                         </div>
                     </div>
@@ -156,7 +163,7 @@
                         <div class="form-item">
                             <div class="form-input">
                                 <label for="register-password">Password</label>
-                                <input type="password" id="register-password" name="register_password" required aria-required="true">
+                                <input type="password" id="register-password" name="registration_form[plainPassword]" required aria-required="true">
                             </div>
                         </div>
                     </div>
@@ -165,7 +172,7 @@
                         <div class="form-item">
                             <div class="form-input">
                                 <label for="register-password-repeat">Repeat Password</label>
-                                <input type="password" id="register-password-repeat" name="register_password_repeat" required aria-required="true">
+                                <input type="password" id="register-password-repeat" name="registration_form[confirmPassword]" required aria-required="true">
                             </div>
                         </div>
                     </div>
@@ -173,13 +180,13 @@
                     <div class="form-row">
                         <div class="form-item">
                             <div class="checkbox-wrap">
-                                <input type="checkbox" id="register-newsletter" name="register_newsletter" checked>
+                                <input type="checkbox" id="agree" name="registration_form[agreeTerms]" class="form-check-input">
                                 <div class="checkbox-box">
-                                    <svg class="icon-cross" aria-hidden="true" focusable="false">
+                                    <svg class="icon-cross" aria-hidden="true">
                                         <use xlink:href="#svg-cross"></use>
                                     </svg>
                                 </div>
-                                <label for="register-newsletter">Send me news and updates via email</label>
+                                <label for="agree">I agree to the terms and conditions</label>
                             </div>
                         </div>
                     </div>
