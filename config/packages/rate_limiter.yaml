@@ -1,0 +1,8 @@
+# See https://symfony.com/doc/current/rate_limiter.html
+framework:
+    rate_limiter:
+        login:
+            # Allow 5 login attempts in 1 minute
+            policy: 'fixed_window'
+            limit: 5
+            interval: '1 minute'
