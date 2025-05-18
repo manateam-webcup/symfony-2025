@@ -2,6 +2,15 @@
 
 {% block title %}{{ 'login.page_title'|trans }}{% endblock %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .form-input label {
+            top: 5px;
+        }
+    </style>
+{% endblock %}
+
 {% block body %}
     <div class="landing">
         <div class="landing-decoration"></div>

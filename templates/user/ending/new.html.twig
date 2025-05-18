@@ -2,6 +2,16 @@
 
 {% block title %}Create New Ending{% endblock %}
 
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .form-check {
+            padding-left: 0;
+        }
+    </style>
+{% endblock %}
+
 {% block body %}
     <div class="content-grid">
         <div class="section-banner">
@@ -111,9 +121,9 @@
                         </div>
 
                         <div class="form-row">
-                            <div class="d-grid gap-2 d-md-flex">
-                                <a href="{{ path('app_ending_index') }}" class="button secondary mt-8 mb-3">Cancel</a>
-                                <button type="submit" class="button primary mt-8 mb-3">Create Ending</button>
+                            <div class="form-item d-flex">
+                                <a href="{{ path('app_ending_index') }}" class="button secondary mt-8 mb-3 w-100 mr-3">Cancel</a>
+                                <button type="submit" class="button primary mt-8 mb-3 w-100">Create Ending</button>
                             </div>
                         </div>
 
