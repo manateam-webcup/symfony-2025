@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="zxx">
+  <meta
+    http-equiv="content-type"
+    content="text/html;charset=UTF-8"
+  /><!-- /Added by HTTrack -->
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Link of CSS files -->
+    <link
+      id="bootstrapStylesheet"
+      rel="stylesheet"
+      href="/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="assets/css/remixicon.css" />
+    <link rel="stylesheet" href="assets/css/odometer.min.css" />
+    <link rel="stylesheet" href="assets/css/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="assets/css/magnific-popup.min.css" />
+    <link rel="stylesheet" href="assets/css/owl.carousel.min.css" />
+    <link rel="stylesheet" href="assets/css/owl.theme.default.min.css" />
+    <link rel="stylesheet" href="assets/css/scrollCue.css" />
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/responsive.css" />
+
+    <title>Lunex - Creative Agency HTML Template</title>
+    <link rel="icon" type="image/png" href="assets/images/favicon.png" />
+  </head>
+  <body class="bg-f8f9fd">
+      <!-- WEBGL Fluid particles -->
+    <canvas id="fluid"></canvas>
+    <!-- Preloader -->
+    <div
+      class="preloader-area position-fixed top-0 start-0 end-0 bottom-0 text-center"
+    >
+      <div class="h-100 d-flex align-items-center justify-content-center">
+        <div class="loader"></div>
+      </div>
+    </div>
+    <!-- End Preloader -->
+
+    <!-- Sidemenu Area -->
+    <div class="sidemenu-area d-none d-lg-block">
+      <a href="index.html" class="logo d-inline-block">
+        <img src="assets/images/logo.svg" alt="logo" class="black-logo" />
+        <img src="assets/images/white-logo.svg" class="d-none" alt="logo" />
+      </a>
+      <button class="navbar-toggler" type="button">
+        <img src="assets/images/icons/menu.svg" alt="menu" />
+      </button>
+      <div class="socials">
+        <a href="#" class="d-block" target="_blank">
+          <i class="ri-facebook-circle-fill"></i>
+        </a>
+        <a href="#" class="d-block" target="_blank">
+          <i class="ri-instagram-line"></i>
+        </a>
+        <a href="#" class="d-block" target="_blank">
+          <i class="ri-threads-line"></i>
+        </a>
+        <a href="#" class="d-block" target="_blank">
+          <i class="ri-twitter-x-line"></i>
+        </a>
+        <a href="#" class="d-block" target="_blank">
+          <i class="ri-youtube-fill"></i>
+        </a>
+      </div>
+    </div>
+    <!-- End Sidemenu Area -->
+
+    <!-- Start Navbar Area -->
+    <div class="navbar-area style-two top-0 start-0 end-0 h-auto">
+      <div class="container">
+        <nav class="navbar p-0">
+          <a class="navbar-brand" href="index.html">
+            <img src="assets/images/logo.svg" alt="logo" class="black-logo" />
+            <img src="assets/images/white-logo.svg" class="d-none" alt="logo" />
+          </a>
+          <button class="navbar-toggler" type="button">
+            <span class="burger-menu">
+              <span class="top-bar"></span>
+              <span class="middle-bar"></span>
+              <span class="bottom-bar"></span>
+            </span>
+          </button>
+          <div class="collapse navbar-collapse">
+            <div class="others-option">
+              <button
+                type="button"
+                class="light-dark-btn d-inline-block p-0 bg-transparent border-0 lh-1"
+                id="light-dark-btn"
+              >
+                <i class="ri-sun-line"></i>
+              </button>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
+    <!-- End Navbar Area -->
+
+    <!--#region Menu Popup Area  -->
+    <div class="menu-popup-area position-fixed start-0 end-0 top-0 bottom-0">
+      <div class="d-table">
+        <div class="d-table-cell">
+          <div class="container">
+            <div class="row align-items-center">
+              <div class="col-lg-8 col-md-12">
+                <div class="meanu-popup-nav">
+                  <div class="accordion" id="navbarAccordion">
+                    <div
+                      class="accordion-item border-0 rounded-0 bg-transparent"
+                    >
+                      <a
+                        class="accordion-button d-block w-100 shadow-none position-relative text-decoration-none bg-transparent fw-semibold without-icon"
+                        href="index.html"
+                      >
+                        Homepage
+                      </a>
+                    </div>
+                    <div
+                      class="accordion-item border-0 rounded-0 bg-transparent"
+                    >
+                      <a
+                        class="accordion-button d-block w-100 shadow-none position-relative text-decoration-none bg-transparent fw-semibold without-icon"
+                        href="endingsfeed.html.twig"
+                      >
+                        Endingsfeed
+                      </a>
+                    </div>
+                    <div
+                      class="accordion-item border-0 rounded-0 bg-transparent"
+                    >
+                      <a
+                        class="accordion-button d-block w-100 shadow-none position-relative text-decoration-none bg-transparent fw-semibold without-icon"
+                        href="contact.html"
+                      >
+                        Contact
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-12">
+                <div class="menu-contact-info">
+                  <div class="location">
+                    <h5>The Empire State</h5>
+                    <p>Parker Avenue, Kingsley Road, New York</p>
+                  </div>
+                  <h4>support@lunex.com</h4>
+                  <div class="socials">
+                    <a href="#" class="d-inline-block" target="_blank">
+                      <i class="ri-facebook-circle-fill"></i>
+                    </a>
+                    <a href="#" class="d-inline-block" target="_blank">
+                      <i class="ri-instagram-line"></i>
+                    </a>
+                    <a href="#" class="d-inline-block" target="_blank">
+                      <i class="ri-threads-line"></i>
+                    </a>
+                    <a href="#" class="d-inline-block" target="_blank">
+                      <i class="ri-twitter-x-line"></i>
+                    </a>
+                    <a href="#" class="d-inline-block" target="_blank">
+                      <i class="ri-youtube-fill"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button
+        type="button"
+        class="menu-popup-close-btn position-absolute rounded-circle text-center border-0 p-0"
+      >
+        <i class="ri-close-line"></i>
+      </button>
+    </div>
+    <!--#endregion -->
+
+
+    <!-- Start Blog Details Page Banner Area -->
+    <div class="blog-details-page-banner-area">
+      <div class="container">
+        <div class="title mx-auto text-center text-animation">
+          <span class="sub-title d-block"> Blog details </span>
+          <h1 class="mb-0">
+            The power of storytelling <span>in branding</span>
+          </h1>
+        </div>
+        <div class="content" data-cue="slideInUp">
+          <h3>Growth</h3>
+          <img
+            src="assets/images/blogs/blog-details1.jpg"
+            alt="blog-details-image"
+          />
+          <div
+            class="info d-md-flex align-items-center justify-content-between"
+          >
+            <div class="author d-flex align-items-center">
+              <img
+                src="assets/images/users/user1.jpg"
+                class="rounded-circle"
+                alt="user"
+              />
+              <div>
+                <h3 class="fw-normal">
+                  <a href="blog.html"> Sarah Thompson </a>
+                </h3>
+                <span class="designation d-block"> Author </span>
+                <span class="date d-block"> 21 Mar 2025 </span>
+              </div>
+            </div>
+            <div>
+              <a href="#comments" class="comment d-inline-block">
+                02 comments
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End Blog Details Page Banner Area -->
+
+    <!-- Start Blog Details Area -->
+    <div class="blog-details-area pb-150 position-relative">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-7 col-md-12">
+            <div class="blog-details-desc">
+              <p>
+                In this post, we explore the profound impact storytelling has on
+                branding. Storytelling isn't just about crafting a narrative;
+                it's about creating an emotional connection between your brand
+                and your audience. By sharing compelling stories, brands can
+                shape their identity, evoke emotions, and build trust with their
+                customers. We’ll dive into how effective storytelling can
+                differentiate a brand in a saturated market and make it more
+                memorable, relatable, and impactful.
+              </p>
+              <hr />
+              <h3>Key points:</h3>
+              <p>
+                Storytelling isn't just about crafting a narrative; it's about
+                creating an emotional connection between your brand and your
+                audience.
+              </p>
+              <ul class="features-list ps-0 list-unstyled">
+                <li class="position-relative">
+                  Building emotional connections
+                </li>
+                <li class="position-relative">
+                  Differentiation in a competitive market
+                </li>
+                <li class="position-relative">Brand consistency</li>
+              </ul>
+              <h3>Takeaways:</h3>
+              <p>
+                Storytelling is more than just an art; it’s a strategic tool
+                that enhances brand visibility and loyalty. A well-crafted brand
+                story can build lasting emotional connections and influence
+                customer behavior. Brands that tell authentic, relatable stories
+                can stand out and maintain relevance in today’s competitive
+                digital landscape.
+              </p>
+              <img
+                src="assets/images/blogs/blog-details2.jpg"
+                alt="blog-details-image"
+              />
+              <h3>CTA (call to action)</h3>
+              <p>
+                Discover how storytelling can reshape your brand’s identity.
+                Contact us for a consultation on crafting your brand’s unique
+                story today!
+              </p>
+              <hr />
+              <h3 id="content4">Conclusion</h3>
+              <p>
+                Storytelling is an incredibly powerful tool in branding. When
+                done effectively, it can captivate your audience, evoke strong
+                emotions, and foster loyalty. By crafting authentic, relatable
+                narratives, brands can differentiate themselves in a crowded
+                market and maintain a consistent, recognizable presence. The
+                power of storytelling is not just about what you say, but how it
+                resonates with your audience.
+              </p>
+            </div>
+            <div class="comments-area" id="comments">
+              <h3>02 comments</h3>
+              <ul class="comments-list ps-0 mb-0 list-unstyled">
+                <li class="comment-item">
+                  <div class="title position-relative">
+                    <h4>John Doe</h4>
+                    <span class="d-block"> 20 Mar 2025 </span>
+                  </div>
+                  <p>
+                    Great article! The impact of storytelling in branding is
+                    something many brands overlook. It's amazing how
+                    storytelling can build such an emotional connection with
+                    customers.
+                  </p>
+                </li>
+                <li class="comment-item">
+                  <div class="title position-relative">
+                    <h4>Sarah Lee</h4>
+                    <span class="d-block"> 21 Mar 2025 </span>
+                  </div>
+                  <p>
+                    Really insightful! I never realized how critical it is for a
+                    brand to have a strong, authentic narrative. Will definitely
+                    be incorporating this into our next campaign.
+                  </p>
+                </li>
+              </ul>
+            </div>
+            <div class="leave-a-comment-area">
+              <h3>Leave a comment</h3>
+              <form>
+                <div class="row">
+                  <div class="col-lg-12 col-md-12">
+                    <div class="form-group">
+                      <label> Comment * </label>
+                      <textarea
+                        cols="30"
+                        rows="5"
+                        placeholder="Enter your comment here"
+                        class="d-block w-100"
+                      ></textarea>
+                    </div>
+                  </div>
+                  <div class="col-lg-6 col-md-6">
+                    <div class="form-group">
+                      <input
+                        type="text"
+                        class="form-control rounded-0 shadow-none"
+                        placeholder="Enter name *"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-lg-6 col-md-6">
+                    <div class="form-group">
+                      <input
+                        type="email"
+                        class="form-control rounded-0 shadow-none"
+                        placeholder="Enter email address *"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-lg-6 col-md-6">
+                    <button type="submit" class="d-inline-block border-0">
+                      Post a comment
+                    </button>
+                  </div>
+                  <div class="col-lg-6 col-md-6">
+                    <div class="form-check mb-0">
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        value
+                        id="readAndAccept"
+                      />
+                      <label class="form-check-label" for="readAndAccept">
+                        Remember my details for future comments
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Start Blog Details Area -->
+
+    <!--#region Footer  -->
+    <footer class="creative-agency-footer-area">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6 col-md-6">
+            <div class="footer-left-side position-relative">
+              <h2 class="mb-0">
+                Collaborate with
+                <img
+                  src="assets/images/users/user1.jpg"
+                  class="rounded-circle"
+                  alt="user-image"
+                />
+                <span>us</span>
+              </h2>
+              <a
+                href="register.html"
+                class="link-btn d-inline-block rounded-circle text-center"
+                data-cue="slideInUp"
+              >
+                <img src="assets/images/circle-text.svg" alt="circle-text" />
+                <img
+                  src="assets/images/icons/big-right-top-arrow.svg"
+                  alt="right-top-arrow"
+                />
+              </a>
+              <div class="newsletter-form-wrapper">
+                <span class="title d-block fw-medium">
+                  Subscribe for updates
+                </span>
+                <form class="newsletter-form position-relative">
+                  <input
+                    type="text"
+                    class="input-newsletter d-block w-100"
+                    placeholder="Your email here"
+                    name="email"
+                    required
+                    autocomplete="off"
+                  />
+                  <button type="submit">
+                    <i class="ri-send-plane-fill"></i>
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-6">
+            <div class="footer-right-side">
+              <div class="socials">
+                <a href="#" class="d-inline-block" target="_blank">
+                  <i class="ri-facebook-circle-fill"></i>
+                </a>
+                <a href="#" class="d-inline-block" target="_blank">
+                  <i class="ri-instagram-line"></i>
+                </a>
+                <a href="#" class="d-inline-block" target="_blank">
+                  <i class="ri-threads-line"></i>
+                </a>
+                <a href="#" class="d-inline-block" target="_blank">
+                  <i class="ri-twitter-x-line"></i>
+                </a>
+                <a href="#" class="d-inline-block" target="_blank">
+                  <i class="ri-youtube-fill"></i>
+                </a>
+              </div>
+              <div class="custom-links row">
+                <div class="col-6">
+                  <h3>Useful links</h3>
+                  <p>
+                    The ending of my i dont know, goodnight.. I wish you merry
+                    christmas and a happy new year.
+                  </p>
+                </div>
+                <div class="col-6">
+                  <h3>Useful links</h3>
+                  <ul class="ps-0 mb-0 list-unstyled">
+                    <li>
+                      <a href="index.html"> Home </a>
+                    </li>
+                    <li>
+                      <a href="newsfeed.html"> Newsfeed </a>
+                    </li>
+                    <li>
+                      <a href="user.html.html"> User </a>
+                    </li>
+                    <li>
+                      <a href="event.html"> Event </a>
+                    </li>
+                    <li>
+                      <a href="contact.html"> Contact </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="location">
+                <div class="position-relative">
+                  <img
+                    src="assets/images/icons/map-marker.svg"
+                    alt="map-marker-icon"
+                  />
+                  <h3>Cascavelle</h3>
+                  <span class="d-block">
+                    Uniciti Office Park, Cascavelle, Mauritius
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="copyright-area position-relative">
+          <p>
+            &copy; 2025
+            <a href="index.html">The End.page</a>. All rights reserved.
+          </p>
+          <div class="go-top rounded-circle">
+            <img src="assets/images/icons/up-arrow.svg" alt="up-arrow" />
+            <img
+              src="assets/images/icons/white-up-arrow.svg"
+              alt="white-up-arrow"
+            />
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!--#endregion -->
+
+    <!-- Elfsight AI Chatbot | Untitled AI Chatbot -->
+    <script
+      src="https://static.elfsight.com/platform/platform.js"
+      async
+    ></script>
+    <div
+      class="elfsight-app-19fd8737-5a98-4fd4-95db-f182f9cf541e position-absolute top-50 right-0 translate-middle-y"
+      data-elfsight-app-lazy
+    ></div>
+    
+    <!-- Link of JS files -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/swiper-bundle.min.js"></script>
+    <script src="assets/js/appear.min.js"></script>
+    <script src="assets/js/scrollCue.min.js"></script>
+    <script src="assets/js/mixitup.min.js"></script>
+    <script src="assets/js/odometer.min.js"></script>
+    <script src="assets/js/owl.carousel.min.js"></script>
+    <script src="assets/js/magnific-popup.min.js"></script>
+    <script src="assets/js/SplitType.min.js"></script>
+    <script src="assets/js/gsap.min.js"></script>
+    <script src="assets/js/ScrollTrigger.min.js"></script>
+    <script src="assets/js/SplitText.min.js"></script>
+    <script src="assets/js/smooth-scroll.js"></script>
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>
