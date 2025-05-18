@@ -1,6 +1,12 @@
 site:
   title: TheEndPage
+# General translations
+Hi: Hi
 
+# Page titles
+login.page_title: Login
+register.page_title: Register
+two_factor.page_title: Two-Factor Authentication
 navbar:
   welcome: Welcome
   logout: Logout

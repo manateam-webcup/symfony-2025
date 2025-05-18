@@ -1,6 +1,12 @@
 site:
   title: TheEndPage
+# General translations
+Hi: Bonjour
 
+# Page titles
+login.page_title: Connexion
+register.page_title: Inscription
+two_factor.page_title: Authentification à deux facteurs
 navbar:
   welcome: Bienvenue
   logout: Déconnexion

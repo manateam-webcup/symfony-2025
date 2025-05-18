@@ -12,7 +12,6 @@ use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
-#[Route('/user')]
 class TwoFactorController extends AbstractController
 {
     public function __construct(
