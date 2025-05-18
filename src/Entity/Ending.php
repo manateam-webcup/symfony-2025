@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\EndingRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -53,10 +55,22 @@ class Ending
     #[ORM\Column(length: 255)]
     private ?string $status = 'pending';
 
+    #[ORM\Column]
+    private int $likes = 0;
+
+    #[ORM\Column]
+    private int $dislikes = 0;
+
+    #[ORM\OneToMany(mappedBy: 'ending', targetEntity: Comment::class, orphanRemoval: true)]
+    private Collection $comments;
+
     public function __construct()
     {
         $this->createdAt = new \DateTimeImmutable();
         $this->status = 'pending';
+        $this->likes = 0;
+        $this->dislikes = 0;
+        $this->comments = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -192,6 +206,92 @@ class Ending
     public function setStatus(string $status): static
     {
         $this->status = $status;
+
+        return $this;
+    }
+
+    public function getLikes(): int
+    {
+        return $this->likes;
+    }
+
+    public function setLikes(int $likes): static
+    {
+        $this->likes = $likes;
+
+        return $this;
+    }
+
+    public function incrementLikes(): static
+    {
+        $this->likes++;
+
+        return $this;
+    }
+
+    public function decrementLikes(): static
+    {
+        if ($this->likes > 0) {
+            $this->likes--;
+        }
+
+        return $this;
+    }
+
+    public function getDislikes(): int
+    {
+        return $this->dislikes;
+    }
+
+    public function setDislikes(int $dislikes): static
+    {
+        $this->dislikes = $dislikes;
+
+        return $this;
+    }
+
+    public function incrementDislikes(): static
+    {
+        $this->dislikes++;
+
+        return $this;
+    }
+
+    public function decrementDislikes(): static
+    {
+        if ($this->dislikes > 0) {
+            $this->dislikes--;
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Comment>
+     */
+    public function getComments(): Collection
+    {
+        return $this->comments;
+    }
+
+    public function addComment(Comment $comment): static
+    {
+        if (!$this->comments->contains($comment)) {
+            $this->comments->add($comment);
+            $comment->setEnding($this);
+        }
+
+        return $this;
+    }
+
+    public function removeComment(Comment $comment): static
+    {
+        if ($this->comments->removeElement($comment)) {
+            // set the owning side to null (unless already changed)
+            if ($comment->getEnding() === $this) {
+                $comment->setEnding(null);
+            }
+        }
 
         return $this;
     }
