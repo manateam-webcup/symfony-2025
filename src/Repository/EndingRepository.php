@@ -55,7 +55,7 @@ class EndingRepository extends ServiceEntityRepository
     }
 
     /**
-     * Find approved endings for a specific user
+     * Find all endings for a specific user (including pending and rejected)
      *
      * @param int $userId
      * @return Ending[]
@@ -64,9 +64,7 @@ class EndingRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('e')
             ->andWhere('e.user = :userId')
-            ->andWhere('e.status = :status')
             ->setParameter('userId', $userId)
-            ->setParameter('status', 'approved')
             ->orderBy('e.createdAt', 'DESC')
             ->getQuery()
             ->getResult();

@@ -22,18 +22,36 @@
                 <div class="col-md-4 mb-4">
                     <div class="card h-100">
                         <div class="card-header d-flex justify-content-between align-items-center">
-                            <h5 class="card-title mb-0">{{ ending.title }}</h5>
-                            <span class="badge {% if ending.emotion == 'sad' %}bg-info{% elseif ending.emotion == 'shocking' %}bg-warning{% elseif ending.emotion == 'happy' %}bg-success{% elseif ending.emotion == 'angry' %}bg-danger{% endif %}">
-                                {{ ending.emotion|capitalize }}
-                            </span>
+                            <div class="d-flex align-items-center">
+                                <h5 class="card-title mb-0">{{ ending.title }}</h5>
+                                {% if ending.approvedBy == 'AI' %}
+                                    <span class="ms-2" data-bs-toggle="tooltip" title="Approved by AI"><i class="fas fa-robot text-primary"></i></span>
+                                {% elseif ending.approvedBy == 'Human' %}
+                                    <span class="ms-2" data-bs-toggle="tooltip" title="Approved by Admin"><i class="fas fa-user-shield text-success"></i></span>
+                                {% endif %}
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <span class="badge {% if ending.status == 'approved' %}bg-success{% elseif ending.status == 'pending' %}bg-warning{% elseif ending.status == 'rejected' %}bg-danger{% endif %} me-2">
+                                    {{ ending.status|capitalize }}
+                                </span>
+                                <span class="badge {% if ending.emotion == 'sad' %}bg-info{% elseif ending.emotion == 'shocking' %}bg-warning{% elseif ending.emotion == 'happy' %}bg-success{% elseif ending.emotion == 'angry' %}bg-danger{% endif %}">
+                                    {{ ending.emotion|capitalize }}
+                                </span>
+                            </div>
                         </div>
                         <div class="card-body">
                             <p class="card-text">{{ ending.description|striptags|slice(0, 150) }}{% if ending.description|length > 150 %}...{% endif %}</p>
-                            
+
+                            {% if ending.status == 'rejected' and ending.moderationReason %}
+                                <div class="alert alert-danger py-2 mb-3">
+                                    <small><strong>Rejection reason:</strong> {{ ending.moderationReason }}</small>
+                                </div>
+                            {% endif %}
+
                             {% if ending.image1Path %}
                                 <img src="{{ asset('uploads/' ~ ending.image1Path) }}" class="img-fluid rounded mb-2" alt="Image">
                             {% endif %}
-                            
+
                             <div class="text-end">
                                 <small class="text-muted">{{ ending.createdAt|date('M d, Y') }}</small>
                             </div>
@@ -51,4 +69,25 @@
         </div>
     {% endif %}
 </div>
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Initialize tooltips
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl);
+        });
+
+        // Add Font Awesome if not already included
+        if (!document.querySelector('link[href*="fontawesome"]')) {
+            const fontAwesome = document.createElement('link');
+            fontAwesome.rel = 'stylesheet';
+            fontAwesome.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css';
+            document.head.appendChild(fontAwesome);
+        }
+    });
+</script>
 {% endblock %}
