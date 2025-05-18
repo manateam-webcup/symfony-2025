@@ -94,7 +94,7 @@ class TwoFactorController extends AbstractController
             error_log("2FA Error from session: " . $error);
         }
 
-        return $this->render('user/two_factor/index.html.twig.twig', [
+        return $this->render('user/two_factor/index.html.twig', [
             'error' => $error,
             'qrCodeUri' => $qrCodeUri,
             'secret' => $totp->getSecret(),

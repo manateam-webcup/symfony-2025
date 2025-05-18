@@ -26,9 +26,7 @@
 
         <div class="landing-form">
 
-            <div id="login-form" class="form-box login-register-form-element" role="tabpanel" aria-labelledby="login-tab"></div>
-
-            <div id="register-form" class="form-box login-register-form-element">
+            <div id="login-form" class="form-box login-register-form-element" role="tabpanel" aria-labelledby="login-tab">
                 <img class="form-box-decoration" src="/img/landing/rocket.png" alt="{{ 'register.decorative_image'|trans }}">
 
                 <h2 class="form-box-title">{{ 'register.create_account'|trans }}</h2>
@@ -102,6 +100,10 @@
                 {{ form_end(registrationForm) }}
 
                 <p class="form-text">{{ 'register.confirmation_email'|trans|raw }}</p>
+            </div>
+
+            <div id="register-form" class="form-box login-register-form-element">
+
             </div>
         </div>
     </div>
