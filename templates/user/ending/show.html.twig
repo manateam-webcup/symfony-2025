@@ -3,275 +3,266 @@
 {% block title %}{{ ending.title }}{% endblock %}
 
 {% block body %}
-<div class="container mt-4">
-    <div class="row">
-        <div class="col-md-8 offset-md-2">
-            <div class="card mb-4">
-                <div class="card-header d-flex justify-content-between align-items-center">
-                    <div>
-                        <h1 class="h3 mb-0">{{ ending.title }}</h1>
-                        <small class="text-muted">
-                            Posted by {{ ending.user.firstName ?? ending.user.email }} 
-                            on {{ ending.createdAt|date('F j, Y') }}
-                        </small>
-                    </div>
-                    <span class="badge {% if ending.emotion == 'sad' %}bg-info{% elseif ending.emotion == 'shocking' %}bg-warning{% elseif ending.emotion == 'happy' %}bg-success{% elseif ending.emotion == 'angry' %}bg-danger{% endif %}">
-                        {{ ending.emotion|capitalize }}
-                    </span>
+    <div class="content-grid full">
+        <article class="post-open">
+            <figure class="post-open-cover liquid">
+                <img src="/img/cover/19.jpg" alt="cover-19">
+            </figure>
+
+            <div class="post-open-body">
+                <div class="post-open-heading">
+                    <p class="post-open-timestamp">Posted on
+                        <span class="highlighted">{{ ending.createdAt|date('F j, Y') }}</span>
+                    </p>
+                    <h2 class="post-open-title">{{ ending.title }}</h2>
                 </div>
-                <div class="card-body">
-                    <p class="card-text">{{ ending.description|nl2br }}</p>
 
-                    {% if ending.image1Path or ending.image2Path or ending.image3Path %}
-                        <h5 class="mt-4 mb-3">Images</h5>
-                        <div class="row">
-                            {% if ending.image1Path %}
-                                <div class="col-md-4 mb-3">
-                                    <img src="{{ asset('uploads/' ~ ending.image1Path) }}" class="img-fluid rounded" alt="Image 1">
-                                </div>
-                            {% endif %}
-                            {% if ending.image2Path %}
-                                <div class="col-md-4 mb-3">
-                                    <img src="{{ asset('uploads/' ~ ending.image2Path) }}" class="img-fluid rounded" alt="Image 2">
-                                </div>
-                            {% endif %}
-                            {% if ending.image3Path %}
-                                <div class="col-md-4 mb-3">
-                                    <img src="{{ asset('uploads/' ~ ending.image3Path) }}" class="img-fluid rounded" alt="Image 3">
-                                </div>
-                            {% endif %}
+                <div class="post-open-content">
+                    <div class="post-open-content-sidebar">
+                        <div class="tag-list">
+                            <a class="tag-item secondary" href="#">{{ ending.emotion|capitalize }}</a>
                         </div>
-                    {% endif %}
 
-                    {% if ending.audioPath %}
-                        <h5 class="mt-4 mb-3">Audio</h5>
-                        <audio controls class="w-100 mb-3">
-                            <source src="{{ asset('uploads/' ~ ending.audioPath) }}" type="audio/mpeg">
-                            Your browser does not support the audio element.
-                        </audio>
-                    {% endif %}
+                        <p class="post-open-sidebar-title">Share!</p>
 
-                    {% if ending.videoPath %}
-                        <h5 class="mt-4 mb-3">Video</h5>
-                        <video controls class="w-100 mb-3">
-                            <source src="{{ asset('uploads/' ~ ending.videoPath) }}" type="video/mp4">
-                            Your browser does not support the video element.
-                        </video>
-                    {% endif %}
+                        <div class="social-links vertical">
+                            <a class="social-link void facebook" href="#">
+                                <svg class="icon-facebook">
+                                    <use xlink:href="#svg-facebook"></use>
+                                </svg>
+                            </a>
 
-                    <!-- Like/Dislike Section -->
-                    <div class="mt-4 d-flex align-items-center">
-                        <div class="me-4">
-                            <div class="d-flex align-items-center">
-                                {% if app.user %}
-                                    <form action="{{ path('app_like', {'id': ending.id}) }}" method="post" class="like-form">
-                                        <button type="submit" class="btn btn-sm {% if user_interaction and user_interaction.type == 'like' %}btn-primary{% else %}btn-outline-primary{% endif %} me-1">
-                                            <i class="fas fa-thumbs-up"></i> Like
-                                        </button>
-                                    </form>
-                                {% else %}
-                                    <button type="button" class="btn btn-sm btn-outline-primary me-1" disabled>
-                                        <i class="fas fa-thumbs-up"></i> Like
-                                    </button>
-                                {% endif %}
-                                <span class="likes-count">{{ ending.likes }}</span>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="d-flex align-items-center">
-                                {% if app.user %}
-                                    <form action="{{ path('app_dislike', {'id': ending.id}) }}" method="post" class="dislike-form">
-                                        <button type="submit" class="btn btn-sm {% if user_interaction and user_interaction.type == 'dislike' %}btn-danger{% else %}btn-outline-danger{% endif %} me-1">
-                                            <i class="fas fa-thumbs-down"></i> Dislike
-                                        </button>
-                                    </form>
-                                {% else %}
-                                    <button type="button" class="btn btn-sm btn-outline-danger me-1" disabled>
-                                        <i class="fas fa-thumbs-down"></i> Dislike
-                                    </button>
-                                {% endif %}
-                                <span class="dislikes-count">{{ ending.dislikes }}</span>
-                            </div>
+                            <a class="social-link void twitter" href="#">
+                                <svg class="icon-twitter">
+                                    <use xlink:href="#svg-twitter"></use>
+                                </svg>
+                            </a>
                         </div>
                     </div>
-                </div>
-                <div class="card-footer">
-                    <div class="d-flex justify-content-between">
-                        <a href="{{ path('app_ending_index') }}" class="btn btn-secondary">Back to List</a>
-                        {% if app.user and app.user == ending.user %}
-                            <div>
-                                <a href="{{ path('app_ending_my_endings') }}" class="btn btn-outline-primary">My Endings</a>
-                            </div>
+                    <div class="post-open-content-body">
+                        <p class="post-open-paragraph">{{ ending.description|nl2br }}</p>
+
+                        {% if ending.image1Path %}
+                            <figure class="post-open-image liquid">
+                                <img src="{{ asset('uploads/' ~ ending.image1Path) }}" class="img-fluid rounded"
+                                     alt="Image 1">
+                            </figure>
+                        {% endif %}
+
+                        {% if ending.image2Path %}
+                            <figure class="post-open-image liquid">
+                                <img src="{{ asset('uploads/' ~ ending.image2Path) }}" class="img-fluid rounded"
+                                     alt="Image 2">
+                            </figure>
+                        {% endif %}
+
+                        {% if ending.image3Path %}
+                            <figure class="post-open-image liquid">
+                                <img src="{{ asset('uploads/' ~ ending.image3Path) }}" class="img-fluid rounded"
+                                     alt="Image 3">
+                            </figure>
+                        {% endif %}
+
+                        {% if ending.audioPath %}
+                            <h5 class="mt-4 mb-3">Audio</h5>
+                            <audio controls class="w-100 mb-3">
+                                <source src="{{ asset('uploads/' ~ ending.audioPath) }}" type="audio/mpeg">
+                                Your browser does not support the audio element.
+                            </audio>
+                        {% endif %}
+
+                        {% if ending.videoPath %}
+                            <h5 class="mt-4 mb-3">Video</h5>
+                            <video controls class="w-100 mb-3">
+                                <source src="{{ asset('uploads/' ~ ending.videoPath) }}" type="video/mp4">
+                                Your browser does not support the video element.
+                            </video>
                         {% endif %}
                     </div>
-
-                    {% if ending.status == 'rejected' and ending.moderationReason %}
-                        <div class="mt-3 alert alert-danger">
-                            <h5>Rejection Reason:</h5>
-                            <p>{{ ending.moderationReason }}</p>
-                        </div>
-                    {% endif %}
-
-                    {% if is_admin and ending.status == 'pending' %}
-                        <div class="mt-3 d-flex justify-content-end gap-2">
-                            <form action="{{ path('app_ending_approve', {'id': ending.id}) }}" method="post" class="d-inline">
-                                <button type="submit" class="btn btn-success">Approve</button>
-                            </form>
-                            <form action="{{ path('app_ending_reject', {'id': ending.id}) }}" method="post" class="d-inline">
-                                <button type="submit" class="btn btn-danger">Reject</button>
-                            </form>
-                        </div>
-
-                        {% if ending.moderationReason %}
-                            <div class="mt-3 alert alert-warning">
-                                <h5>AI Moderation Feedback:</h5>
-                                <p>{{ ending.moderationReason }}</p>
-                                {% if ending.moderationScore %}
-                                    <p><strong>Moderation Score:</strong> {{ ending.moderationScore|number_format(2) }}</p>
-                                {% endif %}
-                            </div>
-                        {% endif %}
-                    {% endif %}
                 </div>
-            </div>
+                <div class="post-options">
+                    <div class="post-option-text">
+                        {% if app.user %}
+                            <form action="{{ path('app_like', {'id': ending.id}) }}" method="post"
+                                  class="like-form">
+                                <button type="submit"
+                                        class="btn btn-sm {% if user_interaction and user_interaction.type == 'like' %}btn-primary{% else %}btn-outline-primary{% endif %} me-1">
+                                    <i class="fas fa-thumbs-up"></i> Like
+                                </button>
+                            </form>
+                        {% else %}
+                            <button type="button" class="btn btn-sm btn-outline-primary me-1" disabled>
+                                <i class="fas fa-thumbs-up"></i> Like
+                            </button>
+                        {% endif %}
+                        <span class="likes-count">{{ ending.likes }}</span>
+                    </div>
+                    <div class="post-option-text">
+                        {% if app.user %}
+                            <form action="{{ path('app_dislike', {'id': ending.id}) }}" method="post"
+                                  class="dislike-form">
+                                <button type="submit"
+                                        class="btn btn-sm {% if user_interaction and user_interaction.type == 'dislike' %}btn-danger{% else %}btn-outline-danger{% endif %} me-1">
+                                    <i class="fas fa-thumbs-down"></i> Dislike
+                                </button>
+                            </form>
+                        {% else %}
+                            <button type="button" class="btn btn-sm btn-outline-danger me-1" disabled>
+                                <i class="fas fa-thumbs-down"></i> Dislike
+                            </button>
+                        {% endif %}
+                        <span class="dislikes-count">{{ ending.dislikes }}</span>
+                    </div>
 
-            <!-- Comments Section -->
-            <div class="card mt-4">
-                <div class="card-header">
+                    <div class="post-option active">
+                        <svg class="post-option-icon icon-comment">
+                            <use xlink:href="#svg-comment"></use>
+                        </svg>
+                        <p class="post-option-text">Comment</p>
+                    </div>
+
+                    <div class="post-option">
+                        <svg class="post-option-icon icon-share">
+                            <use xlink:href="#svg-share"></use>
+                        </svg>
+                        <p class="post-option-text">Share</p>
+                    </div>
+                </div>
+
+                <div id="comments" class="post-comment-list">
                     <h4>Comments ({{ comments|length }})</h4>
-                </div>
-                <div class="card-body">
-                    {% if app.user %}
-                        <form action="{{ path('app_comment_add', {'id': ending.id}) }}" method="post" class="mb-4">
-                            <div class="form-group">
-                                <label for="content">Add a comment</label>
-                                <textarea name="content" id="content" class="form-control" rows="3" required></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-primary mt-2">Submit</button>
-                        </form>
-                    {% else %}
-                        <div class="alert alert-info">
-                            <a href="{{ path('app_login') }}">Login</a> to add a comment.
-                        </div>
-                    {% endif %}
 
                     {% if comments|length > 0 %}
-                        <div class="comments-list">
-                            {% for comment in comments %}
-                                <div class="comment card mb-3">
-                                    <div class="card-body">
-                                        <div class="d-flex justify-content-between">
-                                            <h5 class="card-title">{{ comment.user.firstName }} {{ comment.user.lastName }}</h5>
-                                            <small class="text-muted">{{ comment.createdAt|date('M d, Y H:i') }}</small>
-                                        </div>
-                                        <p class="card-text">{{ comment.content|nl2br }}</p>
-                                    </div>
-                                </div>
-                            {% endfor %}
-                        </div>
+                        {% for comment in comments %}
+                            <div class="post-comment">
+                                <p class="post-comment-text">
+                                    <a class="post-comment-text-author"
+                                       href="#">{{ comment.user.firstName }} {{ comment.user.lastName }}</a>
+                                    <small class="text-muted">{{ comment.createdAt|date('M d, Y H:i') }}</small>
+                                <p class="card-text">{{ comment.content|nl2br }}</p>
+                                </p>
+                            </div>
+                        {% endfor %}
                     {% else %}
                         <p class="text-muted">No comments yet. Be the first to comment!</p>
                     {% endif %}
+
+                    <div class="post-comment-form">
+                        {% if app.user %}
+                            <form action="{{ path('app_comment_add', {'id': ending.id}) }}" method="post" class="mb-4">
+                                <div class="form-group">
+                                    <label for="content">Add a comment</label>
+                                    <textarea name="content" id="content" class="form-control" rows="3"
+                                              required></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary mt-2">Submit</button>
+                            </form>
+                        {% else %}
+                            <div class="alert alert-info">
+                                <a href="{{ path('app_login') }}">Login</a> to add a comment.
+                            </div>
+                        {% endif %}
+                    </div>
+
                 </div>
             </div>
-        </div>
+        </article>
     </div>
-</div>
 {% endblock %}
 
 {% block javascripts %}
-{{ parent() }}
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Add Font Awesome for the thumbs up/down icons if not already included
-        if (!document.querySelector('link[href*="fontawesome"]')) {
-            const fontAwesome = document.createElement('link');
-            fontAwesome.rel = 'stylesheet';
-            fontAwesome.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css';
-            document.head.appendChild(fontAwesome);
-        }
+    {{ parent() }}
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Add Font Awesome for the thumbs up/down icons if not already included
+            if (!document.querySelector('link[href*="fontawesome"]')) {
+                const fontAwesome = document.createElement('link');
+                fontAwesome.rel = 'stylesheet';
+                fontAwesome.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css';
+                document.head.appendChild(fontAwesome);
+            }
 
-        // Handle like form submission
-        const likeForm = document.querySelector('.like-form');
-        if (likeForm) {
-            likeForm.addEventListener('submit', function(e) {
-                e.preventDefault();
+            // Handle like form submission
+            const likeForm = document.querySelector('.like-form');
+            if (likeForm) {
+                likeForm.addEventListener('submit', function (e) {
+                    e.preventDefault();
 
-                fetch(this.action, {
-                    method: 'POST',
-                    headers: {
-                        'X-Requested-With': 'XMLHttpRequest'
-                    }
-                })
-                .then(response => response.json())
-                .then(data => {
-                    // Update like/dislike counts
-                    document.querySelector('.likes-count').textContent = data.likes;
-                    document.querySelector('.dislikes-count').textContent = data.dislikes;
+                    fetch(this.action, {
+                        method: 'POST',
+                        headers: {
+                            'X-Requested-With': 'XMLHttpRequest'
+                        }
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            // Update like/dislike counts
+                            document.querySelector('.likes-count').textContent = data.likes;
+                            document.querySelector('.dislikes-count').textContent = data.dislikes;
 
-                    // Update button styles
-                    const likeButton = likeForm.querySelector('button');
-                    const dislikeButton = document.querySelector('.dislike-form button');
+                            // Update button styles
+                            const likeButton = likeForm.querySelector('button');
+                            const dislikeButton = document.querySelector('.dislike-form button');
 
-                    if (data.message === 'Liked') {
-                        likeButton.classList.remove('btn-outline-primary');
-                        likeButton.classList.add('btn-primary');
-                        dislikeButton.classList.remove('btn-danger');
-                        dislikeButton.classList.add('btn-outline-danger');
-                    } else if (data.message === 'Like removed') {
-                        likeButton.classList.remove('btn-primary');
-                        likeButton.classList.add('btn-outline-primary');
-                    } else if (data.message === 'Changed from dislike to like') {
-                        likeButton.classList.remove('btn-outline-primary');
-                        likeButton.classList.add('btn-primary');
-                        dislikeButton.classList.remove('btn-danger');
-                        dislikeButton.classList.add('btn-outline-danger');
-                    }
-                })
-                .catch(error => console.error('Error:', error));
-            });
-        }
+                            if (data.message === 'Liked') {
+                                likeButton.classList.remove('btn-outline-primary');
+                                likeButton.classList.add('btn-primary');
+                                dislikeButton.classList.remove('btn-danger');
+                                dislikeButton.classList.add('btn-outline-danger');
+                            } else if (data.message === 'Like removed') {
+                                likeButton.classList.remove('btn-primary');
+                                likeButton.classList.add('btn-outline-primary');
+                            } else if (data.message === 'Changed from dislike to like') {
+                                likeButton.classList.remove('btn-outline-primary');
+                                likeButton.classList.add('btn-primary');
+                                dislikeButton.classList.remove('btn-danger');
+                                dislikeButton.classList.add('btn-outline-danger');
+                            }
+                        })
+                        .catch(error => console.error('Error:', error));
+                });
+            }
 
-        // Handle dislike form submission
-        const dislikeForm = document.querySelector('.dislike-form');
-        if (dislikeForm) {
-            dislikeForm.addEventListener('submit', function(e) {
-                e.preventDefault();
+            // Handle dislike form submission
+            const dislikeForm = document.querySelector('.dislike-form');
+            if (dislikeForm) {
+                dislikeForm.addEventListener('submit', function (e) {
+                    e.preventDefault();
 
-                fetch(this.action, {
-                    method: 'POST',
-                    headers: {
-                        'X-Requested-With': 'XMLHttpRequest'
-                    }
-                })
-                .then(response => response.json())
-                .then(data => {
-                    // Update like/dislike counts
-                    document.querySelector('.likes-count').textContent = data.likes;
-                    document.querySelector('.dislikes-count').textContent = data.dislikes;
+                    fetch(this.action, {
+                        method: 'POST',
+                        headers: {
+                            'X-Requested-With': 'XMLHttpRequest'
+                        }
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            // Update like/dislike counts
+                            document.querySelector('.likes-count').textContent = data.likes;
+                            document.querySelector('.dislikes-count').textContent = data.dislikes;
 
-                    // Update button styles
-                    const likeButton = document.querySelector('.like-form button');
-                    const dislikeButton = dislikeForm.querySelector('button');
+                            // Update button styles
+                            const likeButton = document.querySelector('.like-form button');
+                            const dislikeButton = dislikeForm.querySelector('button');
 
-                    if (data.message === 'Disliked') {
-                        dislikeButton.classList.remove('btn-outline-danger');
-                        dislikeButton.classList.add('btn-danger');
-                        likeButton.classList.remove('btn-primary');
-                        likeButton.classList.add('btn-outline-primary');
-                    } else if (data.message === 'Dislike removed') {
-                        dislikeButton.classList.remove('btn-danger');
-                        dislikeButton.classList.add('btn-outline-danger');
-                    } else if (data.message === 'Changed from like to dislike') {
-                        dislikeButton.classList.remove('btn-outline-danger');
-                        dislikeButton.classList.add('btn-danger');
-                        likeButton.classList.remove('btn-primary');
-                        likeButton.classList.add('btn-outline-primary');
-                    }
-                })
-                .catch(error => console.error('Error:', error));
-            });
-        }
-    });
-</script>
+                            if (data.message === 'Disliked') {
+                                dislikeButton.classList.remove('btn-outline-danger');
+                                dislikeButton.classList.add('btn-danger');
+                                likeButton.classList.remove('btn-primary');
+                                likeButton.classList.add('btn-outline-primary');
+                            } else if (data.message === 'Dislike removed') {
+                                dislikeButton.classList.remove('btn-danger');
+                                dislikeButton.classList.add('btn-outline-danger');
+                            } else if (data.message === 'Changed from like to dislike') {
+                                dislikeButton.classList.remove('btn-outline-danger');
+                                dislikeButton.classList.add('btn-danger');
+                                likeButton.classList.remove('btn-primary');
+                                likeButton.classList.add('btn-outline-primary');
+                            }
+                        })
+                        .catch(error => console.error('Error:', error));
+                });
+            }
+        });
+    </script>
 {% endblock %}
