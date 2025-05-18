@@ -31,7 +31,7 @@ class EndingController extends AbstractController
     public function byEmotion(string $emotion, EndingRepository $endingRepository): Response
     {
         // Validate emotion parameter
-        if (!in_array($emotion, ['sad', 'shocking', 'happy', 'angry'])) {
+        if (!in_array($emotion, ['sad', 'shocking', 'happy', 'angry', 'depressed', 'frustrated'])) {
             throw $this->createNotFoundException('Invalid emotion type');
         }
 

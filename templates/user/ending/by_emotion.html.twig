@@ -19,15 +19,19 @@
     <div class="mb-4">
         <h5>Filter by Emotion:</h5>
         <div class="d-flex gap-2">
-            <a href="{{ path('app_ending_index') }}" class="btn btn-sm btn-outline-secondary">All</a>
-            <a href="{{ path('app_ending_by_emotion', {'emotion': 'sad'}) }}" 
-               class="btn btn-sm {% if emotion == 'sad' %}btn-info{% else %}btn-outline-info{% endif %}">Sad</a>
-            <a href="{{ path('app_ending_by_emotion', {'emotion': 'shocking'}) }}" 
-               class="btn btn-sm {% if emotion == 'shocking' %}btn-warning{% else %}btn-outline-warning{% endif %}">Shocking</a>
-            <a href="{{ path('app_ending_by_emotion', {'emotion': 'happy'}) }}" 
-               class="btn btn-sm {% if emotion == 'happy' %}btn-success{% else %}btn-outline-success{% endif %}">Happy</a>
-            <a href="{{ path('app_ending_by_emotion', {'emotion': 'angry'}) }}" 
-               class="btn btn-sm {% if emotion == 'angry' %}btn-danger{% else %}btn-outline-danger{% endif %}">Angry</a>
+            <a href="{{ path('app_ending_index') }}" class="btn btn-sm {% if app.request.get('_route') == 'app_ending_index' %}btn-secondary{% else %}btn-outline-secondary{% endif %}">All</a>
+            <a href="{{ path('app_ending_by_emotion', {'emotion': 'sad'}) }}"
+               class="btn btn-sm {% if app.request.get('_route') == 'app_ending_by_emotion' and emotion == 'sad' %}btn-info{% else %}btn-outline-info{% endif %}">Sad</a>
+            <a href="{{ path('app_ending_by_emotion', {'emotion': 'shocking'}) }}"
+               class="btn btn-sm {% if app.request.get('_route') == 'app_ending_by_emotion' and emotion == 'shocking' %}btn-warning{% else %}btn-outline-warning{% endif %}">Shocking</a>
+            <a href="{{ path('app_ending_by_emotion', {'emotion': 'happy'}) }}"
+               class="btn btn-sm {% if app.request.get('_route') == 'app_ending_by_emotion' and emotion == 'happy' %}btn-success{% else %}btn-outline-success{% endif %}">Happy</a>
+            <a href="{{ path('app_ending_by_emotion', {'emotion': 'angry'}) }}"
+               class="btn btn-sm {% if app.request.get('_route') == 'app_ending_by_emotion' and emotion == 'angry' %}btn-danger{% else %}btn-outline-danger{% endif %}">Angry</a>
+            <a href="{{ path('app_ending_by_emotion', {'emotion': 'depressed'}) }}"
+               class="btn btn-sm {% if app.request.get('_route') == 'app_ending_by_emotion' and emotion == 'depressed' %}btn-danger{% else %}btn-outline-danger{% endif %}">Depressed</a>
+            <a href="{{ path('app_ending_by_emotion', {'emotion': 'frustrated'}) }}"
+               class="btn btn-sm {% if app.request.get('_route') == 'app_ending_by_emotion' and emotion == 'frustrated' %}btn-danger{% else %}btn-outline-danger{% endif %}">Frustrated</a>
         </div>
     </div>
 
@@ -44,11 +48,11 @@
                         </div>
                         <div class="card-body">
                             <p class="card-text">{{ ending.description|striptags|slice(0, 150) }}{% if ending.description|length > 150 %}...{% endif %}</p>
-                            
+
                             {% if ending.image1Path %}
                                 <img src="{{ asset('uploads/' ~ ending.image1Path) }}" class="img-fluid rounded mb-2" alt="Image">
                             {% endif %}
-                            
+
                             <div class="d-flex justify-content-between align-items-center mt-3">
                                 <small class="text-muted">
                                     By {{ ending.user.firstName ?? ending.user.email }}
