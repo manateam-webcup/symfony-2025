@@ -3,92 +3,124 @@
 {% block title %}Create New Ending{% endblock %}
 
 {% block body %}
-<div class="container mt-4">
-    <div class="row">
-        <div class="col-md-8 offset-md-2">
-            <div class="card">
-                <div class="card-header bg-primary text-white">
-                    <h1 class="h3 mb-0">Create New Ending</h1>
-                </div>
-                <div class="card-body">
-                    <p class="text-muted mb-4">Share an ending in your life. It could be a job, a relationship, a project, or any significant chapter that has closed.</p>
-                    
-                    {% for flash_error in app.flashes('error') %}
-                        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
-                    {% endfor %}
-                    
-                    {{ form_start(form, {'attr': {'enctype': 'multipart/form-data'}}) }}
-                    
-                    <div class="mb-3">
-                        {{ form_label(form.title) }}
-                        {{ form_widget(form.title) }}
-                        {{ form_errors(form.title) }}
-                    </div>
-                    
-                    <div class="mb-3">
-                        {{ form_label(form.description) }}
-                        {{ form_widget(form.description) }}
-                        {{ form_errors(form.description) }}
-                    </div>
-                    
-                    <div class="mb-3">
-                        {{ form_label(form.emotion) }}
-                        <div class="d-flex flex-wrap gap-3">
-                            {% for emotion in form.emotion %}
-                                <div class="form-check">
-                                    {{ form_widget(emotion) }}
-                                    {{ form_label(emotion) }}
+    <div class="content-grid">
+        <div class="section-banner">
+            <img class="section-banner-icon" src="/img/banner/events-icon.png" alt="marketplace-icon">
+
+            <p class="section-banner-title">Create a new Ending</p>
+
+            <p class="section-banner-text">Share an ending in your life. It could be a job, a relationship, a project, or any significant chapter that has closed.</p>
+        </div>
+
+        <div class="section-header">
+            <div class="section-header-info">
+
+                <h2 class="section-title">My Ending Story</h2>
+            </div>
+        </div>
+
+        <div class="grid grid-12-0 small-space">
+            <div class="grid-column">
+                <div class="widget-box">
+                    <p class="widget-box-title">Story Details</p>
+
+                    <div class="widget-box-content">
+                        <!-- FORM -->
+                        {% for flash_error in app.flashes('error') %}
+                            <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+                        {% endfor %}
+
+                        {{ form_start(form, {'attr': {'enctype': 'multipart/form-data'}}) }}
+                        <div class="form-row">
+                            <div class="form-item">
+                                <div class="form-input small">
+                                    {{ form_widget(form.title) }}
+                                    {{ form_errors(form.title) }}
                                 </div>
-                            {% endfor %}
+                            </div>
                         </div>
-                        {{ form_errors(form.emotion) }}
+
+                        <div class="form-row">
+                            <div class="form-item">
+                                <div class="form-input small medium-textarea">
+                                    {{ form_widget(form.description, {attr: {'placeholder': 'Write any additional details here...'}}) }}
+                                </div>
+                            </div>
+                            {{ form_errors(form.description) }}
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-item">
+                                {{ form_label(form.emotion) }}
+                                <div class="form-input small">
+                                    {% for emotion in form.emotion %}
+                                        <div class="form-check">
+                                            {{ form_widget(emotion) }}
+                                            {{ form_label(emotion) }}
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                                {{ form_errors(form.emotion) }}
+                            </div>
+                        </div>
+
+                        <h4 class="mt-4 mb-3">Media (Optional)</h4>
+
+                        <div class="form-row split">
+                            <div class="form-item">
+                                <div class="form-input small">
+                                    {{ form_widget(form.image1) }}
+                                    {{ form_errors(form.image1) }}
+                                </div>
+                            </div>
+
+                            <div class="form-item">
+                                <div class="form-input small">
+                                    {{ form_widget(form.image2) }}
+                                    {{ form_errors(form.image2) }}
+                                </div>
+                            </div>
+
+                            <div class="form-item">
+                                <div class="form-input small">
+                                    {{ form_widget(form.image3) }}
+                                    {{ form_errors(form.image3) }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <p class="form-text text-muted">Upload an image related to your ending.</p>
+                        <p>&nbsp;</p>
+
+                        <div class="form-row split">
+                            <div class="form-item">
+                                <div class="form-input small">
+                                    {{ form_widget(form.audio) }}
+                                    {{ form_errors(form.audio) }}
+                                    <p class="form-text text-muted">Upload an audio file related to your ending.</p>
+                                </div>
+                            </div>
+
+                            <div class="form-item">
+                                <div class="form-input small">
+                                    {{ form_widget(form.video) }}
+                                    {{ form_errors(form.video) }}
+                                    <p class="form-text text-muted">Upload a video related to your ending.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="d-grid gap-2 d-md-flex">
+                                <a href="{{ path('app_ending_index') }}" class="button secondary mt-8 mb-3">Cancel</a>
+                                <button type="submit" class="button primary mt-8 mb-3">Create Ending</button>
+                            </div>
+                        </div>
+
+                        {{ form_end(form) }}
                     </div>
-                    
-                    <h4 class="mt-4 mb-3">Media (Optional)</h4>
-                    
-                    <div class="row mb-3">
-                        <div class="col-md-4">
-                            {{ form_label(form.image1) }}
-                            {{ form_widget(form.image1) }}
-                            {{ form_errors(form.image1) }}
-                            <small class="form-text text-muted">Upload an image related to your ending.</small>
-                        </div>
-                        <div class="col-md-4">
-                            {{ form_label(form.image2) }}
-                            {{ form_widget(form.image2) }}
-                            {{ form_errors(form.image2) }}
-                        </div>
-                        <div class="col-md-4">
-                            {{ form_label(form.image3) }}
-                            {{ form_widget(form.image3) }}
-                            {{ form_errors(form.image3) }}
-                        </div>
-                    </div>
-                    
-                    <div class="row mb-3">
-                        <div class="col-md-6">
-                            {{ form_label(form.audio) }}
-                            {{ form_widget(form.audio) }}
-                            {{ form_errors(form.audio) }}
-                            <small class="form-text text-muted">Upload an audio file related to your ending.</small>
-                        </div>
-                        <div class="col-md-6">
-                            {{ form_label(form.video) }}
-                            {{ form_widget(form.video) }}
-                            {{ form_errors(form.video) }}
-                            <small class="form-text text-muted">Upload a video related to your ending.</small>
-                        </div>
-                    </div>
-                    
-                    <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
-                        <a href="{{ path('app_ending_index') }}" class="btn btn-secondary me-md-2">Cancel</a>
-                        <button type="submit" class="btn btn-primary">Create Ending</button>
-                    </div>
-                    
-                    {{ form_end(form) }}
                 </div>
             </div>
         </div>
     </div>
-</div>
 {% endblock %}
