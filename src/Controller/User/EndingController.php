@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\User;
 
 use App\Entity\Ending;
 use App\Form\EndingType;
@@ -15,13 +15,13 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
-#[Route('/ending')]
+#[Route('/user/ending')]
 class EndingController extends AbstractController
 {
     #[Route('/', name: 'app_ending_index', methods: ['GET'])]
     public function index(EndingRepository $endingRepository): Response
     {
-        return $this->render('ending/index.html.twig', [
+        return $this->render('user/ending/index.html.twig', [
             'endings' => $endingRepository->findAllOrderedByNewest(),
         ]);
     }
@@ -34,7 +34,7 @@ class EndingController extends AbstractController
             throw $this->createNotFoundException('Invalid emotion type');
         }
 
-        return $this->render('ending/by_emotion.html.twig', [
+        return $this->render('user/ending/by_emotion.html.twig', [
             'endings' => $endingRepository->findByEmotion($emotion),
             'emotion' => $emotion,
         ]);
@@ -46,7 +46,7 @@ class EndingController extends AbstractController
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $user = $this->getUser();
 
-        return $this->render('ending/my_endings.html.twig', [
+        return $this->render('user/ending/my_endings.html.twig', [
             'endings' => $endingRepository->findByUser($user->getId()),
         ]);
     }
@@ -79,7 +79,7 @@ class EndingController extends AbstractController
             return $this->redirectToRoute('app_ending_show', ['id' => $ending->getId()], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('ending/new.html.twig', [
+        return $this->render('user/ending/new.html.twig', [
             'ending' => $ending,
             'form' => $form,
         ]);
@@ -95,7 +95,7 @@ class EndingController extends AbstractController
 
         $comments = $commentRepository->findByEndingOrderedByNewest($ending->getId());
 
-        return $this->render('ending/show.html.twig', [
+        return $this->render('user/ending/show.html.twig', [
             'ending' => $ending,
             'is_admin' => $this->isGranted('ROLE_ADMIN'),
             'user_interaction' => $userInteraction,
@@ -109,7 +109,7 @@ class EndingController extends AbstractController
         // Only allow admins to access this page
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
-        return $this->render('ending/pending.html.twig', [
+        return $this->render('user/ending/pending.html.twig', [
             'endings' => $endingRepository->findBy(['status' => 'pending'], ['createdAt' => 'DESC']),
         ]);
     }

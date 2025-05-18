@@ -1,11 +1,11 @@
-{% extends 'base.html.twig' %}
+{% extends 'user/base.html.twig' %}
 
-{% block title %}{{ emotion|capitalize }} Endings{% endblock %}
+{% block title %}All Endings{% endblock %}
 
 {% block body %}
 <div class="container mt-4">
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h1>{{ emotion|capitalize }} Endings</h1>
+        <h1>All Endings</h1>
         <div>
             {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                 <a href="{{ path('app_ending_new') }}" class="btn btn-primary">Create New Ending</a>
@@ -20,16 +20,16 @@
         <h5>Filter by Emotion:</h5>
         <div class="d-flex gap-2">
             <a href="{{ path('app_ending_index') }}" class="btn btn-sm btn-outline-secondary">All</a>
-            <a href="{{ path('app_ending_by_emotion', {'emotion': 'sad'}) }}" 
-               class="btn btn-sm {% if emotion == 'sad' %}btn-info{% else %}btn-outline-info{% endif %}">Sad</a>
-            <a href="{{ path('app_ending_by_emotion', {'emotion': 'shocking'}) }}" 
-               class="btn btn-sm {% if emotion == 'shocking' %}btn-warning{% else %}btn-outline-warning{% endif %}">Shocking</a>
-            <a href="{{ path('app_ending_by_emotion', {'emotion': 'happy'}) }}" 
-               class="btn btn-sm {% if emotion == 'happy' %}btn-success{% else %}btn-outline-success{% endif %}">Happy</a>
-            <a href="{{ path('app_ending_by_emotion', {'emotion': 'angry'}) }}" 
-               class="btn btn-sm {% if emotion == 'angry' %}btn-danger{% else %}btn-outline-danger{% endif %}">Angry</a>
+            <a href="{{ path('app_ending_by_emotion', {'emotion': 'sad'}) }}" class="btn btn-sm btn-outline-info">Sad</a>
+            <a href="{{ path('app_ending_by_emotion', {'emotion': 'shocking'}) }}" class="btn btn-sm btn-outline-warning">Shocking</a>
+            <a href="{{ path('app_ending_by_emotion', {'emotion': 'happy'}) }}" class="btn btn-sm btn-outline-success">Happy</a>
+            <a href="{{ path('app_ending_by_emotion', {'emotion': 'angry'}) }}" class="btn btn-sm btn-outline-danger">Angry</a>
         </div>
     </div>
+
+    {% for flash_success in app.flashes('success') %}
+        <div class="alert alert-success" role="alert">{{ flash_success }}</div>
+    {% endfor %}
 
     {% if endings|length > 0 %}
         <div class="row">
@@ -65,7 +65,7 @@
         </div>
     {% else %}
         <div class="alert alert-info">
-            <p class="mb-0">No {{ emotion }} endings found. Be the first to share your {{ emotion }} ending!</p>
+            <p class="mb-0">No endings found. Be the first to share your story!</p>
         </div>
     {% endif %}
 </div>
