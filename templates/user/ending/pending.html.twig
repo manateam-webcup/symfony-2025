@@ -24,6 +24,7 @@
                         <th>Emotion</th>
                         <th>Author</th>
                         <th>Created At</th>
+                        <th>AI Feedback</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -38,6 +39,20 @@
                             </td>
                             <td>{{ ending.user.firstName ?? ending.user.email }}</td>
                             <td>{{ ending.createdAt|date('M d, Y') }}</td>
+                            <td>
+                                {% if ending.moderationReason %}
+                                    <span class="badge bg-warning" data-bs-toggle="tooltip" title="{{ ending.moderationReason }}">
+                                        <i class="fas fa-exclamation-triangle"></i> 
+                                        {% if ending.moderationScore %}
+                                            Score: {{ ending.moderationScore|number_format(2) }}
+                                        {% else %}
+                                            Has issues
+                                        {% endif %}
+                                    </span>
+                                {% else %}
+                                    <span class="text-muted">No feedback</span>
+                                {% endif %}
+                            </td>
                             <td>
                                 <a href="{{ path('app_ending_show', {'id': ending.id}) }}" class="btn btn-sm btn-outline-primary">
                                     <i class="fas fa-eye"></i> Review
@@ -54,4 +69,25 @@
         </div>
     {% endif %}
 </div>
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Initialize tooltips
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl);
+        });
+
+        // Add Font Awesome if not already included
+        if (!document.querySelector('link[href*="fontawesome"]')) {
+            const fontAwesome = document.createElement('link');
+            fontAwesome.rel = 'stylesheet';
+            fontAwesome.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css';
+            document.head.appendChild(fontAwesome);
+        }
+    });
+</script>
 {% endblock %}

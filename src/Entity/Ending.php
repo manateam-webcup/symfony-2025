@@ -61,6 +61,15 @@ class Ending
     #[ORM\Column]
     private int $dislikes = 0;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $moderationReason = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $approvedBy = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?float $moderationScore = null;
+
     #[ORM\OneToMany(mappedBy: 'ending', targetEntity: Comment::class, orphanRemoval: true)]
     private Collection $comments;
 
@@ -292,6 +301,42 @@ class Ending
                 $comment->setEnding(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getModerationReason(): ?string
+    {
+        return $this->moderationReason;
+    }
+
+    public function setModerationReason(?string $moderationReason): static
+    {
+        $this->moderationReason = $moderationReason;
+
+        return $this;
+    }
+
+    public function getApprovedBy(): ?string
+    {
+        return $this->approvedBy;
+    }
+
+    public function setApprovedBy(?string $approvedBy): static
+    {
+        $this->approvedBy = $approvedBy;
+
+        return $this;
+    }
+
+    public function getModerationScore(): ?float
+    {
+        return $this->moderationScore;
+    }
+
+    public function setModerationScore(?float $moderationScore): static
+    {
+        $this->moderationScore = $moderationScore;
 
         return $this;
     }

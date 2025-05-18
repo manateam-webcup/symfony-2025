@@ -7,6 +7,7 @@ use App\Form\EndingType;
 use App\Repository\CommentRepository;
 use App\Repository\EndingRepository;
 use App\Repository\UserEndingInteractionRepository;
+use App\Service\OpenAIService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
@@ -52,7 +53,7 @@ class EndingController extends AbstractController
     }
 
     #[Route('/new', name: 'app_ending_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger): Response
+    public function new(Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger, OpenAIService $openAIService): Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
@@ -71,10 +72,24 @@ class EndingController extends AbstractController
             $this->handleFileUpload($form, $ending, 'audio', 'audioPath', $slugger);
             $this->handleFileUpload($form, $ending, 'video', 'videoPath', $slugger);
 
+            // AI moderation
+            $moderationResult = $openAIService->moderateContent($ending->getDescription());
+            $ending->setModerationScore($moderationResult['score']);
+
+            // If approved by AI (score < 0.7), set status to approved and approvedBy to 'AI'
+            if ($moderationResult['approved']) {
+                $ending->setStatus('approved');
+                $ending->setApprovedBy('AI');
+                $this->addFlash('success', 'Your ending has been automatically approved by AI moderation!');
+            } else {
+                // If not approved, set status to pending and store the reasons
+                $ending->setStatus('pending');
+                $ending->setModerationReason(implode(', ', $moderationResult['reasons']));
+                $this->addFlash('warning', 'Your ending requires manual review by an administrator.');
+            }
+
             $entityManager->persist($ending);
             $entityManager->flush();
-
-            $this->addFlash('success', 'Your ending has been created!');
 
             return $this->redirectToRoute('app_ending_show', ['id' => $ending->getId()], Response::HTTP_SEE_OTHER);
         }
@@ -121,6 +136,9 @@ class EndingController extends AbstractController
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
         $ending->setStatus('approved');
+        $ending->setApprovedBy('Human');
+        // Clear any moderation reasons if they exist
+        $ending->setModerationReason(null);
         $entityManager->flush();
 
         $this->addFlash('success', 'Ending has been approved.');
