@@ -34,8 +34,7 @@ class OpenAIService
                     'input' => $content,
                 ],
             ]);
-            dump($response);
-            dump($content);
+
             $data = $response->toArray();
             
             if (!isset($data['results']) || empty($data['results'])) {
