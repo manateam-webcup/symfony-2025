@@ -22,7 +22,7 @@ class EndingController extends AbstractController
     #[Route('/', name: 'app_ending_index', methods: ['GET'])]
     public function index(EndingRepository $endingRepository): Response
     {
-        return $this->render('user/ending/index.html.twig', [
+        return $this->render('user/ending/index.html.twig.twig', [
             'endings' => $endingRepository->findAllOrderedByNewest(),
         ]);
     }

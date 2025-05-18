@@ -1,71 +1,4 @@
-/*
-@File: Lunex Template Styles
 
-* This file contains the styling for the actual template, this
-is the file you need to edit to change the look of the
-template.
-
-This files table contents are outlined below>>>>>
-
-*******************************************
-*******************************************
-
-** - Default CSS
-** - Navbar Area CSS
-** - Menu Popup Area CSS
-** - Creative Agency Banner Area CSS
-** - Digital Agency Banner Area CSS
-** - Dev Agency Banner Area CSS
-** - Marketing Agency Banner Area CSS
-** - Brief Area CSS
-** - About Area CSS
-** - Team Area CSS
-** - Services Area CSS
-** - Features Area CSS
-** - Case Studies Area CSS
-** - Projects Area CSS
-** - Project Details Area CSS
-** - Design Principles Area CSS
-** - Works Area CSS
-** - Funfacts Area CSS
-** - Video Area CSS
-** - Pricing Area CSS
-** - Blog Area CSS
-** - Blog Details Area CSS
-** - Impact Area CSS
-** - Awards Area CSS
-** - Why Choose Us Area CSS
-** - Testimonials Area CSS
-** - Feedback Area CSS
-** - Works Process Area CSS
-** - Happy Moment Area CSS
-** - Values Area CSS
-** - Jobs Area CSS
-** - Why Join Area CSS
-** - Partners Area CSS
-** - Style Guide Area CSS
-** - Transform Area CSS
-** - Boost Area CSS
-** - Mockups Area CSS
-** - Trusted Clients Area CSS
-** - FAQ Area CSS
-** - Let's Talk Area CSS
-** - Our Mission Area CSS
-** - Page Banner Area CSS
-** - Career Details Area CSS
-** - Contact Area CSS
-** - Locations Area CSS
-** - Book A Call Area CSS
-** - How We Work Area CSS
-** - Pagination Area CSS
-** - Privacy Policy Area CSS
-** - Terms & Conditions Area CSS
-** - Footer Area CSS
-** - Back to Top CSS
-*/
-/*================================================
-Default CSS
-=================================================*/
 @import url("https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap");
 :root {
   --fontSize: 16px;
@@ -1536,7 +1469,7 @@ Navbar Area CSS
   visibility: hidden;
 }
 .navbar-area.style-two .navbar .collapse {
-  top: 4px;
+  top: 0;
   right: 55px;
   position: absolute;
 }
@@ -1547,8 +1480,8 @@ Navbar Area CSS
   margin: 0 !important;
 }
 .navbar-area.style-two.is-sticky {
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 .navbar-area.style-two.is-sticky .navbar .navbar-brand {
   opacity: 1;
@@ -2281,9 +2214,10 @@ Menu Popup Area CSS
   margin-bottom: 0;
 }
 .sidemenu-area .logo {
-  top: 7%;
-  left: 28px;
+  top: -1%;
+  left: -2px;
   position: absolute;
+  padding: 27px;
 }
 .sidemenu-area .navbar-toggler {
   top: 50%;
@@ -14519,7 +14453,7 @@ Dark Mode CSS
   padding: 6px 12px;
   border: none;
   border-radius: 4px;
-  background-color: #317EFB;
+  background-color: #317efb;
   color: white;
   cursor: pointer;
 }
@@ -14528,3 +14462,20 @@ Dark Mode CSS
   background-color: #255ec3;
 }
 
+.navbar-area.style-two.is-sticky img {
+  width: 68px;
+}
+
+.border-winner {
+  border: 2px solid #ffc11a;
+}
+
+@media screen and (max-width: 768px) {
+  .navbar-area img {
+    width: 60px;
+  }
+
+  #avatar {
+    width: 190px;
+  }
+}

@@ -962,7 +962,7 @@
       );
       $("html").attr("dir", "rtl");
     } else {
-      $("#bootstrapStylesheet").attr("href", "/css/bootstrap.min.css");
+      $("#bootstrapStylesheet").attr("href", "assets/css/bootstrap.min.css");
       $("html").attr("dir", "ltr");
     }
     // On button click: Toggle and Save to localStorage
@@ -981,7 +981,7 @@
         localStorage.setItem("directionMode", "rtl");
       } else {
         // Switch to LTR
-        $("#bootstrapStylesheet").attr("href", "/css/bootstrap.min.css");
+        $("#bootstrapStylesheet").attr("href", "assets/css/bootstrap.min.css");
         $("html").attr("dir", "ltr");
         localStorage.setItem("directionMode", "ltr");
       }
@@ -991,22 +991,22 @@
   // js banner avatar animation
   const emotions = [
     {
-      text: "happy",
+      text: "joyeux",
       image: "assets/images/avatars/m-happy.png",
       splash: "assets/images/avatars/red-splash.png",
     },
     {
-      text: "sad",
+      text: "triste",
       image: "assets/images/avatars/m-sad.png",
       splash: "assets/images/avatars/red-splash.png",
     },
     {
-      text: "angry",
+      text: "en colère",
       image: "assets/images/avatars/m-angry.png",
       splash: "assets/images/avatars/red-splash.png",
     },
     {
-      text: "shocked",
+      text: "choqué",
       image: "assets/images/avatars/m-shocked.png",
       splash: "assets/images/avatars/red-splash.png",
     },
