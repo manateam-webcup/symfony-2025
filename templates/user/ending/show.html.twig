@@ -26,13 +26,13 @@
                         <p class="post-open-sidebar-title">Share!</p>
 
                         <div class="social-links vertical">
-                            <a class="social-link void facebook" href="#">
+                            <a class="social-link void facebook" href="https://www.facebook.com/sharer/sharer.php?u={{ url('app_ending_show', {'id': ending.id})|url_encode }}" target="_blank">
                                 <svg class="icon-facebook">
                                     <use xlink:href="#svg-facebook"></use>
                                 </svg>
                             </a>
 
-                            <a class="social-link void twitter" href="#">
+                            <a class="social-link void twitter" href="https://twitter.com/intent/tweet?url={{ url('app_ending_show', {'id': ending.id})|url_encode }}&text={{ ending.title|url_encode }}" target="_blank">
                                 <svg class="icon-twitter">
                                     <use xlink:href="#svg-twitter"></use>
                                 </svg>
@@ -121,7 +121,7 @@
                         <p class="post-option-text">Comment</p>
                     </div>
 
-                    <div class="post-option">
+                    <div class="post-option" id="share-option">
                         <svg class="post-option-icon icon-share">
                             <use xlink:href="#svg-share"></use>
                         </svg>
@@ -180,6 +180,60 @@
                 fontAwesome.rel = 'stylesheet';
                 fontAwesome.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css';
                 document.head.appendChild(fontAwesome);
+            }
+
+            // Handle share option click
+            const shareOption = document.getElementById('share-option');
+            if (shareOption) {
+                shareOption.addEventListener('click', function() {
+                    // URLs for sharing
+                    const pageUrl = '{{ url('app_ending_show', {'id': ending.id}) }}';
+                    const encodedUrl = encodeURIComponent(pageUrl);
+                    const encodedTitle = encodeURIComponent('{{ ending.title }}');
+
+                    // Open sharing dialog
+                    if (navigator.share) {
+                        // Use Web Share API if available
+                        navigator.share({
+                            title: '{{ ending.title }}',
+                            text: 'Check out this ending on TheEndPage',
+                            url: pageUrl
+                        }).catch(error => console.error('Error sharing:', error));
+                    } else {
+                        // Fallback to opening a new window
+                        const shareWindow = window.open('', '_blank', 'width=600,height=400');
+                        shareWindow.document.write(`
+                            <html>
+                            <head>
+                                <title>Share</title>
+                                <style>
+                                    body { font-family: Arial, sans-serif; padding: 20px; }
+                                    h2 { margin-top: 0; }
+                                    .share-buttons { display: flex; gap: 10px; margin-top: 20px; }
+                                    .share-button { 
+                                        display: inline-block; 
+                                        padding: 10px 15px; 
+                                        background-color: #f0f0f0; 
+                                        color: #333; 
+                                        text-decoration: none; 
+                                        border-radius: 4px;
+                                    }
+                                    .facebook { background-color: #3b5998; color: white; }
+                                    .twitter { background-color: #1da1f2; color: white; }
+                                </style>
+                            </head>
+                            <body>
+                                <h2>Share this ending</h2>
+                                <p>Choose a platform to share "${encodedTitle}" on:</p>
+                                <div class="share-buttons">
+                                    <a class="share-button facebook" href="https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}" target="_blank">Facebook</a>
+                                    <a class="share-button twitter" href="https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}" target="_blank">Twitter</a>
+                                </div>
+                            </body>
+                            </html>
+                        `);
+                    }
+                });
             }
 
             // Handle like form submission
