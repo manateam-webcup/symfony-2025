@@ -1536,7 +1536,7 @@ Navbar Area CSS
   visibility: hidden;
 }
 .navbar-area.style-two .navbar .collapse {
-  top: 4px;
+  top: 0;
   right: 55px;
   position: absolute;
 }
@@ -1547,8 +1547,8 @@ Navbar Area CSS
   margin: 0 !important;
 }
 .navbar-area.style-two.is-sticky {
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 .navbar-area.style-two.is-sticky .navbar .navbar-brand {
   opacity: 1;
@@ -2281,9 +2281,10 @@ Menu Popup Area CSS
   margin-bottom: 0;
 }
 .sidemenu-area .logo {
-  top: 7%;
-  left: 28px;
+  top: -1%;
+  left: -2px;
   position: absolute;
+  padding: 27px;
 }
 .sidemenu-area .navbar-toggler {
   top: 50%;
@@ -14519,7 +14520,7 @@ Dark Mode CSS
   padding: 6px 12px;
   border: none;
   border-radius: 4px;
-  background-color: #317EFB;
+  background-color: #317efb;
   color: white;
   cursor: pointer;
 }
@@ -14528,3 +14529,20 @@ Dark Mode CSS
   background-color: #255ec3;
 }
 
+.navbar-area.style-two.is-sticky img {
+  width: 68px;
+}
+
+.border-winner {
+  border: 2px solid #ffc11a;
+}
+
+@media screen and (max-width: 768px) {
+  .navbar-area img {
+    width: 60px;
+  }
+
+  #avatar {
+    width: 190px;
+  }
+}

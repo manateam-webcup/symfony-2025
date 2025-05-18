@@ -30,12 +30,25 @@
     <!-- WEBGL Fluid particles -->
     <canvas id="fluid"></canvas>
 
-      <div id="installCard" style="display:none; position: fixed; bottom: 20px; right: 20px; width: 300px; background: #fff; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border-radius: 8px; padding: 16px; z-index: 1000;">
-  <p>Install this app on your device for a better experience.</p>
-  <button id="installAppBtn">Install</button>
-  <button id="dismissCardBtn" style="margin-left: 10px;">Dismiss</button>
-</div>
-
+    <div
+      id="installCard"
+      style="
+        display: none;
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 300px;
+        background: #fff;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        padding: 16px;
+        z-index: 1000;
+      "
+    >
+      <p>Install this app on your device for a better experience.</p>
+      <button id="installAppBtn">Install</button>
+      <button id="dismissCardBtn" style="margin-left: 10px">Dismiss</button>
+    </div>
 
     <!--#region Preloader  -->
     <div
@@ -56,7 +69,7 @@
 
       <a href="index.html" class="logo d-inline-block">
         <img
-          src="assets/images/avatars/logo.png"
+          src="assets/images/avatars/logo-black.png"
           alt="logo"
           class="black-logo"
         />
@@ -66,19 +79,13 @@
         <img src="assets/images/icons/menu.svg" alt="menu" />
       </button>
       <div class="socials">
-        <a href="#" class="d-block" target="_blank">
+        <a href="https://www.facebook.com/" class="d-block" target="_blank">
           <i class="ri-facebook-circle-fill"></i>
         </a>
-        <a href="#" class="d-block" target="_blank">
+        <a href="https://www.instagram.com/" class="d-block" target="_blank">
           <i class="ri-instagram-line"></i>
         </a>
-        <a href="#" class="d-block" target="_blank">
-          <i class="ri-threads-line"></i>
-        </a>
-        <a href="#" class="d-block" target="_blank">
-          <i class="ri-twitter-x-line"></i>
-        </a>
-        <a href="#" class="d-block" target="_blank">
+        <a href="https://www.youtube.com/" class="d-block" target="_blank">
           <i class="ri-youtube-fill"></i>
         </a>
       </div>
@@ -90,8 +97,16 @@
       <div class="container">
         <nav class="navbar p-0">
           <a class="navbar-brand" href="index.html">
-            <img src="assets/images/logo.svg" alt="logo" class="black-logo" />
-            <img src="assets/images/white-logo.svg" class="d-none" alt="logo" />
+            <img
+              src="assets/images/avatars/logo-black.png"
+              alt="logo"
+              class="black-logo"
+            />
+            <img
+              src="assets/images/avatars/logo.png"
+              class="d-none"
+              alt="logo"
+            />
           </a>
           <button class="navbar-toggler" type="button">
             <span class="burger-menu">
@@ -108,6 +123,11 @@
                 id="light-dark-btn"
               >
                 <i class="ri-sun-line"></i>
+              </button>
+              <button
+                type="button"
+                class="btn primary_btn"
+              >Se connecter / S’inscrire
               </button>
             </div>
           </div>
@@ -161,8 +181,8 @@
               <div class="col-lg-4 col-md-12">
                 <div class="menu-contact-info">
                   <div class="location">
-                    <h5>The Empire State</h5>
-                    <p>Parker Avenue, Kingsley Road, New York</p>
+                    <h5>Cascavelle</h5>
+                    <p>Uniciti Office Park, Cascavelle, Mauritius</p>
                   </div>
                   <h4>support@lunex.com</h4>
                   <div class="socials">
@@ -210,10 +230,10 @@
                     </span> -->
           <div class="d-flex">
             <div class="title">
-              <h1>Innovate. inspire</h1>
+              <h1>C'est la fin</h1>
               <h1>
                 <span class="d-inline-block">
-                  ignite <span id="emotionText">happy</span>
+                  sois <span id="emotionText">joyeux</span>
                 </span>
               </h1>
             </div>
@@ -261,21 +281,23 @@
               <div>
                 <h3>01</h3>
               </div>
-              <a
-                href="service-single.html"
-                class="link-btn d-inline-block rounded-circle"
+              <div
+                class="link-btn rounded-circle d-flex align-items-center justify-content-center"
               >
                 <!-- <img
                   src="assets/images/icons/white-right-top-arrow2.svg"
                   alt="right-top-arrow"
                 /> -->
                 <lord-icon
-                  src="https://cdn.lordicon.com/tdrtiskw.json"
+                  src="https://cdn.lordicon.com/ibjcmcbv.json"
                   trigger="hover"
-                  style="width: 70px; height: 70px"
+                  stroke="light"
+                  state="hover-pinch"
+                  colors="primary:#3080e8,secondary:#b4b4b4"
+                  style="width: 60px; height: 60px"
                 >
                 </lord-icon>
-              </a>
+              </div>
               <h3>Raconte ton histoire</h3>
               <p>
                 Tu quittes quelque chose ? Raconte ta version, sans filtre, avec
@@ -290,15 +312,23 @@
               <div>
                 <h3>02</h3>
               </div>
-              <a
-                href="service-single.html"
-                class="link-btn d-inline-block rounded-circle"
+              <div
+                class="link-btn d-inline-block rounded-circle d-flex align-items-center justify-content-center"
               >
-                <img
+                <!-- <img
                   src="assets/images/icons/white-right-top-arrow2.svg"
                   alt="right-top-arrow"
-                />
-              </a>
+                /> -->
+                <lord-icon
+                  src="https://cdn.lordicon.com/iwlihxdl.json"
+                  trigger="hover"
+                  stroke="light"
+                  state="hover-pinch"
+                  colors="primary:#3080e8,secondary:#b4b4b4"
+                  style="width: 60px; height: 60px"
+                >
+                </lord-icon>
+              </div>
               <h3>Ajoute ton humeur</h3>
               <p>
                 Ironique, touchant, classe ou ultra cringe… À toi de choisir
@@ -313,15 +343,19 @@
               <div>
                 <h3>03</h3>
               </div>
-              <a
-                href="service-single.html"
-                class="link-btn d-inline-block rounded-circle"
+              <div
+                class="link-btn d-inline-block rounded-circle d-flex align-items-center justify-content-center"
               >
-                <img
-                  src="assets/images/icons/white-right-top-arrow2.svg"
-                  alt="right-top-arrow"
-                />
-              </a>
+                <lord-icon
+                  src="https://cdn.lordicon.com/eqaxvzkf.json"
+                  trigger="hover"
+                  stroke="light"
+                  state="hover-pinch"
+                  colors="primary:#3080e8,secondary:#b4b4b4"
+                  style="width: 60px; height: 60px"
+                >
+                </lord-icon>
+              </div>
               <h3>Personnalise ta page</h3>
               <p>
                 Ajoute du texte, des gifs, des sons, des regrets (ou pas). Ta
@@ -336,15 +370,19 @@
               <div>
                 <h3>04</h3>
               </div>
-              <a
-                href="service-single.html"
-                class="link-btn d-inline-block rounded-circle"
+              <div
+                class="link-btn d-inline-block rounded-circle d-flex align-items-center justify-content-center"
               >
-                <img
-                  src="assets/images/icons/white-right-top-arrow2.svg"
-                  alt="right-top-arrow"
-                />
-              </a>
+                <lord-icon
+                  src="https://cdn.lordicon.com/vesvelsm.json"
+                  trigger="hover"
+                  stroke="light"
+                  state="hover-pinch"
+                  colors="primary:#3080e8,secondary:#b4b4b4"
+                  style="width: 60px; height: 60px"
+                >
+                </lord-icon>
+              </div>
               <h3>Partage-la</h3>
               <p>
                 Envoie le lien à qui tu veux. Ou à tout le monde. Parce que ta
@@ -364,22 +402,17 @@
           <div class="row align-items-center">
             <div class="col-lg-8 col-md-12">
               <div class="left-side">
-                <div class="number d-flex align-items-center">
-                  <div>03</div>
-                  The end page
-                </div>
-                <h2 class="text-animation">Ends <span>feed</span></h2>
+                <h2 class="text-animation">Ends feed</h2>
               </div>
             </div>
             <div class="col-lg-4 col-md-12">
               <div class="right-side">
                 <p>
-                  We provide high-quality, tailored solutions that deliver
-                  measurable results, ensuring your brand stands out and
-                  achieves sustained growth and success.
+                  Les portes claquent. Les pages s’écrivent. Voici ce que les
+                  gens laissent derrière eux… ou balancent bien fort.
                 </p>
-                <a href="works.html" class="default-btn">
-                  All Projects
+                <a href="endingsfeed.html" class="default-btn">
+                  Voir endings
                   <i class="ri-arrow-right-line"></i>
                 </a>
               </div>
@@ -398,212 +431,52 @@
                 src="assets/images/projects/project5.jpg"
                 alt="project-image"
               />
-              <div class="text">
-                <h3>
-                  <a href="work-single.html"> Digital pulse </a>
-                </h3>
-                <p>
-                  A complete brand refresh, elevating identity with modern
-                  design and messaging that connects with a global audience.
-                </p>
-                <a
-                  href="work-single.html"
-                  class="link-btn d-flex align-items-center position-relative"
-                >
-                  View Project
-                  <i class="ri-arrow-right-line"></i>
-                </a>
-              </div>
-              <a
-                href="work-single.html"
-                class="position-absolute z-1 start-0 end-0 top-0 bottom-0"
-              ></a>
+              <div class="text"></div>
             </div>
             <div class="image">
               <img
                 src="assets/images/projects/project6.jpg"
                 alt="project-image"
               />
-              <div class="text">
-                <h3>
-                  <a href="work-single.html"> Visual impact </a>
-                </h3>
-                <p>
-                  A complete brand refresh, elevating identity with modern
-                  design and messaging that connects with a global audience.
-                </p>
-                <a
-                  href="work-single.html"
-                  class="link-btn d-flex align-items-center position-relative"
-                >
-                  View Project
-                  <i class="ri-arrow-right-line"></i>
-                </a>
-              </div>
-              <a
-                href="work-single.html"
-                class="position-absolute z-1 start-0 end-0 top-0 bottom-0"
-              ></a>
+              <div class="text"></div>
             </div>
             <div class="image">
               <img
                 src="assets/images/projects/project7.jpg"
                 alt="project-image"
               />
-              <div class="text">
-                <h3>
-                  <a href="work-single.html"> Social hub </a>
-                </h3>
-                <p>
-                  A complete brand refresh, elevating identity with modern
-                  design and messaging that connects with a global audience.
-                </p>
-                <a
-                  href="work-single.html"
-                  class="link-btn d-flex align-items-center position-relative"
-                >
-                  View Project
-                  <i class="ri-arrow-right-line"></i>
-                </a>
-              </div>
-              <a
-                href="work-single.html"
-                class="position-absolute z-1 start-0 end-0 top-0 bottom-0"
-              ></a>
+              <div class="text"></div>
             </div>
             <div class="image">
               <img
                 src="assets/images/projects/project8.jpg"
                 alt="project-image"
               />
-              <div class="text">
-                <h3>
-                  <a href="work-single.html"> UI/UX design </a>
-                </h3>
-                <p>
-                  A complete brand refresh, elevating identity with modern
-                  design and messaging that connects with a global audience.
-                </p>
-                <a
-                  href="work-single.html"
-                  class="link-btn d-flex align-items-center position-relative"
-                >
-                  View Project
-                  <i class="ri-arrow-right-line"></i>
-                </a>
-              </div>
-              <a
-                href="work-single.html"
-                class="position-absolute z-1 start-0 end-0 top-0 bottom-0"
-              ></a>
+              <div class="text"></div>
             </div>
             <div class="image">
               <img
                 src="assets/images/projects/project9.jpg"
                 alt="project-image"
               />
-              <div class="text">
-                <h3>
-                  <a href="work-single.html"> Print design </a>
-                </h3>
-                <p>
-                  A complete brand refresh, elevating identity with modern
-                  design and messaging that connects with a global audience.
-                </p>
-                <a
-                  href="work-single.html"
-                  class="link-btn d-flex align-items-center position-relative"
-                >
-                  View Project
-                  <i class="ri-arrow-right-line"></i>
-                </a>
-              </div>
-              <a
-                href="work-single.html"
-                class="position-absolute z-1 start-0 end-0 top-0 bottom-0"
-              ></a>
+              <div class="text"></div>
             </div>
           </div>
           <div class="contents text-start">
             <div class="item">
-              <h3>
-                <a href="work-single.html"> Digital pulse </a>
-              </h3>
-              <p>
-                A complete brand refresh, elevating identity with modern design
-                and messaging that connects with a global audience.
-              </p>
-              <a
-                href="work-single.html"
-                class="link-btn d-flex align-items-center position-relative"
-              >
-                View Project
-                <i class="ri-arrow-right-line"></i>
-              </a>
+              <img src="assets/images/avatars/logo.png" />
             </div>
             <div class="item">
-              <h3>
-                <a href="work-single.html"> Visual impact </a>
-              </h3>
-              <p>
-                A complete brand refresh, elevating identity with modern design
-                and messaging that connects with a global audience.
-              </p>
-              <a
-                href="work-single.html"
-                class="link-btn d-flex align-items-center position-relative"
-              >
-                View Project
-                <i class="ri-arrow-right-line"></i>
-              </a>
+              <img src="assets/images/avatars/logo.png" />
             </div>
             <div class="item">
-              <h3>
-                <a href="work-single.html"> Social hub </a>
-              </h3>
-              <p>
-                A complete brand refresh, elevating identity with modern design
-                and messaging that connects with a global audience.
-              </p>
-              <a
-                href="work-single.html"
-                class="link-btn d-flex align-items-center position-relative"
-              >
-                View Project
-                <i class="ri-arrow-right-line"></i>
-              </a>
+              <img src="assets/images/avatars/logo.png" />
             </div>
             <div class="item">
-              <h3>
-                <a href="work-single.html"> UI/UX design </a>
-              </h3>
-              <p>
-                A complete brand refresh, elevating identity with modern design
-                and messaging that connects with a global audience.
-              </p>
-              <a
-                href="work-single.html"
-                class="link-btn d-flex align-items-center position-relative"
-              >
-                View Project
-                <i class="ri-arrow-right-line"></i>
-              </a>
+              <img src="assets/images/avatars/logo.png" />
             </div>
             <div class="item">
-              <h3>
-                <a href="work-single.html"> Print design </a>
-              </h3>
-              <p>
-                A complete brand refresh, elevating identity with modern design
-                and messaging that connects with a global audience.
-              </p>
-              <a
-                href="work-single.html"
-                class="link-btn d-flex align-items-center position-relative"
-              >
-                View Project
-                <i class="ri-arrow-right-line"></i>
-              </a>
+              <img src="assets/images/avatars/logo.png" />
             </div>
           </div>
         </div>
@@ -640,10 +513,7 @@
                   continue ailleurs ! »ou rien. Vous avez choisi rien."
                 </p>
                 <!-- <span class="d-block date"> 17 Mar 2025 </span> -->
-                <a
-                  href="work-single.html"
-                  class="link-btn d-inline-block rounded-circle text-center"
-                >
+                <div class="link-btn d-inline-block rounded-circle text-center">
                   <img
                     src="assets/images/icons/big-right-top-arrow2.svg"
                     alt="big-right-top-arrow"
@@ -652,7 +522,7 @@
                     src="assets/images/icons/white-right-top-arrow3.svg"
                     alt="big-right-top-arrow"
                   />
-                </a>
+                </div>
               </div>
               <div class="item position-relative">
                 <h3>Triste</h3>
@@ -660,10 +530,7 @@
                   « Je pars avec le cœur lourd… mais des souvenirs plein la
                   tête. »
                 </p>
-                <a
-                  href="work-single.html"
-                  class="link-btn d-inline-block rounded-circle text-center"
-                >
+                <div class="link-btn d-inline-block rounded-circle text-center">
                   <img
                     src="assets/images/icons/big-right-top-arrow2.svg"
                     alt="big-right-top-arrow"
@@ -672,7 +539,7 @@
                     src="assets/images/icons/white-right-top-arrow3.svg"
                     alt="big-right-top-arrow"
                   />
-                </a>
+                </div>
               </div>
               <div class="item position-relative">
                 <h3>En colère</h3>
@@ -680,10 +547,7 @@
                   « Il fallait bien que quelqu’un dise les choses. Je claque la
                   porte. »
                 </p>
-                <a
-                  href="work-single.html"
-                  class="link-btn d-inline-block rounded-circle text-center"
-                >
+                <div class="link-btn d-inline-block rounded-circle text-center">
                   <img
                     src="assets/images/icons/big-right-top-arrow2.svg"
                     alt="big-right-top-arrow"
@@ -692,7 +556,7 @@
                     src="assets/images/icons/white-right-top-arrow3.svg"
                     alt="big-right-top-arrow"
                   />
-                </a>
+                </div>
               </div>
               <div class="item position-relative">
                 <h3>Choqué</h3>
@@ -700,10 +564,7 @@
                   « Attendez… QUOI ?! Je pars ?! Moi-même je ne le réalise pas
                   encore. »
                 </p>
-                <a
-                  href="work-single.html"
-                  class="link-btn d-inline-block rounded-circle text-center"
-                >
+                <div class="link-btn d-inline-block rounded-circle text-center">
                   <img
                     src="assets/images/icons/big-right-top-arrow2.svg"
                     alt="big-right-top-arrow"
@@ -712,7 +573,7 @@
                     src="assets/images/icons/white-right-top-arrow3.svg"
                     alt="big-right-top-arrow"
                   />
-                </a>
+                </div>
               </div>
             </div>
           </div>
@@ -722,25 +583,22 @@
                 <div class="image">
                   <img
                     src="assets/images/avatars/funny-man.jpg"
-                    alt="case-studies-image"
+                    alt="funny-man"
+                  />
+                </div>
+                <div class="image">
+                  <img src="assets/images/avatars/sad-man.png" alt="sad-man" />
+                </div>
+                <div class="image">
+                  <img
+                    src="assets/images/avatars/angry-man.png"
+                    alt="angry-man"
                   />
                 </div>
                 <div class="image">
                   <img
-                    src="assets/images/case-studies/case-study9.jpg"
-                    alt="case-studies-image"
-                  />
-                </div>
-                <div class="image">
-                  <img
-                    src="assets/images/case-studies/case-study10.jpg"
-                    alt="case-studies-image"
-                  />
-                </div>
-                <div class="image">
-                  <img
-                    src="assets/images/case-studies/case-study11.jpg"
-                    alt="case-studies-image"
+                    src="assets/images/avatars/shocked-ppl.png"
+                    alt="shocked-man"
                   />
                 </div>
               </div>
@@ -767,9 +625,10 @@
               </span>
             </div>
             <div class="row align-items-center">
-              <div class="col-lg-7">
+              <div class="col-lg-10">
                 <h2 class="mb-0 fw-bold">
-                  We Offer a Wide Range of Design Services
+                  Voici les pages les plus mythiques, les plus partagées, les plus inoubliables.
+
                 </h2>
               </div>
             </div>
@@ -784,54 +643,55 @@
               >
                 <div class="service_box position-relative">
                   <h3 class="fw-bold">
-                    <a href="service-single.html"> Digital Advertising </a>
+                    <div href="service-single.html">Angelly_MT</div>
                   </h3>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incidid unt ut labore et dolore magna.
-                  </p>
-                  <a href="service-single.html" class="details_link_btn">
+                  <video width="100%" height="100%" controls>
+                    <source src="assets/videos/fame.mp4" type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
+                  <div class="details_link_btn">
                     <i class="ri-arrow-right-up-line"></i>
-                  </a>
-                  <img
-                    src="assets/images/icons/megaphone.svg"
-                    class="icon d-block w-auto"
-                    alt="megaphone"
-                  />
+                  </div>
+                </div>
+                <div class="service_box position-relative border-winner">
+                  <h3 class="fw-bold">
+                    <div>Siven_MT</div>
+                  </h3>
+                  <video width="100%" height="100%" controls>
+                    <source src="assets/videos/fame.mp4" type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
+                  <div href="service-single.html" class="details_link_btn">
+                    <i class="ri-arrow-right-up-line"></i>
+                  </div>
+                  <div class="row align-items-center">
+                    <div class="col-md-12">
+                      <img
+                        src="assets/images/icons/media_target.svg"
+                        class="icon d-block w-auto"
+                        alt="media_target"
+                      />
+                    </div>
+                    <div class="col-md-12">
+                      <p class="mb-0">
+                        Tonton a quitté son job pour ouvrir une friterie
+                        spirituelle, Et la petite dernière a quitté la
+                        maternelle en criant “je suis une artiste incomprise”.
+                      </p>
+                    </div>
+                  </div>
                 </div>
                 <div class="service_box position-relative">
                   <h3 class="fw-bold">
-                    <a href="service-single.html"> Social Media Graphics </a>
+                    <div>Arivalen_MT</div>
                   </h3>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incidid unt ut labore et dolore magna.
-                  </p>
-                  <a href="service-single.html" class="details_link_btn">
+                  <video width="100%" height="100%" controls>
+                    <source src="assets/videos/fame.mp4" type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
+                  <div class="details_link_btn">
                     <i class="ri-arrow-right-up-line"></i>
-                  </a>
-                  <img
-                    src="assets/images/icons/media_target.svg"
-                    class="icon d-block w-auto"
-                    alt="media_target"
-                  />
-                </div>
-                <div class="service_box position-relative">
-                  <h3 class="fw-bold">
-                    <a href="service-single.html"> Web Design </a>
-                  </h3>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incidid unt ut labore et dolore magna.
-                  </p>
-                  <a href="service-single.html" class="details_link_btn">
-                    <i class="ri-arrow-right-up-line"></i>
-                  </a>
-                  <img
-                    src="assets/images/icons/search_chart.svg"
-                    class="icon d-block w-auto"
-                    alt="search_chart"
-                  />
+                  </div>
                 </div>
               </div>
             </div>
@@ -839,159 +699,15 @@
         </div>
         <div class="container">
           <div class="browse_all_services_btn text-center" data-cue="slideInUp">
-            <a href="services.html">
+            <a href="endingsfeed.html">
               View endings <i class="ri-arrow-right-up-line"></i>
             </a>
           </div>
         </div>
       </div>
-      <div class="white_bottom_rectangle bg_f8f9fd"></div>
     </div>
     <!--#endregion -->
 
-    <!--#region Partners  -->
-    <div class="trusted-clients-area">
-      <div class="container">
-        <div class="creative-agency-section-title">
-          <div class="row align-items-center">
-            <div class="col-lg-8 col-md-6">
-              <div class="left-side">
-                <h2 class="text-animation">
-                  Clients we <span class="text-primary">value</span>
-                </h2>
-              </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-              <div class="right-side style-two">
-                <p>
-                  At NsaTheme, we are proud to work with a diverse range of
-                  clients who trust us to bring their digital visions to life.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="container-fluid" data-cue="slideInUp">
-        <div class="swiper trustedClientsSwiperTwo">
-          <div class="swiper-wrapper">
-            <div class="swiper-slide">
-              <div class="item">
-                <img
-                  src="assets/images/partners/partner1.svg"
-                  alt="client-image"
-                />
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="item two">
-                <img
-                  src="assets/images/partners/partner2.svg"
-                  alt="client-image"
-                />
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="item">
-                <img
-                  src="assets/images/partners/partner3.svg"
-                  alt="client-image"
-                />
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="item two">
-                <img
-                  src="assets/images/partners/partner4.svg"
-                  alt="client-image"
-                />
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="item">
-                <img
-                  src="assets/images/partners/partner5.svg"
-                  alt="client-image"
-                />
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="item two">
-                <img
-                  src="assets/images/partners/partner6.svg"
-                  alt="client-image"
-                />
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="item">
-                <img
-                  src="assets/images/partners/partner1.svg"
-                  alt="client-image"
-                />
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="item two">
-                <img
-                  src="assets/images/partners/partner2.svg"
-                  alt="client-image"
-                />
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="item">
-                <img
-                  src="assets/images/partners/partner3.svg"
-                  alt="client-image"
-                />
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="item two">
-                <img
-                  src="assets/images/partners/partner4.svg"
-                  alt="client-image"
-                />
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="item">
-                <img
-                  src="assets/images/partners/partner5.svg"
-                  alt="client-image"
-                />
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="item two">
-                <img
-                  src="assets/images/partners/partner6.svg"
-                  alt="client-image"
-                />
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="item">
-                <img
-                  src="assets/images/partners/partner1.svg"
-                  alt="client-image"
-                />
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="item two">
-                <img
-                  src="assets/images/partners/partner2.svg"
-                  alt="client-image"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!--#endregion -->
 
     <!--#region Testimonials Area  -->
     <div
@@ -1000,11 +716,7 @@
       <div class="container">
         <div class="creative-agency-section-title text-white">
           <div class="left-side">
-            <div class="number d-flex align-items-center">
-              <div>07</div>
-              Client stories
-            </div>
-            <h2 class="text-animation">Client success <span>stories</span></h2>
+            <h2 class="text-animation">Témoignages clients</h2>
           </div>
         </div>
         <div class="swiper testimonialsSwiper" data-cue="slideInUp">
@@ -1012,28 +724,23 @@
             <div class="swiper-slide">
               <div class="testimonial-item">
                 <p>
-                  "The team’s creative strategy transformed our brand's
-                  presence. With a fresh and engaging design, we gained a new
-                  identity that resonates deeply with our audience, positioning
-                  us as a standout in a competitive market. Our brand
-                  recognition has skyrocketed since the launch."
+                  “The End.page m’a permis de quitter mon ancien poste avec style et humour. 
+                  J’ai adoré pouvoir choisir un ton ironique pour ma page de départ, 
+                  ça a vraiment détendu l’atmosphère avec mes collègues.”
                 </p>
-                <h3 class="fw-normal">Sarah Thompson</h3>
-                <span class="d-block"> CEO, InnovateTech Solutions </span>
+                <h3 class="fw-normal">Sophie M.</h3>
+                <span class="d-block"> Chargée de communication</span>
               </div>
             </div>
             <div class="swiper-slide">
               <div class="testimonial-item">
                 <p>
-                  "From initial concepts to final execution, the team delivered
-                  beyond our expectations. The brand overhaul not only
-                  strengthened our online presence but also resulted in a
-                  significant increase in customer engagement and sales. Their
-                  creative approach was exactly what we needed."
+                  “Créer ma page de départ a été simple et rapide. La plateforme est intuitive, et les options de personnalisation sont top. Une super façon de laisser une trace positive avant de partir !”
+
                 </p>
-                <h3 class="fw-normal">John Harrison</h3>
+                <h3 class="fw-normal">Marc D.</h3>
                 <span class="d-block">
-                  Marketing Director, Elite Enterprises
+                  Développeur web
                 </span>
               </div>
             </div>
@@ -1062,174 +769,6 @@
     </div>
     <!--#endregion -->
 
-    <!--#region FAQ Area  -->
-    <div class="faq-area ptb-150">
-      <div class="container">
-        <div class="creative-agency-section-title">
-          <div class="row align-items-center">
-            <div class="col-lg-8 col-md-12">
-              <div class="left-side">
-                <div class="number d-flex align-items-center">
-                  <div>08</div>
-                  FAQ
-                </div>
-                <h2 class="text-animation">
-                  Frequently <span>asked questions</span>
-                </h2>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div
-          class="creative-agency-faq-accordion accordion"
-          id="creativeAgencyFaqAccordion"
-          data-cues="slideInUp"
-        >
-          <div class="accordion-item">
-            <button
-              class="accordion-button"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#collapseOne"
-              aria-expanded="true"
-              aria-controls="collapseOne"
-            >
-              What services do you offer as a creative agency?
-              <i class="ri-add-line"></i>
-            </button>
-            <div
-              id="collapseOne"
-              class="accordion-collapse collapse show"
-              data-bs-parent="#creativeAgencyFaqAccordion"
-            >
-              <div class="accordion-body">
-                <p>
-                  We offer a wide range of services, including branding, graphic
-                  design, web development, digital marketing, social media
-                  strategy, content creation, UX/UI design, and advertising
-                  campaigns. Our team tailors each solution to fit the unique
-                  needs of your business.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="accordion-item">
-            <button
-              class="accordion-button collapsed"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#collapseTwo"
-              aria-expanded="false"
-              aria-controls="collapseTwo"
-            >
-              How can a creative agency help my business grow?
-              <i class="ri-add-line"></i>
-            </button>
-            <div
-              id="collapseTwo"
-              class="accordion-collapse collapse"
-              data-bs-parent="#creativeAgencyFaqAccordion"
-            >
-              <div class="accordion-body">
-                <p>
-                  A creative agency can help your business by crafting a strong,
-                  unique brand identity, improving your online presence,
-                  engaging your target audience, and driving measurable results
-                  through innovative marketing strategies. We focus on both
-                  creative and strategic solutions to ensure long-term growth.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="accordion-item">
-            <button
-              class="accordion-button collapsed"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#collapseThree"
-              aria-expanded="false"
-              aria-controls="collapseThree"
-            >
-              How long does it take to complete a project?
-              <i class="ri-add-line"></i>
-            </button>
-            <div
-              id="collapseThree"
-              class="accordion-collapse collapse"
-              data-bs-parent="#creativeAgencyFaqAccordion"
-            >
-              <div class="accordion-body">
-                <p>
-                  The duration of a project depends on its scope and complexity.
-                  A simple logo design might take a couple of weeks, while a
-                  full-scale website redesign could take several months. We work
-                  closely with you to provide a realistic timeline and keep you
-                  informed throughout the process.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="accordion-item">
-            <button
-              class="accordion-button collapsed"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#collapseFour"
-              aria-expanded="false"
-              aria-controls="collapseFour"
-            >
-              What makes your agency different from others?
-              <i class="ri-add-line"></i>
-            </button>
-            <div
-              id="collapseFour"
-              class="accordion-collapse collapse"
-              data-bs-parent="#creativeAgencyFaqAccordion"
-            >
-              <div class="accordion-body">
-                <p>
-                  Our team combines creativity with strategy, ensuring that
-                  every project not only looks great but also drives business
-                  results. We focus on building long-term partnerships with our
-                  clients, offering personalized solutions, and staying ahead of
-                  industry trends to ensure your brand stands out.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="accordion-item">
-            <button
-              class="accordion-button collapsed"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#collapseFive"
-              aria-expanded="false"
-              aria-controls="collapseFive"
-            >
-              How do you determine the cost of a project?
-              <i class="ri-add-line"></i>
-            </button>
-            <div
-              id="collapseFive"
-              class="accordion-collapse collapse"
-              data-bs-parent="#creativeAgencyFaqAccordion"
-            >
-              <div class="accordion-body">
-                <p>
-                  The cost of a project depends on factors like the complexity
-                  of the work, the resources required, and the timeline. We
-                  provide detailed quotes after understanding your goals and
-                  project requirements. We ensure transparency and work with you
-                  to create a budget that fits your needs.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!--#endregion -->
-
     <!--#region Footer  -->
     <footer class="creative-agency-footer-area">
       <div class="container">
@@ -1237,13 +776,13 @@
           <div class="col-lg-6 col-md-6">
             <div class="footer-left-side position-relative">
               <h2 class="mb-0">
-                Collaborate with
+                Collaborez avec
                 <img
                   src="assets/images/users/user1.jpg"
                   class="rounded-circle"
                   alt="user-image"
                 />
-                <span>us</span>
+                <span>nous</span>
               </h2>
               <a
                 href="register.html"
@@ -1256,24 +795,6 @@
                   alt="right-top-arrow"
                 />
               </a>
-              <div class="newsletter-form-wrapper">
-                <span class="title d-block fw-medium">
-                  Subscribe for updates
-                </span>
-                <form class="newsletter-form position-relative">
-                  <input
-                    type="text"
-                    class="input-newsletter d-block w-100"
-                    placeholder="Your email here"
-                    name="email"
-                    required
-                    autocomplete="off"
-                  />
-                  <button type="submit">
-                    <i class="ri-send-plane-fill"></i>
-                  </button>
-                </form>
-              </div>
             </div>
           </div>
           <div class="col-lg-6 col-md-6">
@@ -1297,26 +818,19 @@
               </div>
               <div class="custom-links row">
                 <div class="col-6">
-                  <h3>Useful links</h3>
+                  
                   <p>
-                    The ending of my i dont know, goodnight.. I wish you merry
-                    christmas and a happy new year.
+                    Chez The End.page, chaque départ est une occasion de marquer les esprits. Nos utilisateurs partagent comment la plateforme a transformé leurs adieux en moments mémorable
                   </p>
                 </div>
                 <div class="col-6">
-                  <h3>Useful links</h3>
+                  <h3>Liens utiles</h3>
                   <ul class="ps-0 mb-0 list-unstyled">
                     <li>
-                      <a href="index.html"> Home </a>
+                      <a href="index.html"> Accueil </a>
                     </li>
                     <li>
-                      <a href="newsfeed.html"> Newsfeed </a>
-                    </li>
-                    <li>
-                      <a href="user.html.html"> User </a>
-                    </li>
-                    <li>
-                      <a href="event.html"> Event </a>
+                      <a href="endingsfeed.html.html"> Endingsfeed </a>
                     </li>
                     <li>
                       <a href="contact.html"> Contact </a>
@@ -1356,7 +870,6 @@
     </footer>
     <!--#endregion -->
 
-  
     <!-- Elfsight AI Chatbot | Untitled AI Chatbot -->
     <script
       src="https://static.elfsight.com/platform/platform.js"

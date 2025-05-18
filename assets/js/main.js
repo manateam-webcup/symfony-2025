@@ -991,22 +991,22 @@
   // js banner avatar animation
   const emotions = [
     {
-      text: "happy",
+      text: "joyeux",
       image: "assets/images/avatars/m-happy.png",
       splash: "assets/images/avatars/red-splash.png",
     },
     {
-      text: "sad",
+      text: "triste",
       image: "assets/images/avatars/m-sad.png",
       splash: "assets/images/avatars/red-splash.png",
     },
     {
-      text: "angry",
+      text: "en colère",
       image: "assets/images/avatars/m-angry.png",
       splash: "assets/images/avatars/red-splash.png",
     },
     {
-      text: "shocked",
+      text: "choqué",
       image: "assets/images/avatars/m-shocked.png",
       splash: "assets/images/avatars/red-splash.png",
     },
