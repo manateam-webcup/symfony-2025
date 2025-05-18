@@ -8,6 +8,7 @@ parameters:
     app.mailer_from_name: '%env(string:default:APP_MAILER_FROM_NAME:Email Verification)%'
     app.mailer_reset_password_from_name: '%env(string:default:APP_MAILER_RESET_PASSWORD_FROM_NAME:Password Reset)%'
     uploads_directory: '%kernel.project_dir%/public/uploads'
+    app.default_locale: 'en'
 
 services:
     # default configuration for services in *this* file
@@ -26,3 +27,10 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+    # Configure the LocaleListener with the default locale
+    App\EventListener\LocaleListener:
+        arguments:
+            $defaultLocale: '%app.default_locale%'
+        tags:
+            - { name: kernel.event_subscriber }

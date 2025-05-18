@@ -1,6 +1,12 @@
 site:
   title: TheEndPage
 
+navbar:
+  welcome: Welcome
+  logout: Logout
+  login: Login
+  register: Register
+
 landing:
   info_text: "To write the end of your story, you just need to register. It's quick and essential for publishing. By registering, you accept our terms of use and privacy policy."
 

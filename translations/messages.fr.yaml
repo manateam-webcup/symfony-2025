@@ -1,6 +1,12 @@
 site:
   title: TheEndPage
 
+navbar:
+  welcome: Bienvenue
+  logout: Déconnexion
+  login: Connexion
+  register: Inscription
+
 landing:
   info_text: "Pour écrire la fin de ton histoire, il te suffit de t'enregistrer. C'est rapide et indispensable pour publier. En t'inscrivant, tu acceptes nos conditions d'utilisation ainsi que notre politique de confidentialité."
 
