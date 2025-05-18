@@ -958,7 +958,7 @@
     if (savedDirection === "rtl") {
       $("#bootstrapStylesheet").attr(
         "href",
-        "assets/css/bootstrap.rtl.min.css"
+        "/css/bootstrap.rtl.min.css"
       );
       $("html").attr("dir", "rtl");
     } else {
@@ -975,7 +975,7 @@
         // Switch to RTL
         $("#bootstrapStylesheet").attr(
           "href",
-          "assets/css/bootstrap.rtl.min.css"
+          "/css/bootstrap.rtl.min.css"
         );
         $("html").attr("dir", "rtl");
         localStorage.setItem("directionMode", "rtl");
@@ -992,23 +992,23 @@
   const emotions = [
     {
       text: "joyeux",
-      image: "assets/images/avatars/m-happy.png",
-      splash: "assets/images/avatars/red-splash.png",
+      image: "/images/avatars/m-happy.png",
+      splash: "/images/avatars/red-splash.png",
     },
     {
       text: "triste",
-      image: "assets/images/avatars/m-sad.png",
-      splash: "assets/images/avatars/red-splash.png",
+      image: "/images/avatars/m-sad.png",
+      splash: "/images/avatars/red-splash.png",
     },
     {
       text: "en colère",
-      image: "assets/images/avatars/m-angry.png",
-      splash: "assets/images/avatars/red-splash.png",
+      image: "/images/avatars/m-angry.png",
+      splash: "/images/avatars/red-splash.png",
     },
     {
       text: "choqué",
-      image: "assets/images/avatars/m-shocked.png",
-      splash: "assets/images/avatars/red-splash.png",
+      image: "/images/avatars/m-shocked.png",
+      splash: "/images/avatars/red-splash.png",
     },
   ];
 
