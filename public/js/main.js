@@ -962,7 +962,7 @@
       );
       $("html").attr("dir", "rtl");
     } else {
-      $("#bootstrapStylesheet").attr("href", "assets/css/bootstrap.min.css");
+      $("#bootstrapStylesheet").attr("href", "/css/bootstrap.min.css");
       $("html").attr("dir", "ltr");
     }
     // On button click: Toggle and Save to localStorage
@@ -981,7 +981,7 @@
         localStorage.setItem("directionMode", "rtl");
       } else {
         // Switch to LTR
-        $("#bootstrapStylesheet").attr("href", "assets/css/bootstrap.min.css");
+        $("#bootstrapStylesheet").attr("href", "/css/bootstrap.min.css");
         $("html").attr("dir", "ltr");
         localStorage.setItem("directionMode", "ltr");
       }
