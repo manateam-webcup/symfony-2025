@@ -25,8 +25,6 @@
     <link rel="icon" type="image/png" href="/images/favicon.png" />
   </head>
   <body class="bg-f8f9fd">
-    <!-- WEBGL Fluid particles -->
-    <canvas id="fluid"></canvas>
     <!-- Preloader -->
     <div
       class="preloader-area position-fixed top-0 start-0 end-0 bottom-0 text-center"
@@ -73,25 +71,6 @@
     <div class="navbar-area style-two top-0 start-0 end-0 h-auto">
       <div class="container">
         <nav class="navbar p-0">
-          <a class="navbar-brand" href="/">
-            <img
-                    src="/images/avatars/logo-black.png"
-                    alt="logo"
-                    class="black-logo"
-            />
-            <img
-                    src="/images/avatars/logo.png"
-                    class="d-none"
-                    alt="logo"
-            />
-          </a>
-          <button class="navbar-toggler" type="button">
-            <span class="burger-menu">
-              <span class="top-bar"></span>
-              <span class="middle-bar"></span>
-              <span class="bottom-bar"></span>
-            </span>
-          </button>
           <div class="collapse navbar-collapse">
             <div class="others-option">
               <button
@@ -186,7 +165,7 @@
         <div class="page-banner-content mx-auto text-center">
           <h1 class="mb-0 text-animation">Endings feed</h1>
 
-          <a class="btn primary_btn mt-5" href="">Post Endings</a>
+          <a class="btn primary_btn mt-5" href="{{ path('app_ending_new') }}">Post Endings</a>
         </div>
       </div>
     </div>
@@ -200,25 +179,25 @@
           data-cue="slideInUp"
         >
           <li class="d-inline-block">
-            <a href="blog.html" class="d-block active"> All endings </a>
+            <a href="{{ path('app_ending_index') }}" class="d-block {% if emotion is null %}active{% endif %}"> All Endings </a>
           </li>
           <li class="d-inline-block">
-            <a href="{{ path('app_ending_index', {'emotion': 'happy'}) }}" class="d-block class="btn btn-sm {% if emotion == 'sad' %} active {% else %}btn-outline-info{% endif %}""> Happy </a>
+            <a href="{{ path('app_ending_index', {'emotion': 'happy'}) }}" class="d-block{% if emotion == 'happy' %} active{% endif %}"> Happy </a>
           </li>
           <li class="d-inline-block">
-            <a href="{{ path('app_ending_index', {'emotion': 'sad'}) }}" class="d-block"> Sad </a>
+            <a href="{{ path('app_ending_index', {'emotion': 'sad'}) }}" class="d-block{% if emotion == 'sad' %} active{% endif %}"> Sad </a>
           </li>
           <li class="d-inline-block">
-            <a href="{{ path('app_ending_index', {'emotion': 'angry'}) }}" class="d-block"> Angry </a>
+            <a href="{{ path('app_ending_index', {'emotion': 'angry'}) }}" class="d-block{% if emotion == 'angry' %} active{% endif %}"> Angry </a>
           </li>
           <li class="d-inline-block">
-            <a href="{{ path('app_ending_index', {'emotion': 'shocking'}) }}" class="d-block"> Shocked </a>
+            <a href="{{ path('app_ending_index', {'emotion': 'shocking'}) }}" class="d-block{% if emotion == 'shocking' %} active{% endif %}"> Shocked </a>
           </li>
           <li class="d-inline-block">
-            <a href="{{ path('app_ending_index', {'emotion': 'frustrated'}) }}" class="d-block"> Frustrated </a>
+            <a href="{{ path('app_ending_index', {'emotion': 'frustrated'}) }}" class="d-block{% if emotion == 'frustrated' %} active{% endif %}"> Frustrated </a>
           </li>
           <li class="d-inline-block">
-            <a href="{{ path('app_ending_index', {'emotion': 'depressed'}) }}" class="d-block"> Depression </a>
+            <a href="{{ path('app_ending_index', {'emotion': 'depressed'}) }}" class="d-block{% if emotion == 'depressed' %} active{% endif %}"> Depression </a>
           </li>
         </ul>
         <div class="main-blogs-list" data-cues="slideInUp">
@@ -350,11 +329,11 @@
                 <span>us</span>
               </h2>
               <a
-                href="register.html"
+                href="{{ path('app_login') }}"
                 class="link-btn d-inline-block rounded-circle text-center"
                 data-cue="slideInUp"
               >
-                <img src="/images/circle-text.svg" alt="circle-text" />
+                <img src="/images/circle-text.svg" alt="" />
                 <img
                   src="/images/icons/big-right-top-arrow.svg"
                   alt="right-top-arrow"
