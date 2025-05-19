@@ -5,17 +5,24 @@
 {% block stylesheets %}
     {{ parent() }}
     <style>
-    .like-form, .dislike-form {
-      display: inline-block;
-    }
+        .like-form, .dislike-form {
+            display: inline-block;
+        }
     </style>
 {% endblock %}
 
 {% block body %}
+
+    {% set images = [ending.image1Path, ending.image2Path, ending.image3Path]|filter(image => image is not null) %}
+
     <div class="content-grid full">
         <article class="post-open">
             <figure class="post-open-cover liquid">
-                <img src="/img/cover/19.jpg" alt="cover-19">
+                {% if ending.image1Path is null %}
+                    <img src="/img/cover/19.jpg" alt="cover-image">
+                {% else %}
+                    <img src="{{ asset('uploads/' ~ ending.image1Path) }}" alt="cover-image">
+                {% endif %}
             </figure>
 
             <div class="post-open-body">
@@ -35,13 +42,17 @@
                         <p class="post-open-sidebar-title">Share!</p>
 
                         <div class="social-links vertical">
-                            <a class="social-link void facebook" href="https://www.facebook.com/sharer/sharer.php?u={{ url('app_ending_show', {'id': ending.id})|url_encode }}" target="_blank">
+                            <a class="social-link void facebook"
+                               href="https://www.facebook.com/sharer/sharer.php?u={{ url('app_ending_show', {'id': ending.id})|url_encode }}"
+                               target="_blank">
                                 <svg class="icon-facebook">
                                     <use xlink:href="#svg-facebook"></use>
                                 </svg>
                             </a>
 
-                            <a class="social-link void twitter" href="https://twitter.com/intent/tweet?url={{ url('app_ending_show', {'id': ending.id})|url_encode }}&text={{ ending.title|url_encode }}" target="_blank">
+                            <a class="social-link void twitter"
+                               href="https://twitter.com/intent/tweet?url={{ url('app_ending_show', {'id': ending.id})|url_encode }}&text={{ ending.title|url_encode }}"
+                               target="_blank">
                                 <svg class="icon-twitter">
                                     <use xlink:href="#svg-twitter"></use>
                                 </svg>
@@ -50,159 +61,176 @@
                     </div>
                     <div class="post-open-content-body">
                         <p class="post-open-paragraph">{{ ending.description|nl2br }}</p>
+                    </div>
+                </div>
 
-                        {% if ending.image1Path %}
-                            <figure class="post-open-image liquid">
-                                <img src="{{ asset('uploads/' ~ ending.image1Path) }}" class="img-fluid rounded"
-                                     alt="Image 1">
-                            </figure>
-                        {% endif %}
+                <div id="medias" class="card">
+                    {% if ending.videoPath %}
+                        <div class="card-header">
+                            <h5 class="mt-6 mb-3">Video</h5>
+                        </div>
+                        <div class="card-body">
+                            <video controls class="mt-5 w-100 mb-3">
+                                <source src="{{ asset('uploads/' ~ ending.videoPath) }}" type="video/mp4">
+                                Your browser does not support the video element.
+                            </video>
+                        </div>
+                    {% endif %}
 
-                        {% if ending.image2Path %}
-                            <figure class="post-open-image liquid">
-                                <img src="{{ asset('uploads/' ~ ending.image2Path) }}" class="img-fluid rounded"
-                                     alt="Image 2">
-                            </figure>
-                        {% endif %}
-
-                        {% if ending.image3Path %}
-                            <figure class="post-open-image liquid">
-                                <img src="{{ asset('uploads/' ~ ending.image3Path) }}" class="img-fluid rounded"
-                                     alt="Image 3">
-                            </figure>
-                        {% endif %}
-
-                        {% if ending.audioPath %}
-                            <h5 class="mt-4 mb-3">Audio</h5>
+                    {% if ending.audioPath %}
+                        <div class="card-header">
+                            <h5 class="mt-6 mb-3">Audio</h5>
+                        </div>
+                        <div class="card-body">
                             <audio controls class="w-100 mb-3">
                                 <source src="{{ asset('uploads/' ~ ending.audioPath) }}" type="audio/mpeg">
                                 Your browser does not support the audio element.
                             </audio>
-                        {% endif %}
-
-                        {% if ending.videoPath %}
-                            <h5 class="mt-4 mb-3">Video</h5>
-                            <video controls class="w-100 mb-3">
-                                <source src="{{ asset('uploads/' ~ ending.videoPath) }}" type="video/mp4">
-                                Your browser does not support the video element.
-                            </video>
-                        {% endif %}
-                    </div>
-                </div>
-                <div class="post-options">
-                    <div class="post-option-text">
-                        {% if app.user %}
-                            <form action="{{ path('app_like', {'id': ending.id}) }}" method="post"
-                                  class="like-form">
-                                <button type="submit"
-                                        class="btn btn-sm {% if user_interaction and user_interaction.type == 'like' %}btn-primary{% else %}btn-outline-primary{% endif %} me-1">
-                                    <i class="fas fa-thumbs-up"></i> Like
-                                </button>
-                            </form>
-                        {% else %}
-                            <button type="button" class="btn btn-sm btn-outline-primary me-1" disabled>
-                                <i class="fas fa-thumbs-up"></i> Like
-                            </button>
-                        {% endif %}
-                        <span class="likes-count">{{ ending.likes }}</span>
-                    </div>
-                    <div class="post-option-text">
-                        {% if app.user %}
-                            <form action="{{ path('app_dislike', {'id': ending.id}) }}" method="post"
-                                  class="dislike-form">
-                                <button type="submit"
-                                        class="btn btn-sm {% if user_interaction and user_interaction.type == 'dislike' %}btn-danger{% else %}btn-outline-danger{% endif %} me-1">
-                                    <i class="fas fa-thumbs-down"></i> Dislike
-                                </button>
-                            </form>
-                        {% else %}
-                            <button type="button" class="btn btn-sm btn-outline-danger me-1" disabled>
-                                <i class="fas fa-thumbs-down"></i> Dislike
-                            </button>
-                        {% endif %}
-                        <span class="dislikes-count">{{ ending.dislikes }}</span>
-                    </div>
-
-                    <div class="post-option active">
-                        <svg class="post-option-icon icon-comment">
-                            <use xlink:href="#svg-comment"></use>
-                        </svg>
-                        <p class="post-option-text">Comment</p>
-                    </div>
-
-                    <div class="post-option" id="share-option">
-                        <svg class="post-option-icon icon-share">
-                            <use xlink:href="#svg-share"></use>
-                        </svg>
-                        <p class="post-option-text">Share</p>
-                    </div>
-                </div>
-
-                <div class="card-footer">
-                    {% if ending.status == 'rejected' and ending.moderationReason %}
-                        <div class="mt-3 alert alert-danger">
-                            <h5>Rejection Reason:</h5>
-                            <p>{{ ending.moderationReason }}</p>
                         </div>
                     {% endif %}
 
-                    {% if is_admin and ending.status == 'pending' %}
-                        <div class="mt-3 d-flex justify-content-end gap-2">
-                            <form action="{{ path('app_ending_approve', {'id': ending.id}) }}" method="post" class="d-inline mr-2">
-                                <button type="submit" class="btn btn-success">Approve</button>
-                            </form>
-                            <form action="{{ path('app_ending_reject', {'id': ending.id}) }}" method="post" class="d-inline">
-                                <button type="submit" class="btn btn-danger">Reject</button>
-                            </form>
+                    {% if images|length > 0 %}
+                        <div class="card-header">
+                            <h4>Photos ({{ images|length }})</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="grid grid-half mb-auto">
+                                {% for image in images %}
+                                    {% if image is not null %}
+                                        <figure class="post-open-image mt-0">
+                                            <img src="{{ asset('uploads/' ~ image) }}" class="img-fluid rounded"
+                                                 alt=""/>
+                                        </figure>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    {% endif %}
+
+                    <div class="post-options">
+                        <div class="post-option-text">
+                            {% if app.user %}
+                                <form action="{{ path('app_like', {'id': ending.id}) }}" method="post"
+                                      class="like-form">
+                                    <button type="submit"
+                                            class="btn btn-sm {% if user_interaction and user_interaction.type == 'like' %}btn-primary{% else %}btn-outline-primary{% endif %} me-1">
+                                        <i class="fas fa-thumbs-up"></i> Like <span
+                                                class="likes-count">({{ ending.likes }})</span>
+                                    </button>
+                                </form>
+                            {% else %}
+                                <button type="button" class="btn btn-sm btn-outline-primary me-1" disabled>
+                                    <i class="fas fa-thumbs-up"></i> Like <span
+                                            class="likes-count">({{ ending.likes }})</span>
+                                </button>
+                            {% endif %}
+                        </div>
+                        <div class="post-option-text">
+                            {% if app.user %}
+                                <form action="{{ path('app_dislike', {'id': ending.id}) }}" method="post" class="dislike-form">
+                                    <button type="submit" class="btn btn-sm {% if user_interaction and user_interaction.type == 'dislike' %}btn-danger{% else %}btn-outline-danger{% endif %} me-1">
+                                        <i class="fas fa-thumbs-down"></i> Dislike<span class="dislikes-count">({{ ending.dislikes }})</span>
+                                    </button>
+                                </form>
+                            {% else %}
+                                <button type="button" class="btn btn-sm btn-outline-danger me-1" disabled>
+                                    <i class="fas fa-thumbs-down"></i> Dislike <span class="dislikes-count">({{ ending.dislikes }})</span>
+                                </button>
+                            {% endif %}
                         </div>
 
-                        {% if ending.moderationReason %}
-                            <div class="mt-3 alert alert-warning">
-                                <h5>AI Moderation Feedback:</h5>
-                                <p>{{ ending.moderationReason }}</p>
-                                {% if ending.moderationScore %}
-                                    <p><strong>Moderation Score:</strong> {{ ending.moderationScore|number_format(2) }}</p>
-                                {% endif %}
-                            </div>
-                        {% endif %}
-                    {% endif %}
+                        <div class="post-option active">
+                            <svg class="post-option-icon icon-comment">
+                                <use xlink:href="#svg-comment"></use>
+                            </svg>
+                            <p class="post-option-text">Comment</p>
+                        </div>
+
+                        <div class="post-option" id="share-option">
+                            <svg class="post-option-icon icon-share">
+                                <use xlink:href="#svg-share"></use>
+                            </svg>
+                            <p class="post-option-text">Share</p>
+                        </div>
+                    </div>
                 </div>
 
-                <div id="comments" class="card-footer post-comment-list">
-                    <h4>Comments ({{ comments|length }})</h4>
-
-                    {% if comments|length > 0 %}
-                        {% for comment in comments %}
-                            <div class="post-comment">
-                                <p class="post-comment-text">
-                                    <a class="post-comment-text-author"
-                                       href="#">{{ comment.user.firstName }} {{ comment.user.lastName }}</a>
-                                    <small class="text-muted">{{ comment.createdAt|date('M d, Y H:i') }}</small>
-                                <p class="card-text">{{ comment.content|nl2br }}</p>
-                                </p>
-                            </div>
-                        {% endfor %}
-                    {% else %}
-                        <p class="text-muted">No comments yet. Be the first to comment!</p>
-                    {% endif %}
-
-                    <div class="post-comment-form">
-                        {% if app.user %}
-                            <form action="{{ path('app_comment_add', {'id': ending.id}) }}" method="post" class="mb-4">
-                                <div class="form-group">
-                                    <label for="content">Add a comment</label>
-                                    <textarea name="content" id="content" class="form-control" rows="3"
-                                              required></textarea>
+                {% if is_admin and ending.status == 'pending' %}
+                    <div id="moderation" class="card">
+                        <div class="card-header">
+                            <h4>Admin Moderation</h4>
+                        </div>
+                        <div class="card-body">
+                            {% if ending.status == 'rejected' and ending.moderationReason %}
+                                <div class="mt-3 alert alert-danger">
+                                    <h5>Rejection Reason:</h5>
+                                    <p>{{ ending.moderationReason }}</p>
                                 </div>
-                                <button type="submit" class="btn btn-primary mt-2">Submit</button>
-                            </form>
-                        {% else %}
-                            <div class="alert alert-info">
-                                <a href="{{ path('app_login') }}">Login</a> to add a comment.
+                            {% endif %}
+                            {% if ending.moderationReason %}
+                                <div class="mt-3 alert alert-warning">
+                                    <h5>AI Moderation Feedback:</h5>
+                                    <p>{{ ending.moderationReason }}</p>
+                                    {% if ending.moderationScore %}
+                                        <p><strong>Moderation Score:</strong> {{ ending.moderationScore|number_format(2) }}</p>
+                                    {% endif %}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="card-footer">
+                            <div class="mt-3 d-flex justify-content-end gap-2">
+                                <form action="{{ path('app_ending_approve', {'id': ending.id}) }}" method="post" class="d-inline mr-2">
+                                    <button type="submit" class="btn btn-success">Approve</button>
+                                </form>
+                                <form action="{{ path('app_ending_reject', {'id': ending.id}) }}" method="post" class="d-inline">
+                                    <button type="submit" class="btn btn-danger">Reject</button>
+                                </form>
                             </div>
+                        </div>
+                    </div>
+                {% endif %}
+
+                <div id="comments" class="card">
+                    <div class="card-header">
+                        <h4>Comments ({{ comments|length }})</h4>
+                    </div>
+
+                    <div class="card-body">
+                        {% if comments|length > 0 %}
+                            {% for comment in comments %}
+                                <div class="post-comment">
+                                    <p class="post-comment-text">
+                                        <a class="post-comment-text-author"
+                                           href="#">{{ comment.user.firstName }} {{ comment.user.lastName }}</a>
+                                        <small class="text-muted">{{ comment.createdAt|date('M d, Y H:i') }}</small>
+                                    <p class="card-text">{{ comment.content|nl2br }}</p>
+                                </div>
+                            {% endfor %}
+
+                        {% else %}
+                            <p class="text-muted mt-3 mb-3">No comments yet. Be the first to comment!</p>
                         {% endif %}
                     </div>
 
+                    <div class="card-footer">
+                        <div class="post-comment-form">
+                            {% if app.user %}
+                                <form action="{{ path('app_comment_add', {'id': ending.id}) }}" method="post"
+                                      class="mb-4">
+                                    <div class="form-group">
+                                        <label for="content">Add a comment</label>
+                                        <textarea name="content" id="content" class="form-control" rows="3"
+                                                  required></textarea>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary mt-2">Submit</button>
+                                </form>
+                            {% else %}
+                                <div class="alert alert-info">
+                                    <a href="{{ path('app_login') }}">Login</a> to add a comment.
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
                 </div>
             </div>
         </article>
@@ -224,7 +252,7 @@
             // Handle share option click
             const shareOption = document.getElementById('share-option');
             if (shareOption) {
-                shareOption.addEventListener('click', function() {
+                shareOption.addEventListener('click', function () {
                     // URLs for sharing
                     const pageUrl = '{{ url('app_ending_show', {'id': ending.id}) }}';
                     const encodedUrl = encodeURIComponent(pageUrl);

@@ -2230,8 +2230,9 @@ Menu Popup Area CSS
 Creative Agency Banner Area CSS
 =================================================*/
 .creative-agency-banner-area {
-  padding-top: 160px;
-  padding-bottom: 150px;
+  padding-top: 40vh;
+  padding-bottom: 40vh;
+  height: 100vh;
 }
 
 .creative-agency-banner-content .sub-title {
@@ -2240,7 +2241,7 @@ Creative Agency Banner Area CSS
 }
 .creative-agency-banner-content .title h1 {
   position: relative;
-  text-align: center;
+  text-align: left;
   font-size: 130px;
   line-height: 1.1;
   z-index: 1;

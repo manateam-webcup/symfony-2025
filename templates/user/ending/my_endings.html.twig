@@ -3,72 +3,127 @@
 {% block title %}My Endings{% endblock %}
 
 {% block body %}
-<div class="container mt-4">
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <h1>My Endings</h1>
-        <div>
-            <a href="{{ path('app_ending_new') }}" class="btn btn-primary">Create New Ending</a>
-            <a href="{{ path('app_ending_index') }}" class="btn btn-outline-secondary ms-2">All Endings</a>
-        </div>
-    </div>
+    <div class="content-grid">
+        <section class="section">
+            <div class="section-header">
+                <div class="section-header-info">
+                    <p class="section-pretitle">Browse {{ app.user.firstName }}'s</p>
+                    <h2 class="section-title">Ending Posts <span class="highlighted">{{ endings|length }}</span></h2>
+                </div>
+            </div>
 
-    {% for flash_success in app.flashes('success') %}
-        <div class="alert alert-success" role="alert">{{ flash_success }}</div>
-    {% endfor %}
+            <div class="section-filters-bar v2">
+                <form class="form">
+                    <div class="form-item split medium">
+                        <div class="form-select">
+                            <label for="post-filter-category">Filter By</label>
+                            <select id="post-filter-category" name="post_filter_category">
+                                <option value="0">Reactions Received</option>
+                                <option value="1">Comment Count</option>
+                                <option value="2">Share Count</option>
+                            </select>
+                            <svg class="form-select-icon icon-small-arrow">
+                                <use xlink:href="#svg-small-arrow"></use>
+                            </svg>
+                        </div>
 
-    {% if endings|length > 0 %}
-        <div class="row">
-            {% for ending in endings %}
-                <div class="col-md-4 mb-4">
-                    <div class="card h-100">
-                        <div class="card-header d-flex justify-content-between align-items-center">
-                            <div class="d-flex align-items-center">
-                                <h5 class="card-title mb-0">{{ ending.title }}</h5>
-                                {% if ending.approvedBy == 'AI' %}
-                                    <span class="ms-2" data-bs-toggle="tooltip" title="Approved by AI"><i class="fas fa-robot text-primary"></i></span>
-                                {% elseif ending.approvedBy == 'Human' %}
-                                    <span class="ms-2" data-bs-toggle="tooltip" title="Approved by Admin"><i class="fas fa-user-shield text-success"></i></span>
-                                {% endif %}
-                            </div>
-                            <div class="d-flex align-items-center">
-                                <span class="badge {% if ending.status == 'approved' %}bg-success{% elseif ending.status == 'pending' %}bg-warning{% elseif ending.status == 'rejected' %}bg-danger{% endif %} me-2">
-                                    {{ ending.status|capitalize }}
-                                </span>
-                                <span class="badge {% if ending.emotion == 'sad' %}bg-info{% elseif ending.emotion == 'shocking' %}bg-warning{% elseif ending.emotion == 'happy' %}bg-success{% elseif ending.emotion == 'angry' %}bg-danger{% endif %}">
+                        <div class="form-select">
+                            <label for="post-filter-order">Order By</label>
+                            <select id="post-filter-order" name="post_filter_order">
+                                <option value="0">Highest to Lowest</option>
+                                <option value="1">Lowest to Highest</option>
+                            </select>
+                            <svg class="form-select-icon icon-small-arrow">
+                                <use xlink:href="#svg-small-arrow"></use>
+                            </svg>
+                        </div>
+
+                        <div class="form-select">
+                            <label for="post-filter-show">Show</label>
+                            <select id="post-filter-show" name="post_filter_show">
+                                <option value="0">12 Posts per Page</option>
+                                <option value="1">24 Posts per Page</option>
+                            </select>
+                            <svg class="form-select-icon icon-small-arrow">
+                                <use xlink:href="#svg-small-arrow"></use>
+                            </svg>
+                        </div>
+
+                        <button class="button primary">Filter Posts</button>
+                    </div>
+                </form>
+            </div>
+
+            {% if endings|length > 0 %}
+            <div class="grid grid-4-4-4 centered">
+
+                {% for ending in endings %}
+                    {% dump(ending) %}
+                <div class="post-preview">
+                    <figure class="post-preview-image liquid">
+                        {% if ending.image1Path is null %}
+                            <img src="/img/cover/19.jpg" alt="cover-image">
+                        {% else %}
+                            <img src="{{ asset('uploads/' ~ ending.image1Path) }}" alt="cover-image">
+                        {% endif %}
+                    </figure>
+
+                    <div class="post-preview-info fixed-height">
+                        <div class="post-preview-info-top">
+                            <p class="post-preview-timestamp">{{ ending.createdAt|date }}</p>
+                            <p class="post-preview-title">{{ ending.title }}</p>
+                        </div>
+                        <div class="post-preview-info-bottom">
+                            <p class="post-preview-text">{{ ending.description|striptags|slice(0, 300) }}{% if ending.description|length > 300 %}...{% endif %}</p>
+                            <a class="post-preview-link" href="{{ path('app_ending_show', {id: ending.id}) }}">Read more...</a>
+                        </div>
+                    </div>
+
+                    <div class="content-actions">
+                        <div class="content-action">
+                            <div class="reaction-item mr-4">
+                                <div class="badge {% if ending.emotion == 'sad' %}bg-info{% elseif ending.emotion == 'shocking' %}bg-warning{% elseif ending.emotion == 'happy' %}bg-success{% elseif ending.emotion == 'angry' %}bg-danger{% endif %}">
                                     {{ ending.emotion|capitalize }}
-                                </span>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <p class="card-text">{{ ending.description|striptags|slice(0, 150) }}{% if ending.description|length > 150 %}...{% endif %}</p>
-
-                            {% if ending.status == 'rejected' and ending.moderationReason %}
-                                <div class="alert alert-danger py-2 mb-3">
-                                    <small><strong>Rejection reason:</strong> {{ ending.moderationReason }}</small>
                                 </div>
-                            {% endif %}
-
-                            {% if ending.image1Path %}
-                                <img src="{{ asset('uploads/' ~ ending.image1Path) }}" class="img-fluid rounded mb-2" alt="Image">
-                            {% endif %}
-
-                            <div class="text-end">
-                                <small class="text-muted">{{ ending.createdAt|date('M d, Y') }}</small>
+                            </div>
+                            <div class="meta-line">
+                                <div class="meta-line-list reaction-item-list">
+                                    <div class="reaction-item">
+                                        <img class="reaction-image reaction-item-dropdown-trigger" src="/img/reaction/like.png" alt="reaction-like">
+                                    </div>
+                                </div>
+                                <p class="meta-line-text">{{ ending.likes }}</p>
+                            </div>
+                            <div class="meta-line">
+                                <div class="meta-line-list reaction-item-list">
+                                    <div class="reaction-item">
+                                        <img class="reaction-image reaction-item-dropdown-trigger" src="/img/reaction/dislike.png" alt="reaction-dislike">
+                                    </div>
+                                </div>
+                                <p class="meta-line-text">{{ ending.dislikes }}</p>
                             </div>
                         </div>
-                        <div class="card-footer bg-transparent">
-                            <a href="{{ path('app_ending_show', {'id': ending.id}) }}" class="btn btn-sm btn-primary w-100">View Details</a>
+
+                        <div class="content-action">
+                            <div class="meta-line">
+                                <a class="meta-line-link" href="{{ path('app_ending_show', {id: ending.id}) }}#comments">{{ ending.comments|length }} Comments</a>
+                            </div>
+                            <div class="badge {% if ending.status == 'approved' %}bg-success{% elseif ending.status == 'pending' %}bg-warning{% elseif ending.status == 'rejected' %}bg-danger{% endif %} ml-2" title="{{ ending.status|capitalize }}">
+                                {% if ending.status == 'approved' %}✓{% elseif ending.status == 'pending' %}﹗{% elseif ending.status == 'rejected' %}𐄂{% endif %}
+                            </div>
                         </div>
                     </div>
                 </div>
-            {% endfor %}
-        </div>
-    {% else %}
-        <div class="alert alert-info">
-            <p class="mb-0">You haven't shared any endings yet. <a href="{{ path('app_ending_new') }}">Create your first ending</a> now!</p>
-        </div>
-    {% endif %}
-</div>
+                {% endfor %}
+            </div>
+            {% else %}
+                <div class="alert alert-info">
+                    <p class="mb-0">You haven't shared any endings yet. <a href="{{ path('app_ending_new') }}">Create your first ending</a> now!</p>
+                </div>
+            {% endif %}
+        </section>
+        <!-- /SECTION -->
+    </div>
 {% endblock %}
 
 {% block javascripts %}

@@ -9778,7 +9778,7 @@ figure > img {
 ----------------------*/
 .dropdown-box {
   width: 384px;
-  padding-bottom: 60px;
+  padding-bottom: 10px;
   border-radius: 10px;
   background-color: #fff;
   box-shadow: 3px 5px 40px 0 rgba(94, 92, 154, 0.06);
@@ -9871,7 +9871,7 @@ figure > img {
     3. DROPDOWN BOX LIST
 ----------------------------*/
 .dropdown-box-list {
-  height: 420px;
+  /*height: 420px;*/
   overflow-y: auto;
 }
 

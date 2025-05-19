@@ -220,7 +220,7 @@
                     <div class="dropdown-box-list">
                         <div class="dropdown-box-list-item {% if app.request.locale == 'en' %}active{% endif %}">
                             <a href="{{ path('app_change_locale', {'locale': 'en'}) }}">
-                                <div class="user-status">
+                                <div>
                                     <p class="user-status-title">🇬🇧 English</p>
                                 </div>
                             </a>
@@ -228,7 +228,7 @@
 
                         <div class="dropdown-box-list-item {% if app.request.locale == 'fr' %}active{% endif %}">
                             <a href="{{ path('app_change_locale', {'locale': 'fr'}) }}">
-                                <div class="user-status">
+                                <div>
                                     <p class="user-status-title">🇫🇷 Français</p>
                                 </div>
                             </a>
