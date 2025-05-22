@@ -1,0 +1,206 @@
+{% extends 'user/base.html.twig' %}
+
+{% block title %}Edit Ending{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .form-check {
+            padding-left: 0;
+            margin-top: 1em;
+            display: inline-block;
+        }
+        .form-check label {
+            margin: 0 1em;
+            display: inline-block;
+            position: unset;
+        }
+        .form-input.small input[type=radio] {
+            display: inline-block;
+            height: auto;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <div class="content-grid">
+        <div class="section-banner">
+            <img class="section-banner-icon" src="/img/banner/events-icon.png" alt="marketplace-icon">
+
+            <p class="section-banner-title">Edit Your Ending</p>
+
+            <p class="section-banner-text">Update your ending while it's still in pending status.</p>
+        </div>
+
+        <div class="section-header">
+            <div class="section-header-info">
+                <h2 class="section-title">Edit My Ending Story</h2>
+            </div>
+        </div>
+
+        <div class="grid grid-12-0 small-space">
+            <div class="grid-column">
+                <div class="widget-box">
+                    <p class="widget-box-title">Story Details</p>
+
+                    <div class="widget-box-content">
+                        <!-- FORM -->
+                        {% for flash_error in app.flashes('error') %}
+                            <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+                        {% endfor %}
+
+                        {{ form_start(form, {'attr': {'enctype': 'multipart/form-data'}}) }}
+                        <div class="form-row">
+                            <div class="form-item">
+                                <div class="form-input small">
+                                    {{ form_widget(form.title) }}
+                                    {{ form_errors(form.title) }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-item">
+                                <div class="form-input small medium-textarea">
+                                    {{ form_widget(form.description, {attr: {'placeholder': 'Write any additional details here...'}}) }}
+                                </div>
+                            </div>
+                            {{ form_errors(form.description) }}
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-item">
+                                {{ form_label(form.emotion) }}
+                                <div class="form-input small">
+                                    {% for emotion in form.emotion %}
+                                        <div class="form-check">
+                                            {{ form_widget(emotion) }}
+                                            {{ form_label(emotion) }}
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                                {{ form_errors(form.emotion) }}
+                            </div>
+                        </div>
+
+                        <h4 class="mt-4 mb-3">Media (Optional)</h4>
+
+                        <!-- Display existing media -->
+                        <div class="form-row">
+                            <div class="form-item">
+                                <h5>Current Media</h5>
+                                <div class="existing-media d-flex flex-wrap">
+                                    {% if ending.image1Path %}
+                                        <div class="media-item mr-3 mb-3">
+                                            <p>Image 1:</p>
+                                            <img src="{{ asset('uploads/' ~ ending.image1Path) }}" alt="Image 1" style="max-width: 150px; max-height: 150px;">
+                                        </div>
+                                    {% endif %}
+
+                                    {% if ending.image2Path %}
+                                        <div class="media-item mr-3 mb-3">
+                                            <p>Image 2:</p>
+                                            <img src="{{ asset('uploads/' ~ ending.image2Path) }}" alt="Image 2" style="max-width: 150px; max-height: 150px;">
+                                        </div>
+                                    {% endif %}
+
+                                    {% if ending.image3Path %}
+                                        <div class="media-item mr-3 mb-3">
+                                            <p>Image 3:</p>
+                                            <img src="{{ asset('uploads/' ~ ending.image3Path) }}" alt="Image 3" style="max-width: 150px; max-height: 150px;">
+                                        </div>
+                                    {% endif %}
+
+                                    {% if ending.audioPath %}
+                                        <div class="media-item mr-3 mb-3">
+                                            <p>Audio:</p>
+                                            <audio controls>
+                                                <source src="{{ asset('uploads/' ~ ending.audioPath) }}" type="audio/mpeg">
+                                                Your browser does not support the audio element.
+                                            </audio>
+                                        </div>
+                                    {% endif %}
+
+                                    {% if ending.videoPath %}
+                                        <div class="media-item mr-3 mb-3">
+                                            <p>Video:</p>
+                                            <video controls style="max-width: 300px; max-height: 200px;">
+                                                <source src="{{ asset('uploads/' ~ ending.videoPath) }}" type="video/mp4">
+                                                Your browser does not support the video element.
+                                            </video>
+                                        </div>
+                                    {% endif %}
+
+                                    {% if not ending.image1Path and not ending.image2Path and not ending.image3Path and not ending.audioPath and not ending.videoPath %}
+                                        <p>No media files currently attached to this ending.</p>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+
+                        <h5 class="mt-4 mb-3">Upload New Media</h5>
+                        <p class="form-text text-muted mb-3">Upload new files to replace the existing ones. Leave empty to keep current files.</p>
+
+                        <div class="form-row split">
+                            <div class="form-item">
+                                <div class="form-input small">
+                                    {{ form_label(form.image1, 'Image 1') }}
+                                    {{ form_widget(form.image1) }}
+                                    {{ form_errors(form.image1) }}
+                                </div>
+                            </div>
+
+                            <div class="form-item">
+                                <div class="form-input small">
+                                    {{ form_label(form.image2, 'Image 2') }}
+                                    {{ form_widget(form.image2) }}
+                                    {{ form_errors(form.image2) }}
+                                </div>
+                            </div>
+
+                            <div class="form-item">
+                                <div class="form-input small">
+                                    {{ form_label(form.image3, 'Image 3') }}
+                                    {{ form_widget(form.image3) }}
+                                    {{ form_errors(form.image3) }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <p class="form-text text-muted">Upload images related to your ending.</p>
+                        <p>&nbsp;</p>
+
+                        <div class="form-row split">
+                            <div class="form-item">
+                                <div class="form-input small">
+                                    {{ form_label(form.audio, 'Audio File') }}
+                                    {{ form_widget(form.audio) }}
+                                    {{ form_errors(form.audio) }}
+                                    <p class="form-text text-muted">Upload an audio file related to your ending.</p>
+                                </div>
+                            </div>
+
+                            <div class="form-item">
+                                <div class="form-input small">
+                                    {{ form_label(form.video, 'Video File') }}
+                                    {{ form_widget(form.video) }}
+                                    {{ form_errors(form.video) }}
+                                    <p class="form-text text-muted">Upload a video related to your ending.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-item d-flex">
+                                <a href="{{ path('app_ending_show', {'id': ending.id}) }}" class="button secondary mt-8 mb-3 w-100 mr-3">Cancel</a>
+                                <button type="submit" class="button primary mt-8 mb-3 w-100">Update Ending</button>
+                            </div>
+                        </div>
+
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
