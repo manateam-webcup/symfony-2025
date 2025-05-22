@@ -112,7 +112,11 @@
               >
                 <i class="ri-sun-line"></i>
               </button>
-              <a href="{{ path('app_login') }}" class="btn primary_btn">Se connecter / S’inscrire</a>
+              {% if app.user is not null %}
+                <a href="{{ path('app_user_dashboard') }}" class="btn primary_btn">Mon Compte</a>
+              {% else %}
+                <a href="{{ path('app_login') }}" class="btn primary_btn">Se connecter / S’inscrire</a>
+              {% endif %}
             </div>
           </div>
         </nav>
@@ -401,56 +405,96 @@
           />
           <div class="images text-start">
             <div class="image">
-              <img
-                src="/images/projects/project5.jpg"
-                alt="project-image"
-              />
-              <div class="text"></div>
+              <a href="{{ path('app_ending_index') }}">
+                <img src="/images/emotions/all.jpg" alt="Voir tous les fins" width="200" />
+              </a>
+              <div class="text">Voir toutes les fins</div>
             </div>
             <div class="image">
-              <img
-                src="/images/projects/project6.jpg"
-                alt="project-image"
-              />
-              <div class="text"></div>
+              <a href="{{ path('app_ending_index', {'emotion': 'happy'}) }}">
+                <img src="/images/emotions/happy.jpg" alt="Voir les fins heureuses" width="200" />
+              </a>
+              <div class="text hovered2">Voir les fins heureuses</div>
             </div>
             <div class="image">
-              <img
-                src="/images/projects/project7.jpg"
-                alt="project-image"
-              />
-              <div class="text"></div>
+              <a href="{{ path('app_ending_index', {'emotion': 'sad'}) }}">
+                <img src="/images/emotions/sad.jpg" alt="Voir les fins tristes" width="200" />
+              </a>
+              <div class="text">Voir les fins tristes</div>
             </div>
             <div class="image">
-              <img
-                src="/images/projects/project8.jpg"
-                alt="project-image"
-              />
-              <div class="text"></div>
+              <a href="{{ path('app_ending_index', {'emotion': 'shocking'}) }}">
+                <img src="/images/emotions/shocking.jpg" alt="Voir les fins choquantes" width="200" />
+              </a>
+              <div class="text">Voir les fins choquantes</div>
             </div>
             <div class="image">
-              <img
-                src="/images/projects/project9.jpg"
-                alt="project-image"
-              />
-              <div class="text"></div>
+              <a href="{{ path('app_ending_index', {'emotion': 'angry'}) }}">
+                <img src="/images/emotions/angry.jpg" alt="Voir les fins en colère" width="200" />
+              </a>
+              <div class="text">Voir les fins en colère</div>
             </div>
           </div>
           <div class="contents text-start">
             <div class="item">
-              <img src="/images/avatars/logo.png" />
+              <h3>
+                <a href="{{ path('app_ending_index') }}">
+                  Tous
+                </a>
+              </h3>
+              <p>Chaque fin raconte une histoire unique — qu'elle soit douce, brutale ou inattendue, elle mérite d’être partagée et entendue.</p>
+              <a href="{{ path('app_ending_index') }}" class="link-btn d-flex align-items-center position-relative">
+                Voir toutes les fins
+                <i class="ri-arrow-right-line"></i>
+              </a>
             </div>
             <div class="item">
-              <img src="/images/avatars/logo.png" />
+              <h3>
+                <a href="{{ path('app_ending_index', {'emotion': 'happy'}) }}">
+                  Heureux
+                </a>
+              </h3>
+              <p>Des fins pleines d’espoir qui ouvrent la voie à de nouveaux départs, portées par la gratitude, le courage et un sourire sincère.</p>
+              <a href="{{ path('app_ending_index', {'emotion': 'happy'}) }}" class="link-btn d-flex align-items-center position-relative">
+                Voir les fins heureuses
+                <i class="ri-arrow-right-line"></i>
+              </a>
             </div>
             <div class="item">
-              <img src="/images/avatars/logo.png" />
+              <h3>
+                <a href="{{ path('app_ending_index', {'emotion': 'sad'}) }}">
+                  Triste
+                </a>
+              </h3>
+              <p>Dire au revoir n’est jamais facile, mais écrire la fin permet parfois de soulager le cœur et d’alléger le silence.</p>
+              <a href="{{ path('app_ending_index', {'emotion': 'sad'}) }}" class="link-btn d-flex align-items-center position-relative">
+                Voir les fins tristes
+                <i class="ri-arrow-right-line"></i>
+              </a>
             </div>
             <div class="item">
-              <img src="/images/avatars/logo.png" />
+              <h3>
+                <a href="{{ path('app_ending_index', {'emotion': 'shocking'}) }}">
+                  Choquant
+                </a>
+              </h3>
+              <p>Des fins inattendues qui frappent fort, bouleversent les certitudes et laissent des traces bien après le dernier mot.</p>
+              <a href="{{ path('app_ending_index', {'emotion': 'shocking'}) }}" class="link-btn d-flex align-items-center position-relative">
+                Voir les fins choquantes
+                <i class="ri-arrow-right-line"></i>
+              </a>
             </div>
             <div class="item">
-              <img src="/images/avatars/logo.png" />
+              <h3>
+                <a href="{{ path('app_ending_index', {'emotion': 'angry'}) }}">
+                  En colère
+                </a>
+              </h3>
+              <p>Quand la douleur devient vérité et que la colère éclaire enfin ce qui doit être dit pour pouvoir avancer.</p>
+              <a href="{{ path('app_ending_index', {'emotion': 'angry'}) }}" class="link-btn d-flex align-items-center position-relative">
+                Voir les fins en colère
+                <i class="ri-arrow-right-line"></i>
+              </a>
             </div>
           </div>
         </div>

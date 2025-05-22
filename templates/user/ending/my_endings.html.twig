@@ -76,6 +76,11 @@
                         <div class="post-preview-info-bottom">
                             <p class="post-preview-text">{{ ending.description|striptags|slice(0, 300) }}{% if ending.description|length > 300 %}...{% endif %}</p>
                             <a class="post-preview-link" href="{{ path('app_ending_show', {id: ending.id}) }}">Read more...</a>
+                            {% if ending.status == 'pending' %}
+                                <a href="{{ path('app_ending_edit', {id: ending.id}) }}" class="badge btn-primary" title="Edit" style="float: right;">
+                                    <i class="fas fa-edit"></i> Edit
+                                </a>
+                            {% endif %}
                         </div>
                     </div>
 
@@ -109,7 +114,7 @@
                                 <a class="meta-line-link" href="{{ path('app_ending_show', {id: ending.id}) }}#comments">{{ ending.comments|length }} Comments</a>
                             </div>
                             <div class="badge {% if ending.status == 'approved' %}bg-success{% elseif ending.status == 'pending' %}bg-warning{% elseif ending.status == 'rejected' %}bg-danger{% endif %} ml-2" title="{{ ending.status|capitalize }}">
-                                {% if ending.status == 'approved' %}✓{% elseif ending.status == 'pending' %}﹗{% elseif ending.status == 'rejected' %}𐄂{% endif %}
+                                {% if ending.status == 'approved' %}Approved{% elseif ending.status == 'pending' %}Pending{% elseif ending.status == 'rejected' %}Rejected{% endif %}
                             </div>
                         </div>
                     </div>

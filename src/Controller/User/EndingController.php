@@ -160,6 +160,57 @@ class EndingController extends AbstractController
         return $this->redirectToRoute('admin_pending_endings');
     }
 
+    #[Route('/{id}/edit', name: 'app_ending_edit', methods: ['GET', 'POST'])]
+    public function edit(Request $request, Ending $ending, EntityManagerInterface $entityManager, SluggerInterface $slugger, OpenAIService $openAIService): Response
+    {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
+        // Check if the current user is the owner of the ending
+        if ($ending->getUser() !== $this->getUser()) {
+            throw $this->createAccessDeniedException('You can only edit your own endings.');
+        }
+
+        // Check if the ending status is pending
+        if ($ending->getStatus() !== 'pending') {
+            $this->addFlash('error', 'You can only edit endings with pending status.');
+            return $this->redirectToRoute('app_ending_show', ['id' => $ending->getId()]);
+        }
+
+        $form = $this->createForm(EndingType::class, $ending);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            // Handle file uploads
+            $this->handleFileUpload($form, $ending, 'image1', 'image1Path', $slugger);
+            $this->handleFileUpload($form, $ending, 'image2', 'image2Path', $slugger);
+            $this->handleFileUpload($form, $ending, 'image3', 'image3Path', $slugger);
+            $this->handleFileUpload($form, $ending, 'audio', 'audioPath', $slugger);
+            $this->handleFileUpload($form, $ending, 'video', 'videoPath', $slugger);
+
+            // AI moderation
+            $moderationResult = $openAIService->moderateContent($ending->getDescription());
+            $ending->setModerationScore($moderationResult['score']);
+
+            // Keep the status as pending, but update moderation reason if needed
+            if (!$moderationResult['approved']) {
+                $ending->setModerationReason(implode(', ', $moderationResult['reasons']));
+            } else {
+                $ending->setModerationReason(null);
+            }
+
+            $entityManager->flush();
+
+            $this->addFlash('success', 'Your ending has been updated and is awaiting approval.');
+
+            return $this->redirectToRoute('app_ending_show', ['id' => $ending->getId()], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->render('user/ending/edit.html.twig', [
+            'ending' => $ending,
+            'form' => $form,
+        ]);
+    }
+
     /**
      * Helper method to handle file uploads
      */
