@@ -81,7 +81,7 @@
                 <i class="ri-sun-line"></i>
               </button>
               {% if app.user is not null %}
-                <a href="{{ path('app_user_dashboard') }}" class="btn primary_btn">Mon Compte</a>
+                <a href="{{ path('app_ending_my_endings') }}" class="btn primary_btn">Mes Endings</a>
               {% else %}
                 <a href="{{ path('app_login') }}" class="btn primary_btn">Se connecter / S’inscrire</a>
               {% endif %}

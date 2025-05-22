@@ -3962,11 +3962,11 @@ figure > img {
 }
 
 .meta-line + .meta-line {
-  margin-left: 22px;
+  margin-left: 0.5em;
 }
 
 .meta-line .meta-line-list + .meta-line-text {
-  margin-left: 10px;
+  /*margin-left: 10px;*/
 }
 
 .meta-line.settings {

@@ -74,7 +74,7 @@
                             <p class="post-preview-title">{{ ending.title }}</p>
                         </div>
                         <div class="post-preview-info-bottom">
-                            <p class="post-preview-text">{{ ending.description|striptags|slice(0, 300) }}{% if ending.description|length > 300 %}...{% endif %}</p>
+                            <p class="post-preview-text">{{ ending.description|striptags|slice(0, 290) }}{% if ending.description|length > 290 %}...{% endif %}</p>
                             <a class="post-preview-link" href="{{ path('app_ending_show', {id: ending.id}) }}">Read more...</a>
                             {% if ending.status == 'pending' %}
                                 <a href="{{ path('app_ending_edit', {id: ending.id}) }}" class="badge btn-primary" title="Edit" style="float: right;">
@@ -86,26 +86,26 @@
 
                     <div class="content-actions">
                         <div class="content-action">
-                            <div class="reaction-item mr-4">
+                            <div class="reaction-item mr-2">
                                 <div class="badge {% if ending.emotion == 'sad' %}bg-info{% elseif ending.emotion == 'shocking' %}bg-warning{% elseif ending.emotion == 'happy' %}bg-success{% elseif ending.emotion == 'angry' %}bg-danger{% endif %}">
                                     {{ ending.emotion|capitalize }}
                                 </div>
                             </div>
-                            <div class="meta-line">
+                            <div class="meta-line" style="margin-left: 0.5em;">
                                 <div class="meta-line-list reaction-item-list">
                                     <div class="reaction-item">
                                         <img class="reaction-image reaction-item-dropdown-trigger" src="/img/reaction/like.png" alt="reaction-like">
                                     </div>
                                 </div>
-                                <p class="meta-line-text">{{ ending.likes }}</p>
+                                <p class="meta-line-text" style="margin-left: 0.25em;">{{ ending.likes }}</p>
                             </div>
-                            <div class="meta-line">
+                            <div class="meta-line" style="margin-left: 0.5em;">
                                 <div class="meta-line-list reaction-item-list">
                                     <div class="reaction-item">
                                         <img class="reaction-image reaction-item-dropdown-trigger" src="/img/reaction/dislike.png" alt="reaction-dislike">
                                     </div>
                                 </div>
-                                <p class="meta-line-text">{{ ending.dislikes }}</p>
+                                <p class="meta-line-text" style="margin-left: 0.25em;">{{ ending.dislikes }}</p>
                             </div>
                         </div>
 
